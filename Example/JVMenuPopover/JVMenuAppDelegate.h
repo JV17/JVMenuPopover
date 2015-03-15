@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class JVMenuViewController;
+
 @interface JVMenuAppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

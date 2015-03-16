@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1463468FC1798202FB11350A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C010DDD49602B47F1A1646 /* libPods-Tests.a */; };
+		3C7006CA1AB6548B0048B2AC /* blurred_background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3C7006C91AB6548B0048B2AC /* blurred_background.jpg */; };
 		3CD99E871AB539E7008ED702 /* menu-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD99E861AB539E7008ED702 /* menu-26.png */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -41,6 +42,7 @@
 		09C010DDD49602B47F1A1646 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C0C57331AD4F9079E9EDFCC /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1FCAAD443182BE2E422083B7 /* Pods-JVMenuPopover.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVMenuPopover.release.xcconfig"; path = "Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover.release.xcconfig"; sourceTree = "<group>"; };
+		3C7006C91AB6548B0048B2AC /* blurred_background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blurred_background.jpg; sourceTree = "<group>"; };
 		3CD99E861AB539E7008ED702 /* menu-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-26.png"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* JVMenuPopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVMenuPopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -145,6 +147,7 @@
 		6003F593195388D20070C39A /* JVMenuPopover */ = {
 			isa = PBXGroup;
 			children = (
+				3C7006C91AB6548B0048B2AC /* blurred_background.jpg */,
 				3CD99E861AB539E7008ED702 /* menu-26.png */,
 				6003F59C195388D20070C39A /* JVMenuAppDelegate.h */,
 				6003F59D195388D20070C39A /* JVMenuAppDelegate.m */,
@@ -279,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C7006CA1AB6548B0048B2AC /* blurred_background.jpg in Resources */,
 				3CD99E871AB539E7008ED702 /* menu-26.png in Resources */,
 				6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,

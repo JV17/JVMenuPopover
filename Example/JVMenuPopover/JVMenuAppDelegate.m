@@ -14,14 +14,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    // Override point for customization after application launch.
     UIViewController *rootController = [[JVMenuViewController alloc] init];
     
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
+    [self.window setRootViewController:self.navigationController];
+    self.window.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
+//    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"blurred_background.jpg"]];
     
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];

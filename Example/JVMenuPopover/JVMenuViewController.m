@@ -9,8 +9,8 @@
 #import "JVMenuViewController.h"
 
 @interface JVMenuViewController ()
-@property (nonatomic) int dummyCtr;
 @property (nonatomic, strong) UIImage *menuImg;
+
 @end
 
 @implementation JVMenuViewController
@@ -50,59 +50,6 @@
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-}
-
-
-#pragma mark - show menu
-
-- (void)showMenu
-{
-    if(self.dummyCtr == 0)
-    {
-        [UIView animateWithDuration:0.15 animations:^{
-            self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
-//            self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1/3 animations:^{
-                self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-//                self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1/3 animations:^{
-                    self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
-//                    self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.1/3 animations:^{
-                        self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-//                        self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                    }];
-                }];
-            }];
-        }];
-
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-        self.dummyCtr = 1;
-    }
-    else
-    {
-        [UIView animateWithDuration:0.3/1.5 animations:^{
-            self.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.2/4 animations:^{
-//                self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.15/4 animations:^{
-//                    self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.15/4 animations:^{
-//                        self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                    }];
-                }];
-            }];
-        }];
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        self.dummyCtr = 0;
-    }
 }
 
 - (void)didReceiveMemoryWarning

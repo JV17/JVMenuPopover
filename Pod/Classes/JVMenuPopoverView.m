@@ -175,7 +175,9 @@
 
 - (void)showMenu
 {
-    UIViewController *currentController = [self topViewController];
+    // find the navigation controller and then get the current visible controller
+    UINavigationController *navController = (UINavigationController *)[self topViewController];
+    UIViewController *currentController = navController.visibleViewController;
     
     if(self.dummyCtr == 0)
     {

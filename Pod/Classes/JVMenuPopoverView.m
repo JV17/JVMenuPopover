@@ -175,9 +175,6 @@
 
 - (void)showMenu
 {
-    if(!self.doneAnimations)
-        return;
-    
     UIViewController *currentController = [self topViewController];
     
     if(self.dummyCtr == 0)
@@ -197,7 +194,7 @@
                     [UIView animateWithDuration:0.1/3 animations:^{
                         currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
                         //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                    }completion:^(BOOL finished) {
+                    } completion:^(BOOL finished) {
                         if(finished)
                         {
                             self.doneAnimations = YES;
@@ -212,9 +209,16 @@
     }
     else
     {
+        if(!self.doneAnimations)
+            return;
+        
         [UIView animateWithDuration:0.3/1.5 animations:^{
             currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
         } completion:^(BOOL finished) {
+            if(finished) // TODO: remove this or move to bottmo animation
+            {
+                self.doneAnimations = NO;
+            }
             [UIView animateWithDuration:0.2/4 animations:^{
                 //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
             } completion:^(BOOL finished) {

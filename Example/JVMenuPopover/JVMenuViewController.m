@@ -7,9 +7,12 @@
 //
 
 #import "JVMenuViewController.h"
+#import <JVMenuPopover/JVMenuPopoverView.h>
 
 @interface JVMenuViewController ()
+
 @property (nonatomic, strong) UIImage *menuImg;
+@property (nonatomic, strong) JVMenuPopoverView *menuView;
 
 @end
 
@@ -39,7 +42,7 @@
     
     if (self == [self.navigationController.viewControllers firstObject])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self.menuView action:@selector(showMenu)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     }
     
@@ -56,6 +59,18 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Custom getters & setters
+
+- (JVMenuPopoverView *)menuView
+{
+    if(!_menuView)
+    {
+        _menuView = [[JVMenuPopoverView alloc] init];
+    }
+    
+    return _menuView;
 }
 
 @end

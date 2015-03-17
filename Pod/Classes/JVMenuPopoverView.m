@@ -136,12 +136,12 @@
     if(indexPath.row == 0)
     {
         // set first row
-        cell.textLabel.text = @"first row";
+        cell.textLabel.text = @"JVMenu rows";
     }
     else
     {
         // set the rest of the rows
-        cell.textLabel.text = @"other rows";
+        cell.textLabel.text = @"JVMenu rows";
     }
     
     return cell;

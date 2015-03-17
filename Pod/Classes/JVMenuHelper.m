@@ -60,4 +60,33 @@
     return image;
 }
 
++ (UIImage *)changeImageColor:(UIImage *)img withColor:(UIColor *)color
+{
+    if (color)
+    {
+        UIGraphicsBeginImageContextWithOptions(img.size, NO, img.scale);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        CGContextTranslateCTM(context, 0, img.size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextSetBlendMode(context, kCGBlendModeNormal);
+        
+        CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
+        
+        CGContextClipToMask(context, rect, img.CGImage);
+        
+        [color setFill];
+        
+        CGContextFillRect(context, rect);
+        
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return newImage;
+    }
+    
+    return img;
+}
+
 @end

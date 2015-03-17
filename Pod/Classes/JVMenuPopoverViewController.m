@@ -59,7 +59,7 @@
     if(!_menuView)
     {
         _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame];
-        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
     }
     
     return _menuView;
@@ -71,7 +71,8 @@
     {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _closeBtn.frame = CGRectMake(17, 30, 25, 25);
-        [_closeBtn setImage:[UIImage imageNamed:@"cancel-25"] forState:UIControlStateNormal];
+        UIImage *closeImg = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"cancel-25"] withColor:[UIColor whiteColor]];
+        [_closeBtn setImage:closeImg forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
     }
     

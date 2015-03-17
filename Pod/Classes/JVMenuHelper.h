@@ -18,4 +18,6 @@
 
 + (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated;
 
++ (UIImage *)changeImageColor:(UIImage *)img withColor:(UIColor *)color;
+
 @end

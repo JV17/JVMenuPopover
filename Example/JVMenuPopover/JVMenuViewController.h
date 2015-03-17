@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <JVMenuPopover/JVMenuPopoverViewController.h>
 
-@interface JVMenuViewController : UIViewController
+
+@interface JVMenuViewController : UIViewController <JVMenuDelegate>
 
 @end

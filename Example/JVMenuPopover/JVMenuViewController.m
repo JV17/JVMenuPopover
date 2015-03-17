@@ -7,12 +7,12 @@
 //
 
 #import "JVMenuViewController.h"
-#import <JVMenuPopover/JVMenuPopoverView.h>
+
 
 @interface JVMenuViewController ()
 
 @property (nonatomic, strong) UIImage *menuImg;
-@property (nonatomic, strong) JVMenuPopoverView *menuView;
+@property (nonatomic, strong) JVMenuPopoverViewController *menuController;
 
 @end
 
@@ -34,6 +34,8 @@
     label.text = @"JVMenu!";
 
     [self.view addSubview:label];
+    
+    self.menuController = [self menuController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,7 +44,7 @@
     
     if (self == [self.navigationController.viewControllers firstObject])
     {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self.menuView action:@selector(showMenu)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
     }
     
@@ -63,14 +65,29 @@
 
 #pragma mark - Custom getters & setters
 
-- (JVMenuPopoverView *)menuView
+- (JVMenuPopoverViewController *)menuController
 {
-    if(!_menuView)
+    if(!_menuController)
     {
-        _menuView = [[JVMenuPopoverView alloc] init];
+        _menuController = [[JVMenuPopoverViewController alloc] init];
+        _menuController.delegate = self;
     }
     
-    return _menuView;
+    return _menuController;
 }
+
+#pragma mark - Navigation helper functions
+
+- (void)showMenu
+{
+    [self.menuController showMenuFromController:self];
+}
+
+#pragma mark - Menu Delegate
+
+//- (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController
+//{
+//    [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
+//}
 
 @end

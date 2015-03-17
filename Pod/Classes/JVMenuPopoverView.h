@@ -10,6 +10,8 @@
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
+@class JVMenuPopoverView;
+
 #pragma mark - Protocol
 @protocol JVMenuPopoverDelegate <NSObject>
 
@@ -31,11 +33,5 @@
 // Initializers
 - (instancetype)init;
 - (instancetype)initWithFrame:(CGRect)frame;
-
-// Menu helper functions
-- (void)showMenu;
-
-// Helper functions
-- (CGSize)getScreenSize;
 
 @end

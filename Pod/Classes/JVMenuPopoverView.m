@@ -7,19 +7,16 @@
 //
 
 #import "JVMenuPopoverView.h"
+#import <JVMenuHelper.h>
 
 #pragma mark - Interface
 @interface JVMenuPopoverView()
 
-// Private Properties
+@property (nonatomic, strong) UIView *headerView;
 @property (nonatomic) CGSize screenSize;
-@property (nonatomic, assign) BOOL doneAnimations;
-@property (nonatomic) int dummyCtr;// TODO: remove this!
 
-// Private Methods
+// Protected Methods
 - (void)setup;
-- (UIViewController *)topViewController;
-- (UIViewController *)topViewController:(UIViewController *)rootViewController;
 
 @end
 
@@ -55,7 +52,13 @@
 
 - (void)setup
 {
-    self.screenSize = [self getScreenSize];
+    if(self.frame.size.width == 0)
+    {
+        self.screenSize = [JVMenuHelper getScreenSize];
+    }
+    
+    self.backgroundColor = [UIColor clearColor];
+//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [self addSubview:self.tableView];
 }
 
@@ -66,7 +69,7 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.screenSize.width, self.screenSize.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
         _tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         
@@ -153,7 +156,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // return the height of row
-    return 30;
+    return 60;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,111 +173,21 @@
     [self.tableView endUpdates];
 }
 
-
-#pragma mark - show menu
-
-- (void)showMenu
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // find the navigation controller and then get the current visible controller
-    UINavigationController *navController = (UINavigationController *)[self topViewController];
-    UIViewController *currentController = navController.visibleViewController;
+    // custom view for header. will be adjusted to default or specified header height
+//    if(!_headerView)
+//    {
+//        _headerView = [[UIView alloc] initWithFrame:CGRectMake(10, 20, 50, 50)];
+//        _headerView.backgroundColor = [UIColor clearColor];
+//    }
     
-    if(self.dummyCtr == 0)
-    {
-        [UIView animateWithDuration:0.15 animations:^{
-            currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
-            //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1/3 animations:^{
-                currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1/3 animations:^{
-                    currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
-                    //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.1/3 animations:^{
-                        currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                        //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                    } completion:^(BOOL finished) {
-                        if(finished)
-                        {
-                            self.doneAnimations = YES;
-                        }
-                    }];
-                }];
-            }];
-        }];
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-        self.dummyCtr = 1;
-    }
-    else
-    {
-        if(!self.doneAnimations)
-            return;
-        
-        [UIView animateWithDuration:0.3/1.5 animations:^{
-            currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-        } completion:^(BOOL finished) {
-            if(finished) // TODO: remove this or move to bottmo animation
-            {
-                self.doneAnimations = NO;
-            }
-            [UIView animateWithDuration:0.2/4 animations:^{
-                //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.15/4 animations:^{
-                    //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.15/4 animations:^{
-                        //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                    }];
-                }];
-            }];
-        }];
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        self.dummyCtr = 0;
-    }
+    return [UIView new];
 }
 
-
-#pragma mark - Helper functions
-
-- (CGSize)getScreenSize
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    
-    if ((NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
-    {
-        return CGSizeMake(screenSize.height, screenSize.width);
-    }
-    
-    return screenSize;
-}
-
-- (UIViewController *)topViewController
-{
-    return [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-}
-
-- (UIViewController *)topViewController:(UIViewController *)rootViewController
-{
-    if (rootViewController.presentedViewController == nil)
-    {
-        return rootViewController;
-    }
-    
-    if ([rootViewController.presentedViewController isKindOfClass:[UINavigationController class]])
-    {
-        UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
-        UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
-        return [self topViewController:lastViewController];
-    }
-    
-    UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
-    return [self topViewController:presentedViewController];
+    return 100;
 }
 
 @end

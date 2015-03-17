@@ -19,6 +19,7 @@
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneAnimations;
 @property (nonatomic) int dummyCtr;// TODO: remove this!
+@property (nonatomic, strong) UIView *containerView;
 
 @end
 
@@ -27,8 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    // setting up menu controller
     [self controllerSetup];
     
 }
@@ -36,7 +37,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Custom getters & setters
@@ -105,12 +105,25 @@
                     } completion:^(BOOL finished) {
                         if(finished)
                         {
-                            self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
-                            self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
-                            self.doneAnimations = YES;
                             if(self)
                             {
-                                [self.navController presentViewController:self animated:NO completion:nil];
+                                self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+                                self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
+                                self.doneAnimations = YES;
+                                self.closeBtn.alpha = 0.0;
+                                self.menuView.alpha = 0.0;
+
+                                [self.navController presentViewController:self
+                                                                 animated:NO
+                                                               completion:^{
+                                                                       [UIView animateWithDuration:0.5
+                                                                                             delay:0.0
+                                                                                           options:UIViewAnimationOptionCurveEaseIn
+                                                                                        animations:^{
+                                                                                            self.closeBtn.alpha = 1.0;
+                                                                                            self.menuView.alpha = 1.0;
+                                                                                        } completion:nil];
+                                }];
                             }
                         }
                     }];

@@ -1,6 +1,7 @@
 # JVMenuPopover
 
-[![CI Status](http://img.shields.io/travis/Jorge Valbuena/JVMenuPopover.svg?style=flat)](https://travis-ci.org/Jorge Valbuena/JVMenuPopover)
+In Development!
+
 [![Version](https://img.shields.io/cocoapods/v/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 [![License](https://img.shields.io/cocoapods/l/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 [![Platform](https://img.shields.io/cocoapods/p/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)

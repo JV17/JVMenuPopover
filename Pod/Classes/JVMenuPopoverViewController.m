@@ -84,19 +84,15 @@
         
         [UIView animateWithDuration:0.15 animations:^{
             self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
-            //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1/3 animations:^{
                 self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.1/3 animations:^{
                     self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
-                    //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
                 } completion:^(BOOL finished) {
                     [UIView animateWithDuration:0.1/3 animations:^{
                         self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
-                        //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
                     } completion:^(BOOL finished) {
                         
                         UIImage *bgImage = [JVMenuHelper captureScreenInRect:self.view.bounds ofView:self.navController.view];
@@ -107,23 +103,10 @@
                         if(finished)
                         {
                             self.doneAnimations = YES;
-//                            if(!_tableView.window)
-//                            {
-//                                [self addSubview:self.tableView];
-//                            }
-//                            [self.navController.view addSubview:self.menuView];
-                            
                             if(self)
                             {
                                 [self.navController presentViewController:self animated:NO completion:nil];
                             }
-                            
-                            
-                            // tell the delegate we are ready to show the menu
-//                            if([self.delegate respondsToSelector:@selector(showMenu:inViewController:)])
-//                            {
-//                                [self.delegate showMenu:self inViewController:self.currentController];
-//                            }
                         }
                     }];
                 }];

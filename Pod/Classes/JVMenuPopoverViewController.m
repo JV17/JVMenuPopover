@@ -95,10 +95,9 @@
                         self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
                     } completion:^(BOOL finished) {
                         
-                        UIImage *bgImage = [JVMenuHelper captureScreenInRect:self.view.bounds ofView:self.navController.view];
+                        UIImage *bgImage = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
                         self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
                         self.imageView = [[UIImageView alloc] initWithImage:bgImage];
-                        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
 
                         if(finished)
                         {
@@ -131,6 +130,7 @@
             [self.closeBtn performSelector:@selector(removeFromSuperview)];
             self.view.backgroundColor = [UIColor clearColor];
             [self.view addSubview:self.imageView];
+            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
         }
         
         [UIView animateWithDuration:0.3/1.5 animations:^{

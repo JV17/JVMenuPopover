@@ -16,6 +16,6 @@
 
 + (UIViewController *)topViewController:(UIViewController *)rootViewController;
 
-+ (UIImage *)captureScreenInRect:(CGRect)captureFrame ofView:(UIView *)view;
++ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated;
 
 @end

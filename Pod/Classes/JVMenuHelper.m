@@ -47,17 +47,17 @@
     return [self topViewController:presentedViewController];
 }
 
-+ (UIImage *)captureScreenInRect:(CGRect)captureFrame ofView:(UIView *)view
++ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated
 {
-    CALayer *layer;
-    layer = view.layer;
-    UIGraphicsBeginImageContext(view.bounds.size);
-    CGContextClipToRect (UIGraphicsGetCurrentContext(),captureFrame);
-    [layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:updated];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
     UIGraphicsEndImageContext();
     
-    return screenImage;
+    return image;
 }
 
 @end

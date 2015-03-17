@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UINavigationController *navController;
 @property (nonatomic, strong) UIViewController *currentController;
 @property (nonatomic, strong) UIButton *closeBtn;
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneAnimations;
 @property (nonatomic) int dummyCtr;// TODO: remove this!
@@ -49,11 +49,6 @@
     self.view.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     self.view.backgroundColor = [UIColor clearColor];
     
-    self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.closeBtn.frame = CGRectMake(10, 20, 50, 50);
-    [self.closeBtn setImage:[UIImage imageNamed:@"cancel-25"] forState:UIControlStateNormal];
-    [self.closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
-    
     [self.view addSubview:self.menuView];
     [self.view addSubview:self.closeBtn];
     
@@ -68,6 +63,19 @@
     }
     
     return _menuView;
+}
+
+- (UIButton *)closeBtn
+{
+    if(!_closeBtn)
+    {
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeBtn.frame = CGRectMake(10, 20, 50, 50);
+        [_closeBtn setImage:[UIImage imageNamed:@"cancel-25"] forState:UIControlStateNormal];
+        [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _closeBtn;
 }
 
 
@@ -94,13 +102,10 @@
                     [UIView animateWithDuration:0.1/3 animations:^{
                         self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
                     } completion:^(BOOL finished) {
-                        
-                        UIImage *bgImage = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
-                        self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-                        self.imageView = [[UIImageView alloc] initWithImage:bgImage];
-
                         if(finished)
                         {
+                            self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+                            self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
                             self.doneAnimations = YES;
                             if(self)
                             {
@@ -124,27 +129,13 @@
     
     if(self.dummyCtr == 1)
     {
-        if(_menuView.window)
-        {
-            [self.menuView performSelector:@selector(removeFromSuperview)];
-            [self.closeBtn performSelector:@selector(removeFromSuperview)];
-            self.view.backgroundColor = [UIColor clearColor];
-            [self.view addSubview:self.imageView];
-            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-        }
-        
         [UIView animateWithDuration:0.3/1.5 animations:^{
-//            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-            self.imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.7, 1.7);
+            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
         } completion:^(BOOL finished) {
-            if(finished) // TODO: remove this or move to bottmo animation
-            {
                 self.doneAnimations = NO;
                 [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                 self.dummyCtr = 0;
-                [self.imageView performSelector:@selector(removeFromSuperview)];
-                [self dismissViewControllerAnimated:NO completion:nil];
-            }
+                [self.navController dismissViewControllerAnimated:NO completion:nil];
         }];
     }
 }

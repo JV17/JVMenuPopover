@@ -55,6 +55,7 @@
     if(self.frame.size.width == 0)
     {
         self.screenSize = [JVMenuHelper getScreenSize];
+        self.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     }
     
     self.backgroundColor = [UIColor clearColor];
@@ -187,7 +188,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    return 50;
 }
 
 @end

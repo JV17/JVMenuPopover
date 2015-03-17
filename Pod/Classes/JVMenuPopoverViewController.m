@@ -9,6 +9,7 @@
 #import "JVMenuPopoverViewController.h"
 #import <JVMenuHelper.h>
 
+
 @interface JVMenuPopoverViewController ()
 
 // Protected Properties
@@ -108,15 +109,17 @@
                             if(self)
                             {
                                 self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+                                self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
+                                self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
                                 self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
                                 self.doneAnimations = YES;
                                 self.closeBtn.alpha = 0.0;
                                 self.menuView.alpha = 0.0;
-
+                                
                                 [self.navController presentViewController:self
                                                                  animated:NO
                                                                completion:^{
-                                                                       [UIView animateWithDuration:0.5
+                                                                       [UIView animateWithDuration:0.7
                                                                                              delay:0.0
                                                                                            options:UIViewAnimationOptionCurveEaseIn
                                                                                         animations:^{

@@ -20,4 +20,8 @@
 
 + (UIImage *)changeImageColor:(UIImage *)img withColor:(UIColor *)color;
 
++ (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size;
+
++ (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
+
 @end

@@ -76,7 +76,7 @@
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
         {
             // remove leading spaces
-            _tableView.layoutMargins = UIEdgeInsetsZero;
+//            _tableView.layoutMargins = UIEdgeInsetsZero;
         }
         
         _tableView.bounces = YES;

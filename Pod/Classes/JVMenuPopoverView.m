@@ -104,34 +104,34 @@
     
     if([self.tableView respondsToSelector:@selector(setLayoutMargins:)])
     {
-        self.tableView.layoutMargins = UIEdgeInsetsZero;
+//        self.tableView.layoutMargins = UIEdgeInsetsZero;
     }
     
     // Remove seperator inset
     if ([cell respondsToSelector:@selector(setSeparatorInset:)])
     {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
     }
     
     // Prevent the cell from inheriting the Table View's margin settings
     if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
     {
-        [cell setPreservesSuperviewLayoutMargins:NO];
+//        [cell setPreservesSuperviewLayoutMargins:NO];
     }
     
     // Explictly set your cell's layout margins
     if ([cell respondsToSelector:@selector(setLayoutMargins:)])
     {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
+//        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
     
     // setups cell
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:16];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
     cell.textLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
     
     if(indexPath.row == 0)
     {

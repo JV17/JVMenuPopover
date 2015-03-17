@@ -154,10 +154,10 @@
 				3CD99E861AB539E7008ED702 /* menu-26.png */,
 				6003F59C195388D20070C39A /* JVMenuAppDelegate.h */,
 				6003F59D195388D20070C39A /* JVMenuAppDelegate.m */,
-				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
-				6003F5A2195388D20070C39A /* Main_iPad.storyboard */,
 				6003F5A5195388D20070C39A /* JVMenuViewController.h */,
 				6003F5A6195388D20070C39A /* JVMenuViewController.m */,
+				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
+				6003F5A2195388D20070C39A /* Main_iPad.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);

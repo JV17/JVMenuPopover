@@ -70,8 +70,8 @@
     if(!_closeBtn)
     {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(17, 30, 25, 25);
-        UIImage *closeImg = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"cancel-25"] withColor:[UIColor whiteColor]];
+        _closeBtn.frame = CGRectMake(17, 29, 25, 25);
+        UIImage *closeImg = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"cancel-50"] withColor:[UIColor whiteColor]];
         [_closeBtn setImage:closeImg forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
     }

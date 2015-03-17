@@ -20,7 +20,6 @@
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneAnimations;
 @property (nonatomic) int dummyCtr;// TODO: remove this!
-@property (nonatomic, strong) UIView *containerView;
 
 @end
 
@@ -97,14 +96,22 @@
         } completion:^(BOOL finished) {
             if(finished)
             {
+                // takes a screenshot of the current navigation view
                 self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+                
+                // add some blur to screenshot
                 self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
+                
+                // scale blurred image to actual controller view size
                 self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
+                
+                // setting blurred bg image to view and preparing controller objects for animation
                 self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
                 self.doneAnimations = YES;
                 self.closeBtn.alpha = 0.0;
                 self.menuView.alpha = 0.0;
 
+                // trigger "present menu controller" animation
                 [self.navController presentViewController:self
                                                  animated:NO
                                                completion:^{
@@ -126,18 +133,20 @@
 
 - (void)closeMenuFromController:(UIViewController *)viewController
 {
+    // if we haven't finished show menu animations then return to avoid overlaps or interruptions
     if(!self.doneAnimations)
         return;
     
     if(self.dummyCtr == 1)
     {
+        // resetting current visible controller scale & dimissing menu controller
         [UIView animateWithDuration:0.3/1.5 animations:^{
             self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
         } completion:^(BOOL finished) {
-                self.doneAnimations = NO;
-                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-                self.dummyCtr = 0;
-                [self.navController dismissViewControllerAnimated:NO completion:nil];
+            self.doneAnimations = NO;
+            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+            self.dummyCtr = 0;
+            [self.navController dismissViewControllerAnimated:NO completion:nil];
         }];
     }
 }

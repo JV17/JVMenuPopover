@@ -59,7 +59,7 @@
     if(!_menuView)
     {
         _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame];
-        _menuView.backgroundColor = [UIColor clearColor];
+        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     }
     
     return _menuView;
@@ -70,7 +70,7 @@
     if(!_closeBtn)
     {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(10, 20, 50, 50);
+        _closeBtn.frame = CGRectMake(17, 30, 25, 25);
         [_closeBtn setImage:[UIImage imageNamed:@"cancel-25"] forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -91,16 +91,16 @@
         self.currentController = viewController;
         
         [UIView animateWithDuration:0.15 animations:^{
-            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.73, 0.73);
+            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.65, 0.65);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1/3 animations:^{
-                self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
+                self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.1/3 animations:^{
-                    self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75);
+                    self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.65, 0.65);
                 } completion:^(BOOL finished) {
                     [UIView animateWithDuration:0.1/3 animations:^{
-                        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
+                        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
                     } completion:^(BOOL finished) {
                         if(finished)
                         {

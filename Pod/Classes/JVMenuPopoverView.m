@@ -58,8 +58,7 @@
         self.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     }
     
-    self.backgroundColor = [UIColor clearColor];
-//    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
     [self addSubview:self.tableView];
 }
 
@@ -70,8 +69,8 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -130,7 +129,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:16];
-//    cell.textLabel.textColor = FlatGray;
+    cell.textLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -151,7 +150,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // return the number of sections in the tableview
-    return 1;
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,15 +162,6 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // do any changes to the cells before displaying them / after they are created
-}
-
--(void)insertNewRowToTableView
-{
-    // inserts a new in our tableview
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -188,7 +178,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 0;
 }
 
 @end

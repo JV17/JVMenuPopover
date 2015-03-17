@@ -57,6 +57,13 @@
     self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    NSLog(@"appeared!");
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

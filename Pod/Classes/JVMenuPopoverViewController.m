@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UINavigationController *navController;
 @property (nonatomic, strong) UIViewController *currentController;
 @property (nonatomic, strong) UIButton *closeBtn;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneAnimations;
 @property (nonatomic) int dummyCtr;// TODO: remove this!
@@ -100,7 +101,9 @@
                         
                         UIImage *bgImage = [JVMenuHelper captureScreenInRect:self.view.bounds ofView:self.navController.view];
                         self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-                        
+                        self.imageView = [[UIImageView alloc] initWithImage:bgImage];
+                        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+
                         if(finished)
                         {
                             self.doneAnimations = YES;
@@ -114,6 +117,7 @@
                             {
                                 [self.navController presentViewController:self animated:NO completion:nil];
                             }
+                            
                             
                             // tell the delegate we are ready to show the menu
 //                            if([self.delegate respondsToSelector:@selector(showMenu:inViewController:)])
@@ -140,34 +144,26 @@
     {
         if(_menuView.window)
         {
-            [self.menuView performSelector:@selector(removeFromSuperview) withObject:nil];
-            [self.navController popToViewController:self animated:NO];
+            [self.menuView performSelector:@selector(removeFromSuperview)];
+            [self.closeBtn performSelector:@selector(removeFromSuperview)];
+            self.view.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:self.imageView];
         }
         
         [UIView animateWithDuration:0.3/1.5 animations:^{
-            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+//            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+            self.imageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.7, 1.7);
         } completion:^(BOOL finished) {
             if(finished) // TODO: remove this or move to bottmo animation
             {
                 self.doneAnimations = NO;
+                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+                self.dummyCtr = 0;
+                [self.imageView performSelector:@selector(removeFromSuperview)];
+                [self dismissViewControllerAnimated:NO completion:nil];
             }
-            [UIView animateWithDuration:0.2/4 animations:^{
-                //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.15/4 animations:^{
-                    //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.15/4 animations:^{
-                        //self.navigationController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                    }];
-                }];
-            }];
         }];
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        self.dummyCtr = 0;
     }
-    
 }
 
 #pragma mark - Delegates

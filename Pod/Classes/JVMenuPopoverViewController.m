@@ -93,45 +93,30 @@
         self.currentController = viewController;
         
         [UIView animateWithDuration:0.15 animations:^{
-            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.65, 0.65);
+            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1/3 animations:^{
-                self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.1/3 animations:^{
-                    self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.65, 0.65);
-                } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.1/3 animations:^{
-                        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-                    } completion:^(BOOL finished) {
-                        if(finished)
-                        {
-                            if(self)
-                            {
-                                self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
-                                self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
-                                self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
-                                self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
-                                self.doneAnimations = YES;
-                                self.closeBtn.alpha = 0.0;
-                                self.menuView.alpha = 0.0;
-                                
-                                [self.navController presentViewController:self
-                                                                 animated:NO
-                                                               completion:^{
-                                                                       [UIView animateWithDuration:0.7
-                                                                                             delay:0.0
-                                                                                           options:UIViewAnimationOptionCurveEaseIn
-                                                                                        animations:^{
-                                                                                            self.closeBtn.alpha = 1.0;
-                                                                                            self.menuView.alpha = 1.0;
-                                                                                        } completion:nil];
-                                }];
-                            }
-                        }
-                    }];
+            if(finished)
+            {
+                self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+                self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
+                self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
+                self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
+                self.doneAnimations = YES;
+                self.closeBtn.alpha = 0.0;
+                self.menuView.alpha = 0.0;
+
+                [self.navController presentViewController:self
+                                                 animated:NO
+                                               completion:^{
+                                                       [UIView animateWithDuration:0.3
+                                                                             delay:0.0
+                                                                           options:UIViewAnimationOptionCurveEaseIn
+                                                                        animations:^{
+                                                                            self.closeBtn.alpha = 1.0;
+                                                                            self.menuView.alpha = 1.0;
+                                                                        } completion:nil];
                 }];
-            }];
+            }
         }];
         
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];

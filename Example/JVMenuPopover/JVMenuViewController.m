@@ -90,4 +90,9 @@
 //    [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
 //}
 
+- (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
+{
+    [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
+}
+
 @end

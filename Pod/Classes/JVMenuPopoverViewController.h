@@ -16,6 +16,7 @@
 
 @optional
 - (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController;
+- (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController;
 
 @end
 

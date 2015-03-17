@@ -53,8 +53,8 @@
     [self.closeBtn setImage:[UIImage imageNamed:@"cancel-25"] forState:UIControlStateNormal];
     [self.closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.closeBtn];
     [self.view addSubview:self.menuView];
+    [self.view addSubview:self.closeBtn];
     
 }
 
@@ -116,7 +116,7 @@
                             }
                             
                             // tell the delegate we are ready to show the menu
-//                            if([self.delegate performSelector:@selector(showMenu:inViewController:)])
+//                            if([self.delegate respondsToSelector:@selector(showMenu:inViewController:)])
 //                            {
 //                                [self.delegate showMenu:self inViewController:self.currentController];
 //                            }
@@ -141,6 +141,7 @@
         if(_menuView.window)
         {
             [self.menuView performSelector:@selector(removeFromSuperview) withObject:nil];
+            [self.navController popToViewController:self animated:NO];
         }
         
         [UIView animateWithDuration:0.3/1.5 animations:^{
@@ -167,6 +168,16 @@
         self.dummyCtr = 0;
     }
     
+}
+
+#pragma mark - Delegates
+
+- (void)closeMenu
+{
+    if([self.delegate respondsToSelector:@selector(closeMenu:)])
+    {
+        [self.delegate closeMenu:self];
+    }
 }
 
 @end

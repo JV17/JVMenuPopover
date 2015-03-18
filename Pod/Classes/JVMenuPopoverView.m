@@ -147,6 +147,16 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if([self.delegate respondsToSelector:@selector(menuPopover:didSelectRowAtIndexPath:)])
+    {
+        [self.delegate menuPopover:self didSelectRowAtIndexPath:indexPath];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // return the number of sections in the tableview

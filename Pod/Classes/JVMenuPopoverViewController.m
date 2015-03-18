@@ -60,6 +60,7 @@
     {
         _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame];
         _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        _menuView.delegate = self;
     }
     
     return _menuView;
@@ -100,10 +101,10 @@
                 self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
                 
                 // add some blur to screenshot
-                self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
+//                self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
                 
                 // scale blurred image to actual controller view size
-                self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
+//                self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
                 
                 // setting blurred bg image to view and preparing controller objects for animation
                 self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
@@ -146,12 +147,24 @@
             self.doneAnimations = NO;
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
             self.dummyCtr = 0;
-            [self.navController dismissViewControllerAnimated:NO completion:nil];
+            [self.navController dismissViewControllerAnimated:NO
+                                                   completion:^{
+                                                       [self.currentController dismissViewControllerAnimated:NO completion:nil];
+                                                   }];
         }];
     }
 }
 
 #pragma mark - Delegates
+
+- (void)menuPopover:(JVMenuPopoverView *)JVMenuPopoverView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self.delegate respondsToSelector:@selector(setNewViewController:fromIndexPath:)])
+    {
+        [self closeMenuFromController:nil];
+        [self.delegate setNewViewController:self.navController fromIndexPath:indexPath];
+    }
+}
 
 - (void)closeMenu
 {

@@ -10,6 +10,6 @@
 #import <JVMenuPopover/JVMenuPopoverViewController.h>
 
 
-@interface JVMenuViewController : UIViewController <JVMenuDelegate>
+@interface JVMenuViewController : UIViewController <UINavigationControllerDelegate, JVMenuDelegate>
 
 @end

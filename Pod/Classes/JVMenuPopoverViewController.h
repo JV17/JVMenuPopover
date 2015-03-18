@@ -14,6 +14,9 @@
 #pragma mark - Protocol
 @protocol JVMenuDelegate <NSObject>
 
+@required
+- (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath;
+
 @optional
 - (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController;
 - (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController;
@@ -21,7 +24,7 @@
 @end
 
 #pragma mark - Interface
-@interface JVMenuPopoverViewController : UIViewController
+@interface JVMenuPopoverViewController : UIViewController <JVMenuPopoverDelegate>
 
 @property (nonatomic, weak) id <JVMenuDelegate> delegate;
 

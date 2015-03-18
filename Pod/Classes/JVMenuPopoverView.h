@@ -17,6 +17,7 @@
 
 @optional
 // menu methods
+- (void)menuPopover:(JVMenuPopoverView *)JVMenuPopoverView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

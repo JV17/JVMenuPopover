@@ -72,6 +72,7 @@
     {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _closeBtn.frame = CGRectMake(17, 29, 25, 25);
+        _closeBtn.backgroundColor = [UIColor blackColor];
         UIImage *closeImg = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"cancel-50"] withColor:[UIColor whiteColor]];
         [_closeBtn setImage:closeImg forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
@@ -122,6 +123,7 @@
                                                                         animations:^{
                                                                             self.closeBtn.alpha = 1.0;
                                                                             self.menuView.alpha = 1.0;
+                                                                            [self.menuView.tableView reloadData];
                                                                         } completion:nil];
                 }];
             }

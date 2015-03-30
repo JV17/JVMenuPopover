@@ -109,28 +109,33 @@
     if(self.doneCellAnimations)
         return;
     
+    CGRect oldFrame = cell.frame;
+    CGRect newFrame = CGRectMake(0, cell.frame.origin.y, 0, cell.frame.size.height);
+    
     // cell animations
-    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.0);
+    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
+    cell.frame = newFrame;
     
     [UIView animateWithDuration:0.3/1.5
                           delay:0.3*indexPath.row
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.1);
+                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
+                         cell.frame = oldFrame;
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.3/2
                                                delay:0
                                              options:UIViewAnimationOptionCurveEaseIn
                                           animations:^{
-                                              cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.9);
+                                              cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.9f);
                                           }
                                           completion:^(BOOL finished) {
                                               [UIView animateWithDuration:0.3/2
                                                                     delay:0
                                                                   options:UIViewAnimationOptionCurveEaseIn
                                                                animations:^{
-                                                                   cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                                                                   cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
                                                                }
                                                                completion:^(BOOL finished) {
 

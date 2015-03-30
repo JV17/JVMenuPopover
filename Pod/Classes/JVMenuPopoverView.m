@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic) CGSize screenSize;
+@property (nonatomic, assign) BOOL doneCellAnimations;
+@property (nonatomic) NSInteger numRows;
 
 // Protected Methods
 - (void)setup;
@@ -62,10 +64,15 @@
     [self addSubview:self.tableView];
 }
 
+- (void)willMoveToWindow:(UIWindow *)newWindow
+{
+    self.doneCellAnimations = NO;
+    [super willMoveToWindow:newWindow];
+}
 
 #pragma mark - TableView getter & setter
 
--(UITableView*)tableView
+- (UITableView *)tableView
 {
     if(!_tableView)
     {
@@ -93,61 +100,50 @@
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-//    [UIView animateWithDuration:0.3/1.5
-//                          delay:0.0
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
-//                     } completion:^(BOOL finished) {
-//                         [UIView animateWithDuration:0.3/2 animations:^{
-//                             cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-//                         } completion:^(BOOL finished) {
-//                             [UIView animateWithDuration:0.3/2 animations:^{
-//                                 cell.transform = CGAffineTransformIdentity;
-//                             }];
-//                         }];
-//                     }];
+    // do something after display
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // setup initial state (e.g. before animation)
-//    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
-//    cell.layer.shadowOffset = CGSizeMake(10, 10);
-//    cell.alpha = 0;
-//    cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5);
-//    cell.layer.anchorPoint = CGPointMake(0, 0.1);
-//    
-//    // define final state (e.g. after animation) & commit animation
-//    [UIView beginAnimations:@"scaleTableViewCellAnimationID" context:NULL];
-//    [UIView setAnimationDuration:0.5];
-//    cell.layer.shadowOffset = CGSizeMake(0, 0);
-//    cell.alpha = 1;
-//    cell.layer.transform = CATransform3DIdentity;
-//    [UIView commitAnimations];
-//    
-//    // Setting up the CATransform3D structure
-//    CATransform3D rotation;
-//    rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, 0.7, 0.4);
-//    rotation.m34 = 1.0/ -600;
-//    
-//    // Defining the initial state (Before the animation)
-//    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
-//    cell.layer.shadowOffset = CGSizeMake(10, 10);
-//    cell.alpha = 0;
-//    
-//    cell.layer.transform = rotation;
-//    cell.layer.anchorPoint = CGPointMake(0, 0.5);
-//    
-//    
-//    // Defining the final state (After the animation) and commit the animation
-//    [UIView beginAnimations:@"rotation" context:NULL];
-//    [UIView setAnimationDuration:0.8];
-//    cell.layer.transform = CATransform3DIdentity;
-//    cell.alpha = 1;
-//    cell.layer.shadowOffset = CGSizeMake(0, 0);
-//    [UIView commitAnimations];
+    
+    if(self.doneCellAnimations)
+        return;
+    
+    // cell animations
+    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.0);
+    
+    [UIView animateWithDuration:0.3/1.5
+                          delay:0.3*indexPath.row
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.1);
+                     }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.3/2
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseIn
+                                          animations:^{
+                                              cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.9);
+                                          }
+                                          completion:^(BOOL finished) {
+                                              [UIView animateWithDuration:0.3/2
+                                                                    delay:0
+                                                                  options:UIViewAnimationOptionCurveEaseIn
+                                                               animations:^{
+                                                                   cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                                                               }
+                                                               completion:^(BOOL finished) {
+
+                                                                   // getting the number of rows in section to avoid overlaps in animation when scrolling
+                                                                   NSInteger rows = [self.tableView numberOfRowsInSection:0];
+                                                                   
+                                                                   if(rows == indexPath.row+1)
+                                                                   {
+                                                                       self.doneCellAnimations = YES;
+                                                                   }
+                                                               }];
+                                          }];
+                     }];
     
 }
 

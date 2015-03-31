@@ -7,21 +7,20 @@
 //
 
 #import "JVMenuAppDelegate.h"
-#import "JVMenuViewController.h"
+#import "JVMenuRootViewController.h"
 
 @implementation JVMenuAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UIViewController *rootController = [[JVMenuViewController alloc] init];
+    UIViewController *rootController = [[JVMenuRootViewController alloc] init];
     
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.navigationController];
-    self.window.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.7];
-//    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"blurred_background.jpg"]];
+    self.window.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7];
     
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];

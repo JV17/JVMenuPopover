@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class JVMenuViewController;
+@class JVMenuRootViewController;
 
 @interface JVMenuAppDelegate : UIResponder <UIApplicationDelegate>
 

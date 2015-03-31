@@ -12,10 +12,12 @@
 #pragma mark - Interface
 @interface JVMenuPopoverView()
 
-@property (nonatomic, strong) UIView *headerView;
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneCellAnimations;
 @property (nonatomic) NSInteger numRows;
+
+@property (nonatomic, strong) NSArray *labels;
+@property (nonatomic, strong) NSArray *icons;
 
 // Protected Methods
 - (void)setup;
@@ -54,6 +56,20 @@
 
 - (void)setup
 {
+    // setting up menu icons
+    self.icons = @[[UIImage imageNamed:@"home-32"],
+                   [UIImage imageNamed:@"about-32"],
+                   [UIImage imageNamed:@"settings-32"],
+                   [UIImage imageNamed:@"business_contact-32"],
+                   [UIImage imageNamed:@"ask_question_filled-32"]];
+
+    // setting up label texts
+    self.labels = @[@"Home",
+                    @"About Us",
+                    @"Our Service",
+                    @"Contact Us",
+                    @"Help?"];
+
     if(self.frame.size.width == 0)
     {
         self.screenSize = [JVMenuHelper getScreenSize];
@@ -189,20 +205,41 @@
     // setups cell
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-    cell.textLabel.textColor = [UIColor lightGrayColor];
+
     cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     
-    if(indexPath.row == 0)
+    if (indexPath.row == 0)
     {
-        // set first row
-        cell.textLabel.text = @"        JVMenu rows";
+        // setting first row
+        [cell.imageView setImage:self.icons[0]];
+        cell.textLabel.text = self.labels[0];
     }
-    else
+    else if (indexPath.row == 1)
     {
-        // set the rest of the rows
-        cell.textLabel.text = @"        JVMenu rows";
+        // setting second row
+        [cell.imageView setImage:self.icons[1]];
+        cell.textLabel.text = self.labels[1];
+    }
+    else if (indexPath.row == 2)
+    {
+        // setting third row
+        [cell.imageView setImage:self.icons[2]];
+        cell.textLabel.text = self.labels[2];
+    }
+    else if (indexPath.row == 3)
+    {
+        // setting fourth row
+        [cell.imageView setImage:self.icons[3]];
+        cell.textLabel.text = self.labels[3];
+    }
+    else if (indexPath.row == 4)
+    {
+        // setting fifth row
+        [cell.imageView setImage:self.icons[4]];
+        cell.textLabel.text = self.labels[4];
     }
     
     return cell;
@@ -232,13 +269,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    // custom view for header. will be adjusted to default or specified header height
-//    if(!_headerView)
-//    {
-//        _headerView = [[UIView alloc] initWithFrame:CGRectMake(10, 20, 50, 50)];
-//        _headerView.backgroundColor = [UIColor clearColor];
-//    }
-    
     return [UIView new];
 }
 
@@ -246,9 +276,5 @@
 {
     return 0;
 }
-
-#pragma mark - TableViewCell helper functions
-
-
 
 @end

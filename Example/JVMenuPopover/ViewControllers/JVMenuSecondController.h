@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Jorge Valbuena. All rights reserved.
 //
 
-#import "JVMenuViewController.h"
+#import "JVMenuRootViewController.h"
 
-@interface JVMenuSecondController : JVMenuViewController
+@interface JVMenuSecondController : JVMenuRootViewController
 
 @end

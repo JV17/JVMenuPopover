@@ -1,48 +1,69 @@
 //
-//  JVMenuViewController.m
+//  JVMenuRootViewController.m
 //  JVMenuPopover
 //
 //  Created by Jorge Valbuena on 03/14/2015.
 //  Copyright (c) 2014 Jorge Valbuena. All rights reserved.
 //
 
-#import "JVMenuViewController.h"
+#import "JVMenuRootViewController.h"
 #import "JVMenuSecondController.h"
 #import "JVMenuThirdController.h"
 #import "JVMenuFourthController.h"
+#import "JVMenuFifthController.h"
 
 
-@interface JVMenuViewController ()
+@interface JVMenuRootViewController ()
 
 @property (nonatomic, strong) UIImage *menuImg;
 @property (nonatomic, strong) JVMenuPopoverViewController *menuController;
 
 // view controllers
-@property (nonatomic, strong) JVMenuViewController *mainController;
+@property (nonatomic, strong) JVMenuRootViewController *mainController;
 @property (nonatomic, strong) JVMenuSecondController *secondController;
 @property (nonatomic, strong) JVMenuThirdController *thirdController;
 @property (nonatomic, strong) JVMenuFourthController *fourthController;
+@property (nonatomic, strong) JVMenuFifthController *fifthController;
 
 @end
 
-@implementation JVMenuViewController
+@implementation JVMenuRootViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    
+    // gradient background color
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.frame;
+    UIColor *firstColor = [UIColor colorWithRed:0.1126f
+                                          green:0.8152f
+                                           blue:0.0622f
+                                          alpha:1.0f];
+    UIColor *secondColor = [UIColor colorWithRed:0.0826f
+                                           green:0.5152f
+                                            blue:0.0322f
+                                           alpha:1.0f];
+    
+    gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
     
     self.menuImg = [UIImage imageNamed:@"menu-26"];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-60, self.view.frame.size.height/2-20, 120, 40)];
-    label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"HelveticaNeue" size:22];
-    label.textColor = [UIColor blackColor];
-    label.text = @"JVMenu!";
+    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-32"] withColor:[UIColor blackColor]];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-40, self.image.size.width, self.image.size.height)];
+    [self.imageView setImage:self.image];
+    
+    [self.view addSubview:self.imageView];
+    
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60)];
+    self.label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    self.label.textAlignment = NSTextAlignmentCenter;
+    self.label.font = [UIFont fontWithName:@"HelveticaNeue" size:20];
+    self.label.textColor = [UIColor blackColor];
+    self.label.text = @"Home";
 
-    [self.view addSubview:label];
+    [self.view addSubview:self.label];
     
     self.menuController = [self menuController];
 }
@@ -106,7 +127,7 @@
 {
     if(indexPath.row == 0)
     {
-        self.mainController = [[JVMenuViewController alloc] init];
+        self.mainController = [[JVMenuRootViewController alloc] init];
         self.mainController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
         [navController setViewControllers:@[self.mainController]];
     }
@@ -127,6 +148,12 @@
         self.fourthController = [[JVMenuFourthController alloc] init];
         self.fourthController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
         [navController setViewControllers:@[self.fourthController]];
+    }
+    else if (indexPath.row == 4)
+    {
+        self.fifthController = [[JVMenuFifthController alloc] init];
+        self.fifthController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+        [navController setViewControllers:@[self.fifthController]];
     }
     
 }

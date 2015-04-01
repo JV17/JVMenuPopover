@@ -17,6 +17,7 @@
 		3C37FB071ACB80D100D389B0 /* settings-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB001ACB80D100D389B0 /* settings-48@2x.png */; };
 		3C37FB0A1ACB825100D389B0 /* cancel_filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB081ACB825100D389B0 /* cancel_filled-50@2x.png */; };
 		3C37FB0B1ACB825100D389B0 /* cancel-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB091ACB825100D389B0 /* cancel-48@2x.png */; };
+		3C37FB0D1ACB9B7700D389B0 /* menu_black-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB0C1ACB9B7700D389B0 /* menu_black-48@2x.png */; };
 		3CE5F0FD1ACA419D009CFC23 /* JVMenuFourthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0F81ACA419D009CFC23 /* JVMenuFourthController.m */; };
 		3CE5F0FE1ACA419D009CFC23 /* JVMenuSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0FA1ACA419D009CFC23 /* JVMenuSecondController.m */; };
 		3CE5F0FF1ACA419D009CFC23 /* JVMenuThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0FC1ACA419D009CFC23 /* JVMenuThirdController.m */; };
@@ -62,6 +63,7 @@
 		3C37FB001ACB80D100D389B0 /* settings-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-48@2x.png"; sourceTree = "<group>"; };
 		3C37FB081ACB825100D389B0 /* cancel_filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_filled-50@2x.png"; sourceTree = "<group>"; };
 		3C37FB091ACB825100D389B0 /* cancel-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-48@2x.png"; sourceTree = "<group>"; };
+		3C37FB0C1ACB9B7700D389B0 /* menu_black-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_black-48@2x.png"; sourceTree = "<group>"; };
 		3CE5F0F71ACA419D009CFC23 /* JVMenuFourthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVMenuFourthController.h; sourceTree = "<group>"; };
 		3CE5F0F81ACA419D009CFC23 /* JVMenuFourthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVMenuFourthController.m; sourceTree = "<group>"; };
 		3CE5F0F91ACA419D009CFC23 /* JVMenuSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVMenuSecondController.h; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		3CE5F0E51ACA4139009CFC23 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3C37FB0C1ACB9B7700D389B0 /* menu_black-48@2x.png */,
 				3C37FB081ACB825100D389B0 /* cancel_filled-50@2x.png */,
 				3C37FB091ACB825100D389B0 /* cancel-48@2x.png */,
 				3C37FAFA1ACB80D100D389B0 /* about-48@2x.png */,
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C37FB021ACB80D100D389B0 /* ask_question-48@2x.png in Resources */,
+				3C37FB0D1ACB9B7700D389B0 /* menu_black-48@2x.png in Resources */,
 				3C37FB061ACB80D100D389B0 /* menu-48@2x.png in Resources */,
 				6003F5A4195388D20070C39A /* Main_iPad.storyboard in Resources */,
 				3C37FB0A1ACB825100D389B0 /* cancel_filled-50@2x.png in Resources */,

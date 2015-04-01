@@ -24,14 +24,8 @@
     // gradient background color
     CAGradientLayer *newGradient = [CAGradientLayer layer];
     newGradient.frame = self.view.frame;
-    UIColor *firstColor = [UIColor colorWithRed:0.0f/255.0f
-                                          green:40.0f/255.0f
-                                           blue:96.0f/255.0f
-                                          alpha:1.0f];
-    UIColor *secondColor = [UIColor colorWithRed:0.0f/255.0f
-                                           green:100.0f/255.0f
-                                            blue:232.0f/255.0f
-                                           alpha:1.0f];
+    UIColor *firstColor = [JVMenuHelper colorWithHexString:@"1AD6FD"];
+    UIColor *secondColor = [JVMenuHelper colorWithHexString:@"1D62F0"];
     
     newGradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
     [self.containerView.layer insertSublayer:newGradient atIndex:0];

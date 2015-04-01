@@ -12,6 +12,10 @@
 
 + (CGSize)getScreenSize;
 
++ (UIColor *)colorWithHexString:(NSString *)stringToConvert;
+
++ (UIColor *)colorWithRGBHex:(UInt32)hex;
+
 + (void)removeLayerFromView:(UIView *)view;
 
 + (UIViewController *)topViewController;

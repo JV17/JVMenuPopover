@@ -39,19 +39,13 @@
     // gradient background color
     self.gradient = [CAGradientLayer layer];
     self.gradient.frame = self.view.frame;
-    UIColor *firstColor = [UIColor colorWithRed:20.0f/255.0f
-                                          green:115.0f/255.0f
-                                           blue:70.0f/255.0f
-                                          alpha:1.0f];
-    UIColor *secondColor = [UIColor colorWithRed:40.0f/255.0f
-                                           green:230.0f/255.0f
-                                            blue:140.0f/255.0f
-                                           alpha:1.0f];
+    UIColor *firstColor = [JVMenuHelper colorWithHexString:@"52EDC7"];
+    UIColor *secondColor = [JVMenuHelper colorWithHexString:@"5AC8FB"];
     
     self.gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
     [self.containerView.layer insertSublayer:self.gradient atIndex:0];
     
-    self.menuImg = [UIImage imageNamed:@"menu-48"];
+    self.menuImg = [UIImage imageNamed:@"menu_black-48"];
     
     self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-48"] withColor:[UIColor blackColor]];
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height)];
@@ -80,7 +74,7 @@
     
     self.navigationController.delegate = self;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
     
     // make the navigation bar transparent
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]

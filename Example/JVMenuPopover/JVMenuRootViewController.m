@@ -33,20 +33,23 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor clearColor];
+    self.containerView = [[UIView alloc] initWithFrame:self.view.frame];
+    
     // gradient background color
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.frame;
-    UIColor *firstColor = [UIColor colorWithRed:0.1126f
-                                          green:0.8152f
-                                           blue:0.0622f
+    self.gradient = [CAGradientLayer layer];
+    self.gradient.frame = self.view.frame;
+    UIColor *firstColor = [UIColor colorWithRed:20.0f/255.0f
+                                          green:115.0f/255.0f
+                                           blue:70.0f/255.0f
                                           alpha:1.0f];
-    UIColor *secondColor = [UIColor colorWithRed:0.0826f
-                                           green:0.5152f
-                                            blue:0.0322f
+    UIColor *secondColor = [UIColor colorWithRed:40.0f/255.0f
+                                           green:230.0f/255.0f
+                                            blue:140.0f/255.0f
                                            alpha:1.0f];
     
-    gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-    [self.view.layer insertSublayer:gradient atIndex:0];
+    self.gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
+    [self.containerView.layer insertSublayer:self.gradient atIndex:0];
     
     self.menuImg = [UIImage imageNamed:@"menu-48"];
     
@@ -54,7 +57,8 @@
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height)];
     [self.imageView setImage:self.image];
     
-    [self.view addSubview:self.imageView];
+    [self.containerView addSubview:self.imageView];
+//    [self.view addSubview:self.imageView];
     
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60)];
     self.label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
@@ -63,7 +67,9 @@
     self.label.textColor = [UIColor blackColor];
     self.label.text = @"Home";
 
-    [self.view addSubview:self.label];
+    [self.containerView addSubview:self.label];
+//    [self.view addSubview:self.label];
+    [self.view addSubview:self.containerView];
     
     self.menuController = [self menuController];
 }

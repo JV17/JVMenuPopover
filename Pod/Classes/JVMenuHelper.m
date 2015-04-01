@@ -25,6 +25,18 @@
     return screenSize;
 }
 
++ (void)removeLayerFromView:(UIView *)view
+{
+    CAGradientLayer *layerToRemove;
+    for (CALayer *aLayer in view.layer.sublayers) {
+        if ([aLayer isKindOfClass:[CAGradientLayer class]]) {
+            layerToRemove = (CAGradientLayer *)aLayer;
+        }
+    }
+    
+    [layerToRemove performSelector:@selector(removeFromSuperlayer)];
+}
+
 + (UIViewController *)topViewController
 {
     return [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];

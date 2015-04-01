@@ -12,6 +12,8 @@
 
 + (CGSize)getScreenSize;
 
++ (void)removeLayerFromView:(UIView *)view;
+
 + (UIViewController *)topViewController;
 
 + (UIViewController *)topViewController:(UIViewController *)rootViewController;

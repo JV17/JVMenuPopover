@@ -16,5 +16,7 @@
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, assign) UIImage *image;
+@property (nonatomic, strong) CAGradientLayer *gradient;
+@property (nonatomic, strong) UIView *containerView;
 
 @end

@@ -126,18 +126,37 @@
         return;
     
     CGRect oldFrame = cell.frame;
-    CGRect newFrame = CGRectMake(0, cell.frame.origin.y, 0, cell.frame.size.height);
+    CGRect newFrame = CGRectMake(-cell.frame.size.width, cell.frame.origin.y, 0, cell.frame.size.height);
     
     // cell animations
     cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
     cell.frame = newFrame;
     
+//    [UIView animateWithDuration:0.3/1.5
+//                          delay:0.3*indexPath.row
+//         usingSpringWithDamping:0.7
+//          initialSpringVelocity:10
+//                        options:0
+//                     animations:^{
+//                         cell.frame = oldFrame;
+//                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
+//                     }
+//                     completion:^(BOOL finished) {
+//                         // getting the number of rows in section to avoid overlaps in animation when scrolling
+//                         NSInteger rows = [self.tableView numberOfRowsInSection:0];
+//                         
+//                         if(rows == indexPath.row+1)
+//                         {
+//                             self.doneCellAnimations = YES;
+//                         }
+//                     }];
+    
     [UIView animateWithDuration:0.3/1.5
                           delay:0.3*indexPath.row
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
                          cell.frame = oldFrame;
+                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.3/2
@@ -154,7 +173,6 @@
                                                                    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
                                                                }
                                                                completion:^(BOOL finished) {
-
                                                                    // getting the number of rows in section to avoid overlaps in animation when scrolling
                                                                    NSInteger rows = [self.tableView numberOfRowsInSection:0];
                                                                    

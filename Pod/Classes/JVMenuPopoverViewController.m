@@ -21,6 +21,9 @@
 @property (nonatomic, assign) BOOL doneAnimations;
 @property (nonatomic) int dummyCtr;// TODO: remove this!
 
+@property (nonatomic, strong) UIBlurEffect *blurEffect;
+@property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+
 @end
 
 @implementation JVMenuPopoverViewController
@@ -59,7 +62,7 @@
     if(!_menuView)
     {
         _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame];
-        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         _menuView.delegate = self;
     }
     
@@ -79,6 +82,29 @@
     }
     
     return _closeBtn;
+}
+
+- (UIBlurEffect *)blurEffect
+{
+    if(!_blurEffect)
+    {
+        _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    }
+    
+    return _blurEffect;
+}
+
+- (UIVisualEffectView *)blurEffectView
+{
+    if(!_blurEffectView)
+    {
+        _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:self.blurEffect];
+        _blurEffectView.alpha = 0.6f;
+        _blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _blurEffectView.frame = self.view.frame;
+    }
+    
+    return _blurEffectView;
 }
 
 
@@ -101,14 +127,15 @@
                 // takes a screenshot of the current navigation view
                 self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
                 
-                // add some blur to screenshot
-//                self.image = [JVMenuHelper blurryImage:_image withBlurLevel:0.2];
-                
-                // scale blurred image to actual controller view size
-//                self.image = [JVMenuHelper imageWithImage:_image convertToSize:self.view.frame.size];
-                
                 // setting blurred bg image to view and preparing controller objects for animation
-                self.view.backgroundColor = [UIColor colorWithPatternImage:_image];
+                self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
+                
+                //only apply the blur if the user hasn't disabled transparency effects
+                if(!UIAccessibilityIsReduceTransparencyEnabled())
+                {
+                    [self.view insertSubview:self.blurEffectView atIndex:0];
+                }
+                
                 self.doneAnimations = YES;
                 self.closeBtn.alpha = 0.0;
                 self.menuView.alpha = 0.0;
@@ -156,6 +183,7 @@
         }];
     }
 }
+
 
 #pragma mark - Delegates
 

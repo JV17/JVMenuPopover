@@ -24,4 +24,8 @@
 
 + (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
 
++ (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage inView:(UIView *)senderView;
+
++ (UIVisualEffectView * )applyBlurrWithEfftectStyle:(UIBlurEffectStyle)style withFrame:(CGRect)frame;
+
 @end

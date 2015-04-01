@@ -19,7 +19,6 @@
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneAnimations;
-@property (nonatomic) int dummyCtr;// TODO: remove this!
 
 @property (nonatomic, strong) UIBlurEffect *blurEffect;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
@@ -137,57 +136,57 @@
 
 - (void)showMenuFromController:(UIViewController *)viewController
 {
-    if(self.dummyCtr == 0)
-    {
-        // find the navigation controller and then get the current visible controller
-        self.navController = (UINavigationController *)[JVMenuHelper topViewController];
-        // self.currentController = self.navController.visibleViewController;
-        self.currentController = viewController;
-        
-        [UIView animateWithDuration:0.15 animations:^{
-            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-        } completion:^(BOOL finished) {
-            if(finished)
+    if(self.doneAnimations)
+        return;
+    
+    // find the navigation controller and then get the current visible controller
+    self.navController = (UINavigationController *)[JVMenuHelper topViewController];
+    // self.currentController = self.navController.visibleViewController;
+    self.currentController = viewController;
+    
+    [UIView animateWithDuration:0.15 animations:^{
+        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+    } completion:^(BOOL finished) {
+        if(finished)
+        {
+            // takes a screenshot of the current navigation view
+            self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+            
+            // setting blurred bg image to view and preparing controller objects for animation
+            self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
+            
+            //only apply the blur if the user hasn't disabled transparency effects
+            if(!UIAccessibilityIsReduceTransparencyEnabled())
             {
-                // takes a screenshot of the current navigation view
-                self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
-                
-                // setting blurred bg image to view and preparing controller objects for animation
-                self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
-                
-                //only apply the blur if the user hasn't disabled transparency effects
-                if(!UIAccessibilityIsReduceTransparencyEnabled())
-                {
-                    // [self.vibrancyEffectView.contentView addSubview:self.menuView];
-                    // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
-                    // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
-                    // [self.view addSubview:self.blurEffectView];
-                    [self.view insertSubview:self.blurEffectView atIndex:0];
-                }
-                
-                self.doneAnimations = YES;
-                self.closeBtn.alpha = 0.0;
-                self.menuView.alpha = 0.0;
-
-                // trigger "present menu controller" animation
-                [self.navController presentViewController:self
-                                                 animated:NO
-                                               completion:^{
-                                                       [UIView animateWithDuration:0.15
-                                                                             delay:0.0
-                                                                           options:UIViewAnimationOptionCurveEaseInOut
-                                                                        animations:^{
-                                                                            self.closeBtn.alpha = 1.0;
-                                                                            self.menuView.alpha = 1.0;
-                                                                            [self.menuView.tableView reloadData];
-                                                                        } completion:nil];
-                }];
+                // uncomment for vibrance effect
+                // [self.vibrancyEffectView.contentView addSubview:self.menuView];
+                // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
+                // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
+                // [self.view addSubview:self.blurEffectView];
+                [self.view insertSubview:self.blurEffectView atIndex:0];
             }
-        }];
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-        self.dummyCtr = 1;
-    }
+            
+            self.doneAnimations = YES;
+            self.closeBtn.alpha = 0.0;
+            self.menuView.alpha = 0.0;
+
+            // trigger "present menu controller" animation
+            [self.navController presentViewController:self
+                                             animated:NO
+                                           completion:^{
+                                                   [UIView animateWithDuration:0.15
+                                                                         delay:0.0
+                                                                       options:UIViewAnimationOptionCurveEaseInOut
+                                                                    animations:^{
+                                                                        self.closeBtn.alpha = 1.0;
+                                                                        self.menuView.alpha = 1.0;
+                                                                        [self.menuView.tableView reloadData];
+                                                                    } completion:nil];
+            }];
+        }
+    }];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
 - (void)closeMenuFromController:(UIViewController *)viewController
@@ -196,21 +195,17 @@
     if(!self.doneAnimations)
         return;
     
-    if(self.dummyCtr == 1)
-    {
-        // resetting current visible controller scale & dimissing menu controller
-        [UIView animateWithDuration:0.3/1.5 animations:^{
-            self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-        } completion:^(BOOL finished) {
-            self.doneAnimations = NO;
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-            self.dummyCtr = 0;
-            [self.navController dismissViewControllerAnimated:NO
-                                                   completion:^{
-                                                       [self.currentController dismissViewControllerAnimated:NO completion:nil];
-                                                   }];
-        }];
-    }
+    // resetting current visible controller scale & dimissing menu controller
+    [UIView animateWithDuration:0.3/1.5 animations:^{
+        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+    } completion:^(BOOL finished) {
+        self.doneAnimations = NO;
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+        [self.navController dismissViewControllerAnimated:NO
+                                               completion:^{
+                                                   [self.currentController dismissViewControllerAnimated:NO completion:nil];
+                                               }];
+    }];
 }
 
 

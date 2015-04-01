@@ -8,7 +8,7 @@
 
 #import "JVMenuPopoverViewController.h"
 #import <JVMenuHelper.h>
-
+#import <UIImageEffects.h>
 
 @interface JVMenuPopoverViewController ()
 
@@ -62,7 +62,7 @@
     if(!_menuView)
     {
         _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame];
-        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         _menuView.delegate = self;
     }
     
@@ -73,7 +73,7 @@
 {
     if(!_closeBtn)
     {
-        UIImage *closeImg = [UIImage imageNamed:@"cancel-48"];
+        UIImage *closeImg = [UIImage imageNamed:@"cancel_filled-50"];
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _closeBtn.frame = CGRectMake(15, 28, closeImg.size.width, closeImg.size.height);
         _closeBtn.backgroundColor = [UIColor clearColor];
@@ -144,9 +144,9 @@
                 [self.navController presentViewController:self
                                                  animated:NO
                                                completion:^{
-                                                       [UIView animateWithDuration:0.3
+                                                       [UIView animateWithDuration:0.3/2
                                                                              delay:0.0
-                                                                           options:UIViewAnimationOptionCurveEaseIn
+                                                                           options:UIViewAnimationOptionCurveEaseInOut
                                                                         animations:^{
                                                                             self.closeBtn.alpha = 1.0;
                                                                             self.menuView.alpha = 1.0;

@@ -20,7 +20,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.navigationController];
-    self.window.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.7];
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"app_bg3@2x.jpg"]];
     
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];

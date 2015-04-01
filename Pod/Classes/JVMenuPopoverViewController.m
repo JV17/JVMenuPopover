@@ -101,7 +101,7 @@
     if(!_blurEffectView)
     {
         _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:self.blurEffect];
-        _blurEffectView.alpha = 0.6;
+        _blurEffectView.alpha = 0.4;
         _blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _blurEffectView.frame = self.view.frame;
     }

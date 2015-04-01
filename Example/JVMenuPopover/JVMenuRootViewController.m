@@ -52,7 +52,6 @@
     [self.imageView setImage:self.image];
     
     [self.containerView addSubview:self.imageView];
-//    [self.view addSubview:self.imageView];
     
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60)];
     self.label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
@@ -62,7 +61,6 @@
     self.label.text = @"Home";
 
     [self.containerView addSubview:self.label];
-//    [self.view addSubview:self.label];
     [self.view addSubview:self.containerView];
     
     self.menuController = [self menuController];

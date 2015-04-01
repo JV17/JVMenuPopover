@@ -8,7 +8,6 @@
 
 #import "JVMenuPopoverViewController.h"
 #import <JVMenuHelper.h>
-#import <UIImageEffects.h>
 
 @interface JVMenuPopoverViewController ()
 

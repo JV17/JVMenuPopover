@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) UIBlurEffect *blurEffect;
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+@property (nonatomic, strong) UIVisualEffectView *vibrancyEffectView;
+@property (nonatomic, strong) UIVibrancyEffect *vibrancyEffect;
 
 @end
 
@@ -52,6 +54,8 @@
     self.view.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     self.view.backgroundColor = [UIColor clearColor];
     
+//    self.menuView = [self menuView];
+//    self.closeBtn = [self closeBtn];
     [self.view addSubview:self.menuView];
     [self.view addSubview:self.closeBtn];
     
@@ -99,7 +103,7 @@
     if(!_blurEffectView)
     {
         _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:self.blurEffect];
-        _blurEffectView.alpha = 0.6f;
+        _blurEffectView.alpha = 0.6;
         _blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _blurEffectView.frame = self.view.frame;
     }
@@ -107,6 +111,27 @@
     return _blurEffectView;
 }
 
+- (UIVibrancyEffect *)vibrancyEffect
+{
+    if(!_vibrancyEffect)
+    {
+        _vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:self.blurEffect];
+    }
+    
+    return _vibrancyEffect;
+}
+
+- (UIVisualEffectView *)vibrancyEffectView
+{
+    if(!_vibrancyEffectView)
+    {
+        _vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:self.vibrancyEffect];
+        _vibrancyEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _vibrancyEffectView.frame = self.view.frame;
+    }
+    
+    return _vibrancyEffectView;
+}
 
 #pragma mark - Show & Close menu
 
@@ -116,7 +141,7 @@
     {
         // find the navigation controller and then get the current visible controller
         self.navController = (UINavigationController *)[JVMenuHelper topViewController];
-//        self.currentController = self.navController.visibleViewController;
+        // self.currentController = self.navController.visibleViewController;
         self.currentController = viewController;
         
         [UIView animateWithDuration:0.15 animations:^{
@@ -133,6 +158,10 @@
                 //only apply the blur if the user hasn't disabled transparency effects
                 if(!UIAccessibilityIsReduceTransparencyEnabled())
                 {
+                    // [self.vibrancyEffectView.contentView addSubview:self.menuView];
+                    // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
+                    // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
+                    // [self.view addSubview:self.blurEffectView];
                     [self.view insertSubview:self.blurEffectView atIndex:0];
                 }
                 
@@ -144,7 +173,7 @@
                 [self.navController presentViewController:self
                                                  animated:NO
                                                completion:^{
-                                                       [UIView animateWithDuration:0.3/2
+                                                       [UIView animateWithDuration:0.15
                                                                              delay:0.0
                                                                            options:UIViewAnimationOptionCurveEaseInOut
                                                                         animations:^{

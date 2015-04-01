@@ -134,9 +134,9 @@
     cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
     cell.frame = newFrame;
     
-    [UIView animateWithDuration:0.3/1.5
+    [UIView animateWithDuration:0.2
                           delay:0.1*indexPath.row
-         usingSpringWithDamping:0.7
+         usingSpringWithDamping:0.67
           initialSpringVelocity:velocity
                         options:0
                      animations:^{
@@ -284,7 +284,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // return the height of row
-    return 80;
+    return 70;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

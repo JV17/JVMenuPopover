@@ -19,7 +19,7 @@
     [super viewDidLoad];
         
     // overriding root controllers label, image and imageview
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"business_contact-32"] withColor:[UIColor blackColor]];
+    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"business_contact-48"] withColor:[UIColor blackColor]];
     [self.imageView setImage:self.image];
     self.label.text = @"Contact Us";
     

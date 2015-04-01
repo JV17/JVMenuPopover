@@ -57,11 +57,11 @@
 - (void)setup
 {
     // setting up menu icons
-    self.icons = @[[UIImage imageNamed:@"home-32"],
-                   [UIImage imageNamed:@"about-32"],
-                   [UIImage imageNamed:@"settings-32"],
-                   [UIImage imageNamed:@"business_contact-32"],
-                   [UIImage imageNamed:@"ask_question_filled-32"]];
+    self.icons = @[[UIImage imageNamed:@"home-48"],
+                   [UIImage imageNamed:@"about-48"],
+                   [UIImage imageNamed:@"settings-48"],
+                   [UIImage imageNamed:@"business_contact-48"],
+                   [UIImage imageNamed:@"ask_question-48"]];
 
     // setting up label texts
     self.labels = @[@"Home",
@@ -225,7 +225,7 @@
     cell.backgroundColor = [UIColor clearColor];
 
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:18];
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     

@@ -19,7 +19,7 @@
     [super viewDidLoad];
         
     // overriding root controllers label, image and imageview
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"ask_question_filled-32"] withColor:[UIColor blackColor]];
+    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"ask_question-48"] withColor:[UIColor blackColor]];
     [self.imageView setImage:self.image];
     self.label.text = @"Help?";
 

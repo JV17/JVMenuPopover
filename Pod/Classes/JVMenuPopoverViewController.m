@@ -73,10 +73,10 @@
 {
     if(!_closeBtn)
     {
-        UIImage *closeImg = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"cancel_filled-32"] withColor:[UIColor whiteColor]];
+        UIImage *closeImg = [UIImage imageNamed:@"cancel-48"];
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(14, 28, closeImg.size.width, closeImg.size.height);
-        _closeBtn.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        _closeBtn.frame = CGRectMake(15, 28, closeImg.size.width, closeImg.size.height);
+        _closeBtn.backgroundColor = [UIColor clearColor];
         [_closeBtn setImage:closeImg forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
     }

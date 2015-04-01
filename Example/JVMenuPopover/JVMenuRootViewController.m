@@ -48,10 +48,10 @@
     gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
     [self.view.layer insertSublayer:gradient atIndex:0];
     
-    self.menuImg = [UIImage imageNamed:@"menu-26"];
+    self.menuImg = [UIImage imageNamed:@"menu-48"];
     
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-32"] withColor:[UIColor blackColor]];
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-40, self.image.size.width, self.image.size.height)];
+    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-48"] withColor:[UIColor blackColor]];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height)];
     [self.imageView setImage:self.image];
     
     [self.view addSubview:self.imageView];

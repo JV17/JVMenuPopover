@@ -7,7 +7,8 @@
 [![Platform](https://img.shields.io/cocoapods/p/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 
 ### Preview 1
-<iframe title="YouTube video player" width="616" height="1144" src="http://www.youtube.com/watch?v=PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen>< /iframe>
+
+<iframe title="YouTube video player" width="616" height="1144" src="http://www.youtube.com/watch?v=PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen></iframe>
 
 ### Preview 2
 ![screenshot-1](Example/Previews/menu_with_nopic.gif)

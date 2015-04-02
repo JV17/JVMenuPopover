@@ -7,13 +7,13 @@
 [![Platform](https://img.shields.io/cocoapods/p/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 
 ### Preview 1
-![screenshot-1](Example/Previews/menu_bgpic.gif)
+![screenshot-1](Example/Previews/menu_with_bgpic.gif)
 
 ### Preview 2
-![screenshot-1](Example/Previews/menu_nopic.gif)
+![screenshot-1](Example/Previews/menu_with_nopic.gif)
 
 ### Preview 2
-![screenshot-1](Example/Previews/menu_vibrancy.gif)
+![screenshot-1](Example/Previews/menu_with_vibrancy.gif)
 
 ## Usage
 

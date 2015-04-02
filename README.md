@@ -6,6 +6,15 @@
 [![License](https://img.shields.io/cocoapods/l/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 [![Platform](https://img.shields.io/cocoapods/p/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 
+### Preview 1
+![screenshot-1](Example/Previews/menu_bgpic.gif)
+
+### Preview 2
+![screenshot-1](Example/Previews/menu_nopic.gif)
+
+### Preview 2
+![screenshot-1](Example/Previews/menu_vibrancy.gif)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

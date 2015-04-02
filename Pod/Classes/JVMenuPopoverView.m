@@ -102,8 +102,8 @@
             _tableView.layoutMargins = UIEdgeInsetsZero;
         }
         
-        _tableView.bounces = YES;
-        _tableView.scrollEnabled = YES;
+        _tableView.bounces = NO;
+        _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }

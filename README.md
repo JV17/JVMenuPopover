@@ -8,7 +8,8 @@
 
 ### Preview 1
 
-[![Preview 1](http://img.youtube.com/vi/T-D1KVIuvjA/0.jpg)](https://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=PeAu5T2dbAk?autoplay=1" target="_blank"><img src="http://img.youtube.com/vi/PeAu5T2dbAk/0.jpg" 
+alt="Preview 1" width="420" height="315" border="1" /></a>
 
 <!--<iframe width="420" height="315" src="https://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen></iframe>-->
 

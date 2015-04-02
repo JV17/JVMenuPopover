@@ -12,6 +12,8 @@
 
 + (CGSize)getScreenSize;
 
++ (UIImage *)imageWithImage:(UIImage *)sourceImage scaledToWidth:(float)i_width;
+
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert;
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex;

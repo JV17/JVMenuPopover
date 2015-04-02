@@ -8,7 +8,9 @@
 
 ### Preview 1
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen></iframe>
+[![Preview 1](http://img.youtube.com/vi/T-D1KVIuvjA/0.jpg)](https://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1)
+
+<!--<iframe width="420" height="315" src="https://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen></iframe>-->
 
 ### Preview 2
 ![screenshot-1](Example/Previews/menu_with_nopic.gif)

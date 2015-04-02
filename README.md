@@ -8,7 +8,7 @@
 
 ### Preview 1
 
-<iframe title="YouTube video player" width="616" height="1144" src="http://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/PeAu5T2dbAk?autoplay=1" frameborder="0" allowfullscreen></iframe>
 
 ### Preview 2
 ![screenshot-1](Example/Previews/menu_with_nopic.gif)

@@ -6,17 +6,17 @@
 [![License](https://img.shields.io/cocoapods/l/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 [![Platform](https://img.shields.io/cocoapods/p/JVMenuPopover.svg?style=flat)](http://cocoadocs.org/docsets/JVMenuPopover)
 
-### Preview 1
+### Preview 1 - Menu with Background pic
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=PeAu5T2dbAk?autoplay=1" target="_blank">![screenshot-1](Example/Previews/menu_with_bgpic.gif)</a>
 
-### Preview 2
+### Preview 2 - Menu without Background pic
 
-![screenshot-1](Example/Previews/menu_with_nobgpic.gif)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=zcLHQHAZeU8?autoplay=1" target="_blank">![screenshot-1](Example/Previews/menu_with_nobgpic.gif)</a>
 
-### Preview 2
+### Preview 3 - Menu with Vibrancy
 
-![screenshot-1](Example/Previews/menu_with_vibrancy.gif)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=_9OrMZ7VYDI?autoplay=1" target="_blank">![screenshot-1](Example/Previews/menu_with_vibrancy.gif)</a>
 
 ## Usage
 

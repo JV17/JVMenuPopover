@@ -135,7 +135,7 @@
     cell.frame = newFrame;
     
     [UIView animateWithDuration:0.2
-                          delay:0.1*indexPath.row
+                          delay:0.07*indexPath.row
          usingSpringWithDamping:0.67
           initialSpringVelocity:velocity
                         options:0

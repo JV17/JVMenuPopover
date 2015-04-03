@@ -9,6 +9,6 @@
 // JVMenuPopover
 #define COCOAPODS_POD_AVAILABLE_JVMenuPopover
 #define COCOAPODS_VERSION_MAJOR_JVMenuPopover 0
-#define COCOAPODS_VERSION_MINOR_JVMenuPopover 1
-#define COCOAPODS_VERSION_PATCH_JVMenuPopover 0
+#define COCOAPODS_VERSION_MINOR_JVMenuPopover 0
+#define COCOAPODS_VERSION_PATCH_JVMenuPopover 1
 

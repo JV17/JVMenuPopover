@@ -134,8 +134,8 @@
     cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
     cell.frame = newFrame;
     
-    [UIView animateWithDuration:0.2
-                          delay:0.07*indexPath.row
+    [UIView animateWithDuration:0.3/1.5
+                          delay:0.05*indexPath.row
          usingSpringWithDamping:0.67
           initialSpringVelocity:velocity
                         options:0

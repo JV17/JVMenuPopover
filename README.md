@@ -22,6 +22,33 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+Using JVMenuPopover with your own project.
+
+* Set your RootViewController in the your AppDelegate.m, you could follow my example project and see how I set a background image to the entire app if you are looking to follow that approach.
+    * I use one of my helper function in the pods to adjust the image to my device width and not show an expanded image.
+    
+``` 
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Override point for customization after application launch.
+    UIViewController *rootController = [[JVMenuRootViewController alloc] init];
+
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
+
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:self.navigationController];
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[JVMenuHelper imageWithImage:[UIImage imageNamed:@"app_bg1.jpg"] scaledToWidth:self.window.frame.size.width]];
+    self.window.contentMode = UIViewContentModeScaleAspectFit;
+
+    [self.window addSubview:self.navigationController.view];
+    [self.window makeKeyAndVisible];
+
+    return YES;
+}
+
+```
+
 ## Requirements
 
 ## Installation

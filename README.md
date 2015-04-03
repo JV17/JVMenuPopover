@@ -4,15 +4,15 @@ This is a simple menu controller where I tried to simulate the native iOS animat
 
 ### Preview 1 - Menu with Background pic
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=PeAu5T2dbAk?autoplay=1" target="_blank">![screenshot-1](Example/Previews/menu_with_bgpic.gif)</a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=PeAu5T2dbAk?autoplay=1" target="_blank">![screenshot-1](Previews/menu_with_bgpic.gif)</a>
 
 ### Preview 2 - Menu without Background pic
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=zcLHQHAZeU8?autoplay=1" target="_blank">![screenshot-1](Example/Previews/menu_with_nobgpic.gif)</a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=zcLHQHAZeU8?autoplay=1" target="_blank">![screenshot-1](Previews/menu_with_nobgpic.gif)</a>
 
 ### Preview 3 - Menu with Vibrancy
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=_9OrMZ7VYDI?autoplay=1" target="_blank">![screenshot-1](Example/Previews/menu_with_vibrancy.gif)</a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=_9OrMZ7VYDI?autoplay=1" target="_blank">![screenshot-1](Previews/menu_with_vibrancy.gif)</a>
 
 ## Usage
 

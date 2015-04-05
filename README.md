@@ -24,7 +24,7 @@ Using JVMenuPopover with your own project.
     
     * I use one of my helper function in the pods to adjust the image to my device width and not show an expanded image.
     
-``` 
+```objc 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -48,7 +48,7 @@ Using JVMenuPopover with your own project.
     
     * Here, I set the menu image I want to display, the color of the menu button and small trick just in my case I wanted to have a transparent navigation bar.
 
-```
+```objc
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -72,7 +72,7 @@ Using JVMenuPopover with your own project.
     * So, from the menu delegates I let the RootViewController know which of my view controller I would like to display, I could also have an NSArray with my controllers in it.
     * After, I do the animations...
 
-```
+```objc
 - (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
 {
     [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];

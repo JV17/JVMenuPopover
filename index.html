@@ -69,24 +69,23 @@
 </li>
 </ul>
 
-<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+<div class="highlight highlight-objc"><pre>- (<span class="pl-k">BOOL</span>)application:(UIApplication *)application didFinishLaunchingWithOptions:(<span class="pl-c1">NSDictionary</span> *)launchOptions
 {
-    // Override point for customization after application launch.
-    UIViewController *rootController = [[JVMenuRootViewController alloc] init];
+    <span class="pl-c">// Override point for customization after application launch.</span>
+    UIViewController *rootController = [[JVMenuRootViewController <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>];
 
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    self.<span class="pl-smi">navigationController</span> = [[UINavigationController <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithRootViewController:</span>rootController];
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window setRootViewController:self.navigationController];
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[JVMenuHelper imageWithImage:[UIImage imageNamed:@"app_bg1.jpg"] scaledToWidth:self.window.frame.size.width]];
-    self.window.contentMode = UIViewContentModeScaleAspectFit;
+    self.<span class="pl-smi">window</span> = [[UIWindow <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithFrame:</span>[[UIScreen <span class="pl-c1">mainScreen</span>] <span class="pl-c1">bounds</span>]];
+    [<span class="pl-v">self</span>.window <span class="pl-c1">setRootViewController:</span><span class="pl-v">self</span>.navigationController];
+    self.<span class="pl-smi">window</span>.<span class="pl-smi">backgroundColor</span> = [UIColor <span class="pl-c1">colorWithPatternImage:</span>[JVMenuHelper <span class="pl-c1">imageWithImage:</span>[UIImage <span class="pl-c1">imageNamed:</span><span class="pl-s"><span class="pl-pds">@"</span>app_bg1.jpg<span class="pl-pds">"</span></span>] <span class="pl-c1">scaledToWidth:</span><span class="pl-v">self</span>.window.frame.size.width]];
+    self.<span class="pl-smi">window</span>.<span class="pl-smi">contentMode</span> = UIViewContentModeScaleAspectFit;
 
-    [self.window addSubview:self.navigationController.view];
-    [self.window makeKeyAndVisible];
+    [<span class="pl-v">self</span>.window <span class="pl-c1">addSubview:</span><span class="pl-v">self</span>.navigationController.view];
+    [<span class="pl-v">self</span>.window <span class="pl-c1">makeKeyAndVisible</span>];
 
-    return YES;
-}
-</code></pre>
+    <span class="pl-k">return</span> <span class="pl-c1">YES</span>;
+}</pre></div>
 
 <ul>
 <li>
@@ -98,23 +97,22 @@
 </li>
 </ul>
 
-<pre><code>- (void)viewWillAppear:(BOOL)animated
+<div class="highlight highlight-objc"><pre>- (<span class="pl-k">void</span>)viewWillAppear:(<span class="pl-k">BOOL</span>)animated
 {
-    [super viewWillAppear:animated];
+    [<span class="pl-v">super</span> <span class="pl-c1">viewWillAppear:</span>animated];
 
-    self.navigationController.delegate = self;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    self.<span class="pl-smi">navigationController</span>.<span class="pl-smi">delegate</span> = self;
+    self.<span class="pl-smi">navigationItem</span>.<span class="pl-smi">leftBarButtonItem</span> = [[UIBarButtonItem <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithImage:</span><span class="pl-v">self</span>.menuImg <span class="pl-c1">style:</span>UIBarButtonItemStylePlain <span class="pl-c1">target:</span><span class="pl-v">self</span> <span class="pl-c1">action:</span><span class="pl-k">@selector</span>(<span class="pl-c1">showMenu</span>)];
+    self.<span class="pl-smi">navigationItem</span>.<span class="pl-smi">leftBarButtonItem</span>.<span class="pl-smi">tintColor</span> = [UIColor <span class="pl-c1">blackColor</span>];
 
-    // make the navigation bar transparent
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-    forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-}
-</code></pre>
+    <span class="pl-c">// make the navigation bar transparent</span>
+    [<span class="pl-v">self</span>.navigationController.navigationBar <span class="pl-c1">setBackgroundImage:</span>[UIImage <span class="pl-c1">new</span>]
+    <span class="pl-c1">forBarMetrics:</span>UIBarMetricsDefault];
+    self.<span class="pl-smi">navigationController</span>.<span class="pl-smi">navigationBar</span>.<span class="pl-smi">shadowImage</span> = [UIImage <span class="pl-c1">new</span>];
+    self.<span class="pl-smi">navigationController</span>.<span class="pl-smi">navigationBar</span>.<span class="pl-smi">translucent</span> = <span class="pl-c1">YES</span>;
+    self.<span class="pl-smi">navigationController</span>.<span class="pl-smi">view</span>.<span class="pl-smi">backgroundColor</span> = [UIColor <span class="pl-c1">clearColor</span>];
+    self.<span class="pl-smi">navigationController</span>.<span class="pl-smi">navigationBar</span>.<span class="pl-smi">backgroundColor</span> = [UIColor <span class="pl-c1">clearColor</span>];
+}</pre></div>
 
 <ul>
 <li>
@@ -127,34 +125,33 @@
 </li>
 </ul>
 
-<pre><code>- (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
+<div class="highlight highlight-objc"><pre>- (<span class="pl-k">void</span>)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
 {
-    [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
+    [<span class="pl-v">self</span>.navigationController <span class="pl-c1">popToViewController:</span>JVMenuPopoverViewController <span class="pl-c1">animated:</span><span class="pl-c1">NO</span>];
 }
 
-- (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath
+- (<span class="pl-k">void</span>)setNewViewController:(UINavigationController *)navController fromIndexPath:(<span class="pl-c1">NSIndexPath</span> *)indexPath
 {
-    if(indexPath.row == 0)
+    <span class="pl-k">if</span>(indexPath.<span class="pl-smi">row</span> == <span class="pl-c1">0</span>)
     {
-        self.mainController = [[JVMenuRootViewController alloc] init];
-        self.mainController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-        [navController setViewControllers:@[self.mainController]];
+        self.<span class="pl-smi">mainController</span> = [[JVMenuRootViewController <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>];
+        self.<span class="pl-smi">mainController</span>.<span class="pl-smi">view</span>.<span class="pl-smi">transform</span> = <span class="pl-c1">CGAffineTransformScale</span>(<span class="pl-c1">CGAffineTransformIdentity</span>, <span class="pl-c1">0.6</span>, <span class="pl-c1">0.6</span>);
+        [navController <span class="pl-c1">setViewControllers:</span>@[<span class="pl-v">self</span>.mainController]];
     }
-    else if(indexPath.row == 1)
+    <span class="pl-k">else</span> <span class="pl-k">if</span>(indexPath.<span class="pl-smi">row</span> == <span class="pl-c1">1</span>)
     {
-        self.secondController = [[JVMenuSecondController alloc] init];
-        self.secondController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-        [navController setViewControllers:@[self.secondController]];
+        self.<span class="pl-smi">secondController</span> = [[JVMenuSecondController <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>];
+        self.<span class="pl-smi">secondController</span>.<span class="pl-smi">view</span>.<span class="pl-smi">transform</span> = <span class="pl-c1">CGAffineTransformScale</span>(<span class="pl-c1">CGAffineTransformIdentity</span>, <span class="pl-c1">0.6</span>, <span class="pl-c1">0.6</span>);
+        [navController <span class="pl-c1">setViewControllers:</span>@[<span class="pl-v">self</span>.secondController]];
     }
 }
 
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+- (<span class="pl-k">void</span>)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(<span class="pl-k">BOOL</span>)animated
 {
-    [UIView animateWithDuration:0.3/1.5 animations:^{
-        viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-    } completion:nil];
-}
-</code></pre>
+    [UIView <span class="pl-c1">animateWithDuration:</span><span class="pl-c1">0.3</span>/<span class="pl-c1">1.5</span> <span class="pl-c1">animations:</span>^{
+        viewController.<span class="pl-smi">view</span>.<span class="pl-smi">transform</span> = <span class="pl-c1">CGAffineTransformScale</span>(<span class="pl-c1">CGAffineTransformIdentity</span>, <span class="pl-c1">1.0</span>, <span class="pl-c1">1.0</span>);
+    } <span class="pl-c1">completion:</span><span class="pl-c1">nil</span>];
+}</pre></div>
 
 <h2>
 <a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>

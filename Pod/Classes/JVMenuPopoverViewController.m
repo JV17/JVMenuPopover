@@ -155,14 +155,16 @@
             self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
             
             //only apply the blur if the user hasn't disabled transparency effects
-            if(!UIAccessibilityIsReduceTransparencyEnabled())
-            {
-                // uncomment for vibrance effect
-                // [self.vibrancyEffectView.contentView addSubview:self.menuView];
-                // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
-                // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
-                // [self.view addSubview:self.blurEffectView];
-                [self.view insertSubview:self.blurEffectView atIndex:0];
+            if(UIAccessibilityIsReduceTransparencyEnabled != NULL) {
+                if(!UIAccessibilityIsReduceTransparencyEnabled())
+                {
+                    // uncomment for vibrance effect
+                    // [self.vibrancyEffectView.contentView addSubview:self.menuView];
+                    // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
+                    // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
+                    // [self.view addSubview:self.blurEffectView];
+                    [self.view insertSubview:self.blurEffectView atIndex:0];
+                }
             }
             
             self.doneAnimations = YES;

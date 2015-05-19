@@ -125,67 +125,8 @@
     if(self.doneCellAnimations)
         return;
     
-    CGRect oldFrame = cell.frame;
-    CGRect newFrame = CGRectMake(-cell.frame.size.width, cell.frame.origin.y, 0, cell.frame.size.height);
-    
-    CGFloat velocity = cell.frame.size.width/100;
-    
-    // cell animations
-    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
-    cell.frame = newFrame;
-    
-    [UIView animateWithDuration:0.3/1.5
-                          delay:0.05*indexPath.row
-         usingSpringWithDamping:0.67
-          initialSpringVelocity:velocity
-                        options:0
-                     animations:^{
-                         cell.frame = oldFrame;
-                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
-                     }
-                     completion:^(BOOL finished) {
-                           // getting the number of rows in section to avoid overlaps in animation when scrolling
-                           NSInteger rows = [self.tableView numberOfRowsInSection:0];
-                           
-                           if(rows == indexPath.row+1)
-                           {
-                               self.doneCellAnimations = YES;
-                           }
-                     }];
-    
-//    [UIView animateWithDuration:0.15/1.5
-//                          delay:0.15*indexPath.row
-//                        options:UIViewAnimationOptionCurveEaseIn
-//                     animations:^{
-//                         cell.frame = oldFrame;
-//                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
-//                     }
-//                     completion:^(BOOL finished) {
-//                         [UIView animateWithDuration:0.3/2
-//                                               delay:0
-//                                             options:UIViewAnimationOptionCurveEaseIn
-//                                          animations:^{
-//                                              cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.9f);
-//                                          }
-//                                          completion:^(BOOL finished) {
-//                                              [UIView animateWithDuration:0.3/2
-//                                                                    delay:0
-//                                                                  options:UIViewAnimationOptionCurveEaseIn
-//                                                               animations:^{
-//                                                                   cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
-//                                                               }
-//                                                               completion:^(BOOL finished) {
-//                                                                   // getting the number of rows in section to avoid overlaps in animation when scrolling
-//                                                                   NSInteger rows = [self.tableView numberOfRowsInSection:0];
-//                                                                   
-//                                                                   if(rows == indexPath.row+1)
-//                                                                   {
-//                                                                       self.doneCellAnimations = YES;
-//                                                                   }
-//                                                               }];
-//                                          }];
-//                     }];
-    
+    // slide in animations
+    [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -295,6 +236,88 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0;
+}
+
+#pragma mark - Cell animations
+
+- (void)performSlideInCellAnimationsWithCell:(UITableViewCell *)cell forRowIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect oldFrame = cell.frame;
+    CGRect newFrame = CGRectMake(-cell.frame.size.width, cell.frame.origin.y, 0, cell.frame.size.height);
+    
+    // cell animations
+    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
+    cell.frame = newFrame;
+    cell.alpha = 0;
+    
+    [UIView animateWithDuration:0.3/1.5
+                          delay:0.10*indexPath.row
+         usingSpringWithDamping:0.7
+          initialSpringVelocity:1.0
+                        options:0
+                     animations:^{
+                         // cell animations
+                         cell.frame = oldFrame;
+                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1f, 1.0f);
+                         cell.alpha = 1.0;
+                     }
+                     completion:^(BOOL finished) {
+                         // getting the number of rows in section to avoid overlaps in animation when scrolling
+                         NSInteger rows = [self.tableView numberOfRowsInSection:0];
+                         
+                         if(rows == indexPath.row+1)
+                         {
+                             self.doneCellAnimations = YES;
+                         }
+                     }];
+}
+
+- (void)performSlideInWithBounceCellAnimationsWithCell:(UITableViewCell *)cell forRowIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect oldFrame = cell.frame;
+    CGRect newFrame = CGRectMake(-cell.frame.size.width, cell.frame.origin.y, 0, cell.frame.size.height);
+    
+    // cell animations
+    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
+    cell.frame = newFrame;
+    
+    [UIView animateWithDuration:0.15/1.5
+                          delay:0.15*indexPath.row
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         // animations
+                         cell.frame = oldFrame;
+                         cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
+                     }
+                     completion:^(BOOL finished) {
+                         // nested animations
+                         [UIView animateWithDuration:0.3/2
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseIn
+                                          animations:^{
+                                              cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.9f);
+                                          }
+                                          completion:^(BOOL finished) {
+                                              // nested anomations
+                                              [UIView animateWithDuration:0.3/2
+                                                                    delay:0
+                                                                  options:UIViewAnimationOptionCurveEaseIn
+                                                               animations:^{
+                                                                   cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
+                                                               }
+                                                               completion:^(BOOL finished) {
+                                                                   // getting the number of rows in section to avoid overlaps in animation when scrolling
+                                                                   NSInteger rows = [self.tableView numberOfRowsInSection:0];
+                                                                   
+                                                                   if(rows == indexPath.row+1)
+                                                                   {
+                                                                       self.doneCellAnimations = YES;
+                                                                   }
+                                                               }];
+                                          }];
+                     }];
 }
 
 @end

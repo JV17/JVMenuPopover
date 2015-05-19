@@ -1,14 +1,14 @@
 PODS:
-  - JVMenuPopover (0.0.1)
+  - JVMenuPopover (0.0.3)
 
 DEPENDENCIES:
   - JVMenuPopover (from `../`)
 
 EXTERNAL SOURCES:
   JVMenuPopover:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  JVMenuPopover: cb9dd3fcaa9b580b54eef1010bbc7336ffd05dd4
+  JVMenuPopover: 34ba7be6cee096909f47cfd875f57b224155ac5c
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.4

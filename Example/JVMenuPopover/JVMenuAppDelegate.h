@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JVMenuRootViewController.h"
+#import <JVMenuPopover/JVMenuNavigationController.h>
 
-@class JVMenuRootViewController;
 
 @interface JVMenuAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) JVMenuRootViewController *rootViewController;
+@property (strong, nonatomic) JVMenuNavigationController *navigationController;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

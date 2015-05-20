@@ -12,7 +12,7 @@
 @class JVMenuPopoverViewController;
 
 #pragma mark - Protocol
-@protocol JVMenuDelegate <NSObject>
+@protocol JVMenuPopoverViewControllerDelegate <NSObject>
 
 @required
 - (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath;
@@ -26,9 +26,11 @@
 #pragma mark - Interface
 @interface JVMenuPopoverViewController : UIViewController <JVMenuPopoverDelegate>
 
-@property (nonatomic, weak) id <JVMenuDelegate> delegate;
+@property (nonatomic, weak) id <JVMenuPopoverViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) JVMenuPopoverView *menuView;
+@property (nonatomic, assign) BOOL slideInAnimation;
+@property (nonatomic, assign) BOOL slideInWithBounceAnimation;
 
 // Menu helper functions
 - (void)showMenuFromController:(UIViewController *)viewController;

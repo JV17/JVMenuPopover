@@ -7,17 +7,20 @@
 //
 
 #import "JVMenuAppDelegate.h"
-#import "JVMenuRootViewController.h"
+
 
 @implementation JVMenuAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UIViewController *rootController = [[JVMenuRootViewController alloc] init];
+    self.rootViewController = [[JVMenuRootViewController alloc] init];
     
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    // setting up navigation controller with root controller & transparent nav bar
+    self.navigationController = [[JVMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
+    self.navigationController.withTransparentNavBar = YES;
     
+    // setting up app window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.navigationController];
     self.window.backgroundColor = [UIColor colorWithPatternImage:[JVMenuHelper imageWithImage:[UIImage imageNamed:@"app_bg1.jpg"] scaledToWidth:self.window.frame.size.width]];

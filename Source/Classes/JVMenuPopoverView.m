@@ -121,12 +121,25 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    // don't do anything if we are animating
     if(self.doneCellAnimations)
         return;
     
-    // slide in animations
-    [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
+    if(self.slideInAnimation)
+    {
+        // slide in animations
+        [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
+    }
+    else if(self.slideInWithBounceAnimation)
+    {
+        // slide with bounce animations
+        [self performSlideInWithBounceCellAnimationsWithCell:cell forRowIndexPath:indexPath];
+    }
+    else
+    {
+        // slide in default animations
+        [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
+    }
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

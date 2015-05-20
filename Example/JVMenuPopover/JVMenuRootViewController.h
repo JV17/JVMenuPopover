@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import <JVMenuPopover/JVMenuPopoverViewController.h>
 
 
-@interface JVMenuRootViewController : UIViewController <UINavigationControllerDelegate, JVMenuDelegate>
+@interface JVMenuRootViewController : UIViewController <UINavigationControllerDelegate, JVMenuPopoverViewControllerDelegate>
 
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIImageView *imageView;

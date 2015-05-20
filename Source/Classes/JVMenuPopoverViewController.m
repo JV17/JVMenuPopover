@@ -28,6 +28,8 @@
 
 @implementation JVMenuPopoverViewController
 
+#pragma mark - Initializers
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,22 +44,30 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Custom getters & setters
-
 - (void)controllerSetup
 {
     // get main screen size
     self.screenSize = [JVMenuHelper getScreenSize];
-
+    
     self.view.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     self.view.backgroundColor = [UIColor clearColor];
     
-//    self.menuView = [self menuView];
-//    self.closeBtn = [self closeBtn];
+    // since we will be adding these later we need to create them to have them ready before hand
+    //    self.menuView = [self menuView];
+    //    self.closeBtn = [self closeBtn];
+    
+    // setting menu view animations
+    self.menuView.slideInAnimation = self.slideInAnimation;
+    self.menuView.slideInWithBounceAnimation = self.slideInWithBounceAnimation;
+    
+    // adding menu view and close button
     [self.view addSubview:self.menuView];
     [self.view addSubview:self.closeBtn];
     
 }
+
+
+#pragma mark - Custom getters & setters
 
 - (JVMenuPopoverView *)menuView
 {
@@ -69,6 +79,11 @@
     }
     
     return _menuView;
+}
+
+- (UIImage *)image
+{
+    return [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
 }
 
 - (UIButton *)closeBtn
@@ -131,6 +146,7 @@
     return _vibrancyEffectView;
 }
 
+
 #pragma mark - Show & Close menu
 
 - (void)showMenuFromController:(UIViewController *)viewController
@@ -143,14 +159,18 @@
     // self.currentController = self.navController.visibleViewController;
     self.currentController = viewController;
     
-    [UIView animateWithDuration:0.15 animations:^{
-        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+    // spring animations
+    [UIView animateWithDuration:0.15
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:0
+                     animations:^{
+                         // animation
+                         self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
     } completion:^(BOOL finished) {
         if(finished)
         {
-            // takes a screenshot of the current navigation view
-            self.image = [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
-            
             // setting blurred bg image to view and preparing controller objects for animation
             self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
             
@@ -197,15 +217,22 @@
         return;
     
     // resetting current visible controller scale & dimissing menu controller
-    [UIView animateWithDuration:0.3/1.5 animations:^{
-        self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-    } completion:^(BOOL finished) {
-        self.doneAnimations = NO;
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-        [self.navController dismissViewControllerAnimated:NO
-                                               completion:^{
-                                                   [self.currentController dismissViewControllerAnimated:NO completion:nil];
-                                               }];
+    [UIView animateWithDuration:0.3/1.5
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:0
+                     animations:^{
+                         // animations
+                         self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                     } completion:^(BOOL finished) {
+                         // completion
+                         self.doneAnimations = NO;
+                         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+                         [self.navController dismissViewControllerAnimated:NO
+                                                                completion:^{
+                                                                    [self.currentController dismissViewControllerAnimated:NO completion:nil];
+                                                                }];
     }];
 }
 

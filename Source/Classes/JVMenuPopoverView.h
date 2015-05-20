@@ -30,6 +30,8 @@
 
 // Public Properties
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) BOOL slideInAnimation;
+@property (nonatomic, assign) BOOL slideInWithBounceAnimation;
 
 // Initializers
 - (instancetype)init;

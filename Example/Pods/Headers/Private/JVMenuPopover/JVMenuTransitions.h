@@ -1,1 +1,1 @@
-../../../../../Source/Classes/JVMenuTransitions.h
+../../../../../Source/Classes/JVMenuTransitions/JVMenuTransitions.h

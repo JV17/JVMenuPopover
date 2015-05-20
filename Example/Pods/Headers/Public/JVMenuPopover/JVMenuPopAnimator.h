@@ -1,1 +1,1 @@
-../../../../../Source/Classes/JVMenuPopAnimator.h
+../../../../../Source/Classes/JVMenuTransitions/JVMenuPopAnimator.h

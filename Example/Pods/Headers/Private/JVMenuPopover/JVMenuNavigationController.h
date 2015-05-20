@@ -1,1 +1,1 @@
-../../../../../Source/Classes/JVMenuNavigationController.h
+../../../../../Source/Classes/JVMenuControllers/JVMenuNavigationController.h

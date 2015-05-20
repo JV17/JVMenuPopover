@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JVMenuRootViewController.h"
-#import <JVMenuPopover/JVMenuNavigationController.h>
+#import <JVMenuPopover/JVMenuPopover.h>
 
 
 @interface JVMenuAppDelegate : UIResponder <UIApplicationDelegate>

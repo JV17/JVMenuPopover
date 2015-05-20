@@ -14,13 +14,13 @@
 
 @property (nonatomic) CGSize screenSize;
 @property (nonatomic, assign) BOOL doneCellAnimations;
-@property (nonatomic) NSInteger numRows;
+@property (nonatomic) NSInteger rowCount;
 
-@property (nonatomic, strong) NSArray *labels;
-@property (nonatomic, strong) NSArray *icons;
+@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *titles;
 
 // Protected Methods
-- (void)setup;
+- (void)setupView;
 
 @end
 
@@ -30,46 +30,43 @@
 
 - (instancetype)init
 {
-    self = [super init];
-    
-    if(self)
-    {
-        // set view
-        [self setup];
-    }
-    
-    return self;
+    @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
+    @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles
+{
+    if(!(self = [super initWithFrame:frame]))
+        return nil;
     
-    if(self)
+    // first we need to get the images and titles to provide a check in our
+    self.images = images;
+    self.titles = titles;
+    
+    // checking if we have images or title for display
+    if(self.images.count == 0 || self.titles.count == 0)
     {
-        // set view
-        [self setup];
+        NSLog(@"Initializing JVMenuView without images or title may result on an empty menu.");
     }
+    
+    // setting up the view
+    [self setupView];
     
     return self;
 }
 
-- (void)setup
+- (void)setupView
 {
-    // setting up menu icons
-    self.icons = @[[UIImage imageNamed:@"home-48"],
-                   [UIImage imageNamed:@"about-48"],
-                   [UIImage imageNamed:@"settings-48"],
-                   [UIImage imageNamed:@"business_contact-48"],
-                   [UIImage imageNamed:@"ask_question-48"]];
-
-    // setting up label texts
-    self.labels = @[@"Home",
-                    @"About Us",
-                    @"Our Service",
-                    @"Contact Us",
-                    @"Help?"];
-
+    // setting up menu view
     if(self.frame.size.width == 0)
     {
         self.screenSize = [JVMenuHelper getScreenSize];
@@ -185,35 +182,30 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     
+    // setting up rows
     if (indexPath.row == 0)
     {
+        self.rowCount = 0;
+        
         // setting first row
-        [cell.imageView setImage:self.icons[0]];
-        cell.textLabel.text = self.labels[0];
+        if(self.images.count > 0)
+            [cell.imageView setImage:self.images[0]];
+        
+        if(self.titles.count > 0)
+            cell.textLabel.text = self.titles[0];
+        
+        self.rowCount++;
     }
-    else if (indexPath.row == 1)
+    else if (indexPath.row == self.rowCount)
     {
         // setting second row
-        [cell.imageView setImage:self.icons[1]];
-        cell.textLabel.text = self.labels[1];
-    }
-    else if (indexPath.row == 2)
-    {
-        // setting third row
-        [cell.imageView setImage:self.icons[2]];
-        cell.textLabel.text = self.labels[2];
-    }
-    else if (indexPath.row == 3)
-    {
-        // setting fourth row
-        [cell.imageView setImage:self.icons[3]];
-        cell.textLabel.text = self.labels[3];
-    }
-    else if (indexPath.row == 4)
-    {
-        // setting fifth row
-        [cell.imageView setImage:self.icons[4]];
-        cell.textLabel.text = self.labels[4];
+        if(self.images.count >= self.rowCount)
+            [cell.imageView setImage:self.images[self.rowCount]];
+        
+        if(self.titles.count >= self.rowCount)
+            cell.textLabel.text = self.titles[self.rowCount];
+        
+        self.rowCount++;
     }
     
     return cell;
@@ -232,7 +224,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // return the number of sections in the tableview
-    return 5;
+    return self.titles.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

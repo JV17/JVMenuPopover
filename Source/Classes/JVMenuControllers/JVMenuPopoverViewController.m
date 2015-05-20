@@ -30,6 +30,25 @@
 
 #pragma mark - Initializers
 
+- (instancetype)initWithImages:(NSArray *)images titles:(NSArray *)titles closeImage:(UIImage *)closeImage
+{
+    if(!(self = [super init]))
+        return nil;
+    
+    // storing images, titles and close image for display
+    self.images = images;
+    self.titles = titles;
+    self.closeImage = closeImage;
+    
+    // checking if we have images or title for display
+    if(self.images.count == 0 || self.titles.count == 0 || !self.closeImage)
+    {
+        NSLog(@"Initializing JVMenuPopoverViewController without images, title or close image may result on an empty menu.");
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -73,7 +92,9 @@
 {
     if(!_menuView)
     {
-        _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame];
+        _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame
+                                                      images:self.images
+                                                      titles:self.titles];
         _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         _menuView.delegate = self;
     }
@@ -90,11 +111,10 @@
 {
     if(!_closeBtn)
     {
-        UIImage *closeImg = [UIImage imageNamed:@"cancel_filled-50"];
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(15, 28, closeImg.size.width, closeImg.size.height);
+        _closeBtn.frame = CGRectMake(15, 28, self.closeImage.size.width, self.closeImage.size.height);
         _closeBtn.backgroundColor = [UIColor clearColor];
-        [_closeBtn setImage:closeImg forState:UIControlStateNormal];
+        [_closeBtn setImage:self.closeImage forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
     }
     

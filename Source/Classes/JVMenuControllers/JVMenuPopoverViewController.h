@@ -26,11 +26,17 @@
 #pragma mark - Interface
 @interface JVMenuPopoverViewController : UIViewController <JVMenuPopoverDelegate>
 
+// properties
 @property (nonatomic, weak) id <JVMenuPopoverViewControllerDelegate> delegate;
-
 @property (nonatomic, strong) JVMenuPopoverView *menuView;
+@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, strong) UIImage *closeImage;
 @property (nonatomic, assign) BOOL slideInAnimation;
 @property (nonatomic, assign) BOOL slideInWithBounceAnimation;
+
+// initializer
+- (instancetype)initWithImages:(NSArray *)images titles:(NSArray *)titles closeImage:(UIImage *)closeImage;
 
 // Menu helper functions
 - (void)showMenuFromController:(UIViewController *)viewController;

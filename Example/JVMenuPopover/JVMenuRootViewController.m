@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) UIImage *menuImg;
 @property (nonatomic, strong) JVMenuPopoverViewController *menuController;
-@property (nonatomic, strong) JVMenuTransitions *menuTransitions;
+//@property (nonatomic, strong) JVMenuTransitions *menuTransitions;
 
 // view controllers
 @property (nonatomic, strong) JVMenuRootViewController *mainController;
@@ -97,7 +97,17 @@
 {
     if(!_menuController)
     {
-        _menuController = [[JVMenuPopoverViewController alloc] init];
+        _menuController = [[JVMenuPopoverViewController alloc] initWithImages:@[[UIImage imageNamed:@"home-48"],
+                                                                                [UIImage imageNamed:@"about-48"],
+                                                                                [UIImage imageNamed:@"settings-48"],
+                                                                                [UIImage imageNamed:@"business_contact-48"],
+                                                                                [UIImage imageNamed:@"ask_question-48"]]
+                                                                       titles:@[@"Home",
+                                                                                @"About Us",
+                                                                                @"Our Service",
+                                                                                @"Contact Us",
+                                                                                @"Help?"]
+                                                                   closeImage:[UIImage imageNamed:@"cancel_filled-50"]];
         _menuController.delegate = self;
         _menuController.slideInWithBounceAnimation = YES;
     }
@@ -105,15 +115,15 @@
     return _menuController;
 }
 
-- (JVMenuTransitions *)menuTransitions
-{
-    if(!_menuTransitions)
-    {
-        _menuTransitions = [[JVMenuTransitions alloc] init];
-    }
-    
-    return _menuTransitions;
-}
+//- (JVMenuTransitions *)menuTransitions
+//{
+//    if(!_menuTransitions)
+//    {
+//        _menuTransitions = [[JVMenuTransitions alloc] init];
+//    }
+//    
+//    return _menuTransitions;
+//}
 
 #pragma mark - Navigation helper functions
 

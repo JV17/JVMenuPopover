@@ -9,10 +9,11 @@
 #ifndef Pods_JVMenuPopover_h
 #define Pods_JVMenuPopover_h
 
-    #import "JVMenuHelper.h"
-    #import "JVMenuPopoverViewController.h"
-    #import "JVMenuTransitions.h"
-    #import "JVMenuPushAnimator.h"
-    #import "JVMenuPopAnimator.h"
+    #import <JVMenuPopover/JVMenuHelper.h>
+    #import <JVMenuPopover/JVMenuPopoverViewController.h>
+    #import <JVMenuPopover/JVMenuNavigationController.h>
+    #import <JVMenuPopover/JVMenuTransitions.h>
+    #import <JVMenuPopover/JVMenuPushAnimator.h>
+    #import <JVMenuPopover/JVMenuPopAnimator.h>
 
 #endif

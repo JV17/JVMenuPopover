@@ -36,5 +36,7 @@
 // Initializers
 - (instancetype)init;
 - (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder;
+- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles;
 
 @end

@@ -294,8 +294,8 @@
     cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
     cell.frame = newFrame;
     
-    [UIView animateWithDuration:0.15/1.5
-                          delay:0.15*indexPath.row
+    [UIView animateWithDuration:0.1
+                          delay:0.2*indexPath.row
          usingSpringWithDamping:1.0
           initialSpringVelocity:1.0
                         options:UIViewAnimationOptionCurveEaseIn
@@ -306,7 +306,7 @@
                      }
                      completion:^(BOOL finished) {
                          // nested animations
-                         [UIView animateWithDuration:0.3/2
+                         [UIView animateWithDuration:0.1
                                                delay:0
                                              options:UIViewAnimationOptionCurveEaseIn
                                           animations:^{
@@ -314,7 +314,7 @@
                                           }
                                           completion:^(BOOL finished) {
                                               // nested anomations
-                                              [UIView animateWithDuration:0.3/2
+                                              [UIView animateWithDuration:0.1
                                                                     delay:0
                                                                   options:UIViewAnimationOptionCurveEaseIn
                                                                animations:^{

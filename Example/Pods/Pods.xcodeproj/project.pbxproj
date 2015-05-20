@@ -176,6 +176,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C045A741B0D029300270255 /* JVMenuTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				DFE62F15D3324C772FF81EBD /* JVMenuTransitions.h */,
+				71B0EDC005C7F5A552D12B41 /* JVMenuTransitions.m */,
+				BF0D72E0A89313BAAD88866E /* JVMenuPushAnimator.h */,
+				45264D730D08587419F73A26 /* JVMenuPushAnimator.m */,
+				25D720B7EE76D60D27583A42 /* JVMenuPopAnimator.h */,
+				EF0017E20A51FC9986525B01 /* JVMenuPopAnimator.m */,
+			);
+			name = JVMenuTransitions;
+			sourceTree = "<group>";
+		};
+		3C045A751B0D02AF00270255 /* JVMenuHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				19EF5523680CD396A408EE80 /* JVMenuPopover.h */,
+				9CD9FE86C61F4D16C2944D1A /* JVMenuHelper.h */,
+				837E390220733E3D28E58AD4 /* JVMenuHelper.m */,
+			);
+			name = JVMenuHelpers;
+			sourceTree = "<group>";
+		};
+		3C045A761B0D02D000270255 /* JVMenuControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C5AC104E19D33652CFD69483 /* JVMenuNavigationController.h */,
+				B29CDAD5E9703C19D530A34E /* JVMenuNavigationController.m */,
+				AFE8395CD6C9347250194BC6 /* JVMenuPopoverViewController.h */,
+				50092A52A0025641BFB40A06 /* JVMenuPopoverViewController.m */,
+			);
+			name = JVMenuControllers;
+			sourceTree = "<group>";
+		};
+		3C045A771B0D02E400270255 /* JVMenuViews */ = {
+			isa = PBXGroup;
+			children = (
+				726644EC4D85317D91FAA74E /* JVMenuPopoverView.h */,
+				A6D3FEC319C5B1966CA690BC /* JVMenuPopoverView.m */,
+			);
+			name = JVMenuViews;
+			sourceTree = "<group>";
+		};
 		412FE765BC1E6FFF71C3588F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,21 +334,10 @@
 		ECCD5419EFC3AC254CE41FFB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9CD9FE86C61F4D16C2944D1A /* JVMenuHelper.h */,
-				837E390220733E3D28E58AD4 /* JVMenuHelper.m */,
-				C5AC104E19D33652CFD69483 /* JVMenuNavigationController.h */,
-				B29CDAD5E9703C19D530A34E /* JVMenuNavigationController.m */,
-				25D720B7EE76D60D27583A42 /* JVMenuPopAnimator.h */,
-				EF0017E20A51FC9986525B01 /* JVMenuPopAnimator.m */,
-				19EF5523680CD396A408EE80 /* JVMenuPopover.h */,
-				726644EC4D85317D91FAA74E /* JVMenuPopoverView.h */,
-				A6D3FEC319C5B1966CA690BC /* JVMenuPopoverView.m */,
-				AFE8395CD6C9347250194BC6 /* JVMenuPopoverViewController.h */,
-				50092A52A0025641BFB40A06 /* JVMenuPopoverViewController.m */,
-				BF0D72E0A89313BAAD88866E /* JVMenuPushAnimator.h */,
-				45264D730D08587419F73A26 /* JVMenuPushAnimator.m */,
-				DFE62F15D3324C772FF81EBD /* JVMenuTransitions.h */,
-				71B0EDC005C7F5A552D12B41 /* JVMenuTransitions.m */,
+				3C045A751B0D02AF00270255 /* JVMenuHelpers */,
+				3C045A771B0D02E400270255 /* JVMenuViews */,
+				3C045A761B0D02D000270255 /* JVMenuControllers */,
+				3C045A741B0D029300270255 /* JVMenuTransitions */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

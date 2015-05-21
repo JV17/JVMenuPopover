@@ -1,6 +1,6 @@
 {
   "name": "JVMenuPopover",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "summary": "A Simple popover like menu.",
   "description": "JVMenuPopover is a simple and cool menu popover like. It animates the view controllers and scales them to make  a similar iOS switch window like animation.",
   "homepage": "https://github.com/JV17/JVMenuPopover",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/JV17/JVMenuPopover.git",
-    "tag": "0.0.3"
+    "tag": "0.0.4"
   },
   "platforms": {
     "ios": "7.0"

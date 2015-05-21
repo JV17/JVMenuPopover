@@ -12,8 +12,5 @@
     #import <JVMenuPopover/JVMenuHelper.h>
     #import <JVMenuPopover/JVMenuPopoverViewController.h>
     #import <JVMenuPopover/JVMenuNavigationController.h>
-    #import <JVMenuPopover/JVMenuTransitions.h>
-    #import <JVMenuPopover/JVMenuPushAnimator.h>
-    #import <JVMenuPopover/JVMenuPopAnimator.h>
 
 #endif

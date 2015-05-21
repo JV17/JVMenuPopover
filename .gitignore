@@ -31,3 +31,39 @@ DerivedData
 #
 # Pods/
 Example/Podfile.lock
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests-environment.h
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests-dummy.m
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-Tests/Pods-Tests-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-Tests-JVMenuPopover/Pods-Tests-JVMenuPopover.xcconfig
+Example/Pods/Target Support Files/Pods-Tests-JVMenuPopover/Pods-Tests-JVMenuPopover-Private.xcconfig
+Example/Pods/Target Support Files/Pods-Tests-JVMenuPopover/Pods-Tests-JVMenuPopover-prefix.pch
+Example/Pods/Target Support Files/Pods-Tests-JVMenuPopover/Pods-Tests-JVMenuPopover-dummy.m
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover.release.xcconfig
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover.debug.xcconfig
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-resources.sh
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-environment.h
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-dummy.m
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-acknowledgements.plist
+Example/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-acknowledgements.markdown
+Example/Pods/Target Support Files/Pods-JVMenuPopover-JVMenuPopover/Pods-JVMenuPopover-JVMenuPopover.xcconfig
+Example/Pods/Target Support Files/Pods-JVMenuPopover-JVMenuPopover/Pods-JVMenuPopover-JVMenuPopover-Private.xcconfig
+Example/Pods/Target Support Files/Pods-JVMenuPopover-JVMenuPopover/Pods-JVMenuPopover-JVMenuPopover-prefix.pch
+Example/Pods/Target Support Files/Pods-JVMenuPopover-JVMenuPopover/Pods-JVMenuPopover-JVMenuPopover-dummy.m
+Example/Pods/Pods.xcodeproj/project.pbxproj
+Example/Pods/Manifest.lock
+Example/Pods/Local Podspecs/JVMenuPopover.podspec.json
+Example/Pods/Headers/Public/JVMenuPopover/JVMenuPopoverViewController.h
+Example/Pods/Headers/Public/JVMenuPopover/JVMenuPopoverView.h
+Example/Pods/Headers/Public/JVMenuPopover/JVMenuPopover.h
+Example/Pods/Headers/Public/JVMenuPopover/JVMenuNavigationController.h
+Example/Pods/Headers/Public/JVMenuPopover/JVMenuHelper.h
+Example/Pods/Headers/Private/JVMenuPopover/JVMenuPopoverViewController.h
+Example/Pods/Headers/Private/JVMenuPopover/JVMenuPopoverView.h
+Example/Pods/Headers/Private/JVMenuPopover/JVMenuPopover.h
+Example/Pods/Headers/Private/JVMenuPopover/JVMenuNavigationController.h
+Example/Pods/Headers/Private/JVMenuPopover/JVMenuHelper.h
+Example/JVMenuPopover.xcworkspace/contents.xcworkspacedata

@@ -2,11 +2,11 @@
 
 This is a simple menu controller where I tried to simulate the native iOS animation of switching between apps. It can be used in many different ways and you can also customize it to use your own animations.
 
-### Preview 1 - Menu with slideInWithBounceAnimation
+#### Preview 1 - Menu with slideInWithBounceAnimation
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=ySgPzJJSCAg?autoplay=1" target="_blank">![screenshot-1](Previews/jvmenu.preview1.gif)</a>
 
-### Preview 2 - Menu with slideInAnimation
+#### Preview 2 - Menu with slideInAnimation
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=2MG6kVMMuTo?autoplay=1" target="_blank">![screenshot-1](Previews/jvmenu.preview2.gif)</a>
 

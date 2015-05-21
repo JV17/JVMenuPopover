@@ -4,11 +4,11 @@ This is a simple menu controller where I tried to simulate the native iOS animat
 
 ## Previews
 
-###### * Menu with slideInWithBounceAnimation
+###### • Menu with slideInWithBounceAnimation
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=ySgPzJJSCAg?autoplay=1" target="_blank">![screenshot-1](Previews/jvmenu.preview1.gif)</a>
 
-###### * Menu with slideInAnimation
+###### • Menu with slideInAnimation
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=2MG6kVMMuTo?autoplay=1" target="_blank">![screenshot-1](Previews/jvmenu.preview2.gif)</a>
 

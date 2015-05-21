@@ -18,6 +18,9 @@
 		3C37FB0A1ACB825100D389B0 /* cancel_filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB081ACB825100D389B0 /* cancel_filled-50@2x.png */; };
 		3C37FB0B1ACB825100D389B0 /* cancel-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB091ACB825100D389B0 /* cancel-48@2x.png */; };
 		3C37FB0D1ACB9B7700D389B0 /* menu_black-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FB0C1ACB9B7700D389B0 /* menu_black-48@2x.png */; };
+		3C3BEF451B0E83B10052FB8F /* JVTouchEventsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BEF401B0E83B10052FB8F /* JVTouchEventsWindow.m */; };
+		3C3BEF461B0E83B10052FB8F /* JVTouchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BEF421B0E83B10052FB8F /* JVTouchHelper.m */; };
+		3C3BEF471B0E83B10052FB8F /* JVTouchImageViewQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3BEF441B0E83B10052FB8F /* JVTouchImageViewQueue.m */; };
 		3CE5F0FD1ACA419D009CFC23 /* JVMenuFourthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0F81ACA419D009CFC23 /* JVMenuFourthController.m */; };
 		3CE5F0FE1ACA419D009CFC23 /* JVMenuSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0FA1ACA419D009CFC23 /* JVMenuSecondController.m */; };
 		3CE5F0FF1ACA419D009CFC23 /* JVMenuThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0FC1ACA419D009CFC23 /* JVMenuThirdController.m */; };
@@ -66,6 +69,12 @@
 		3C37FB081ACB825100D389B0 /* cancel_filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_filled-50@2x.png"; sourceTree = "<group>"; };
 		3C37FB091ACB825100D389B0 /* cancel-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-48@2x.png"; sourceTree = "<group>"; };
 		3C37FB0C1ACB9B7700D389B0 /* menu_black-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_black-48@2x.png"; sourceTree = "<group>"; };
+		3C3BEF3F1B0E83B10052FB8F /* JVTouchEventsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVTouchEventsWindow.h; sourceTree = "<group>"; };
+		3C3BEF401B0E83B10052FB8F /* JVTouchEventsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVTouchEventsWindow.m; sourceTree = "<group>"; };
+		3C3BEF411B0E83B10052FB8F /* JVTouchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVTouchHelper.h; sourceTree = "<group>"; };
+		3C3BEF421B0E83B10052FB8F /* JVTouchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVTouchHelper.m; sourceTree = "<group>"; };
+		3C3BEF431B0E83B10052FB8F /* JVTouchImageViewQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVTouchImageViewQueue.h; sourceTree = "<group>"; };
+		3C3BEF441B0E83B10052FB8F /* JVTouchImageViewQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVTouchImageViewQueue.m; sourceTree = "<group>"; };
 		3CE5F0F71ACA419D009CFC23 /* JVMenuFourthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVMenuFourthController.h; sourceTree = "<group>"; };
 		3CE5F0F81ACA419D009CFC23 /* JVMenuFourthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVMenuFourthController.m; sourceTree = "<group>"; };
 		3CE5F0F91ACA419D009CFC23 /* JVMenuSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVMenuSecondController.h; sourceTree = "<group>"; };
@@ -131,6 +140,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C3BEF3E1B0E83900052FB8F /* JVTouchEventsWindow */ = {
+			isa = PBXGroup;
+			children = (
+				3C3BEF3F1B0E83B10052FB8F /* JVTouchEventsWindow.h */,
+				3C3BEF401B0E83B10052FB8F /* JVTouchEventsWindow.m */,
+				3C3BEF411B0E83B10052FB8F /* JVTouchHelper.h */,
+				3C3BEF421B0E83B10052FB8F /* JVTouchHelper.m */,
+				3C3BEF431B0E83B10052FB8F /* JVTouchImageViewQueue.h */,
+				3C3BEF441B0E83B10052FB8F /* JVTouchImageViewQueue.m */,
+			);
+			name = JVTouchEventsWindow;
+			sourceTree = "<group>";
+		};
 		3CE5F0E51ACA4139009CFC23 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +235,7 @@
 		6003F593195388D20070C39A /* JVMenuPopover */ = {
 			isa = PBXGroup;
 			children = (
+				3C3BEF3E1B0E83900052FB8F /* JVTouchEventsWindow */,
 				6003F59C195388D20070C39A /* JVMenuAppDelegate.h */,
 				6003F59D195388D20070C39A /* JVMenuAppDelegate.m */,
 				3CE5F1001ACA41B4009CFC23 /* JVMenuRootViewController.h */,
@@ -445,10 +468,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C3BEF451B0E83B10052FB8F /* JVTouchEventsWindow.m in Sources */,
 				3CE5F0FE1ACA419D009CFC23 /* JVMenuSecondController.m in Sources */,
 				3CE5F1021ACA41B4009CFC23 /* JVMenuRootViewController.m in Sources */,
 				3CE5F0FD1ACA419D009CFC23 /* JVMenuFourthController.m in Sources */,
 				3CE5F1091ACA51E9009CFC23 /* JVMenuFifthController.m in Sources */,
+				3C3BEF461B0E83B10052FB8F /* JVTouchHelper.m in Sources */,
+				3C3BEF471B0E83B10052FB8F /* JVTouchImageViewQueue.m in Sources */,
 				3CE5F0FF1ACA419D009CFC23 /* JVMenuThirdController.m in Sources */,
 				6003F59E195388D20070C39A /* JVMenuAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

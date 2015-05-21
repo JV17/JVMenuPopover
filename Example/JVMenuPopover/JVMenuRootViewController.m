@@ -108,7 +108,7 @@
                                                                                 @"Help?"]
                                                                    closeImage:[UIImage imageNamed:@"cancel_filled-50"]];
         _menuController.delegate = self;
-        _menuController.slideInWithBounceAnimation = YES; // choose our animation type
+        _menuController.slideInAnimation = YES; // choose our animation type
     }
     
     return _menuController;

@@ -7,15 +7,11 @@
 //
 
 #import "JVMenuNavigationController.h"
-#import "JVMenuPushAnimator.h"
-#import "JVMenuPopAnimator.h"
-#import "JVMenuPopoverViewController.h"
 
 
-@interface JVMenuNavigationController () <UINavigationControllerDelegate, JVMenuPopoverViewControllerDelegate>
+@interface JVMenuNavigationController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIViewController *rootViewController;
-@property (nonatomic, strong) JVMenuPopoverViewController *menuController;
 
 @end
 
@@ -28,7 +24,7 @@
         return nil;
     
     // keeping track of the view controller
-    self.rootViewController = rootViewController;
+    // self.rootViewController = rootViewController;
     
     return self;
 }
@@ -59,7 +55,7 @@
     viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
     
     // presenting view controller animations
-    [UIView animateWithDuration:0.3/1.5
+    [UIView animateWithDuration:0.2
                           delay:0
          usingSpringWithDamping:1.0
           initialSpringVelocity:1.0
@@ -70,36 +66,8 @@
                      } completion:nil];
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                  animationControllerForOperation:(UINavigationControllerOperation)operation
-                                               fromViewController:(UIViewController*)fromVC
-                                                 toViewController:(UIViewController*)toVC
-{
-//    if (operation == UINavigationControllerOperationPush)
-//    {
-//        return [[JVMenuPushAnimator alloc] init];
-//    }
-//    else if (operation == UINavigationControllerOperationPop)
-//    {
-//        return [[JVMenuPopAnimator alloc] init];
-//    }
-    
-    return nil;
-}
-
 
 #pragma mark - Custom getters & setters
-
-- (JVMenuPopoverViewController *)menuController
-{
-    if(!_menuController)
-    {
-        _menuController = [[JVMenuPopoverViewController alloc] init];
-        _menuController.delegate = self;
-    }
-    
-    return _menuController;
-}
 
 - (void)setWithTransparentNavBar:(BOOL)withTransparentNavBar
 {
@@ -114,67 +82,6 @@
         self.navigationBar.translucent = YES;
         self.view.backgroundColor = [UIColor clearColor];
         self.navigationBar.backgroundColor = [UIColor clearColor];
-    }
-}
-
-#pragma mark - Nav Helper Functions
-
-- (void)showMenu
-{
-    // Dismiss keyboard (optional)
-    [self.view endEditing:YES];
-//    [self.menuController.view endEditing:YES];
-    
-    // Present the view controller
-//    [self.menuController showMenuFromController:self];
-}
-
-
-#pragma mark - Menu Delegate
-
-//- (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController
-//{
-//    [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
-//}
-
-- (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
-{
-//    [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
-}
-
-- (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.row == 0)
-    {
-//        self.mainController = [[JVMenuRootViewController alloc] init];
-        //        self.mainController.transitioningDelegate = self.menuTransitions;
-        //self.mainController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-//        [self setViewControllers:@[]];
-    }
-    else if(indexPath.row == 1)
-    {
-//        self.secondController = [[JVMenuSecondController alloc] init];
-        //        self.mainController.transitioningDelegate = self.menuTransitions;
-        //        self.secondController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-//        [self setViewControllers:@[]];
-    }
-    else if (indexPath.row == 2)
-    {
-//        self.thirdController = [[JVMenuThirdController alloc] init];
-//        self.thirdController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-//        [navController setViewControllers:@[self.thirdController]];
-    }
-    else if (indexPath.row == 3)
-    {
-//        self.fourthController = [[JVMenuFourthController alloc] init];
-//        self.fourthController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-//        [navController setViewControllers:@[self.fourthController]];
-    }
-    else if (indexPath.row == 4)
-    {
-//        self.fifthController = [[JVMenuFifthController alloc] init];
-//        self.fifthController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-//        [navController setViewControllers:@[self.fifthController]];
     }
 }
 

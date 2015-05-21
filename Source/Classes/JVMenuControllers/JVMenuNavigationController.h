@@ -11,7 +11,8 @@
 
 @interface JVMenuNavigationController : UINavigationController
 
-@property (nonatomic, assign) BOOL withTransparentNavBar;
+// properties
+@property (nonatomic, assign) BOOL withTransparentNavBar; // allows hide the nav bar
 
 // initializer
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController;

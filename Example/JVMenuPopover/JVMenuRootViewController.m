@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) UIImage *menuImg;
 @property (nonatomic, strong) JVMenuPopoverViewController *menuController;
-//@property (nonatomic, strong) JVMenuTransitions *menuTransitions;
 
 // view controllers
 @property (nonatomic, strong) JVMenuRootViewController *mainController;
@@ -109,21 +108,12 @@
                                                                                 @"Help?"]
                                                                    closeImage:[UIImage imageNamed:@"cancel_filled-50"]];
         _menuController.delegate = self;
-        _menuController.slideInWithBounceAnimation = YES;
+        _menuController.slideInWithBounceAnimation = YES; // choose our animation type
     }
     
     return _menuController;
 }
 
-//- (JVMenuTransitions *)menuTransitions
-//{
-//    if(!_menuTransitions)
-//    {
-//        _menuTransitions = [[JVMenuTransitions alloc] init];
-//    }
-//    
-//    return _menuTransitions;
-//}
 
 #pragma mark - Navigation helper functions
 
@@ -132,12 +122,13 @@
     [self.menuController showMenuFromController:self];
 }
 
+
 #pragma mark - Menu Delegate
 
-//- (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController
-//{
-//    [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
-//}
+- (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController
+{
+    // [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
+}
 
 - (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
 {

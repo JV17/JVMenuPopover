@@ -20,18 +20,21 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 Using JVMenuPopover with your own project.
 
-* Set your RootViewController in the your AppDelegate.m, you could follow my example project and see how I set a background image to the entire app if you are looking to follow that approach.
+* Set your RootViewController in the your AppDelegate.m, you could follow my example project and see how I set a background image to the entire app if you are looking to follow the same approach. Also, notice that I am able to set the navigation bar transparent just setting the boolean I have created for it. 
     
-    * I use one of my helper function in the pods to adjust the image to my device width and not show an expanded image.
+    * I use one of my helper functions in the pods to adjust the image to my device width and not show an expanded image.
     
 ```objc 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UIViewController *rootController = [[JVMenuRootViewController alloc] init];
+    self.rootViewController = [[JVMenuRootViewController alloc] init];
 
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    // setting up navigation controller with root controller & transparent nav bar
+    self.navigationController = [[JVMenuNavigationController alloc] initWithRootViewController:self.rootViewController];
+    self.navigationController.withTransparentNavBar = YES;
 
+    // setting up app window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.navigationController];
     self.window.backgroundColor = [UIColor colorWithPatternImage:[JVMenuHelper imageWithImage:[UIImage imageNamed:@"app_bg1.jpg"] scaledToWidth:self.window.frame.size.width]];
@@ -44,9 +47,37 @@ Using JVMenuPopover with your own project.
 }
 ```
 
-* Then, we set our navigation controller however we wanted it to be displayed
+* Here, I set my menu controller with the images I would like to display as icon images, the title for my menu and close menu image. I use a technique known as Lazy Loading which allows me to create my menu at the last minute before adding it to the view. 
     
-    * Here, I set the menu image I want to display, the color of the menu button and small trick just in my case I wanted to have a transparent navigation bar.
+    * Currently, I am using some regular free images I have added to the same project, but you do this within your root controller and you can load whatever images you want to. Also, the menu will create rows only base on the labels/titles provided and not from how many images you give it to the menu.
+
+```objc
+- (JVMenuPopoverViewController *)menuController
+{
+    if(!_menuController)
+    {
+        _menuController = [[JVMenuPopoverViewController alloc] initWithImages:@[[UIImage imageNamed:@"home-48"],
+                                                                                [UIImage imageNamed:@"about-48"],
+                                                                                [UIImage imageNamed:@"settings-48"],
+                                                                                [UIImage imageNamed:@"business_contact-48"],
+                                                                                [UIImage imageNamed:@"ask_question-48"]]
+                                                                        titles:@[@"Home",
+                                                                                 @"About Us",
+                                                                                 @"Our Service",
+                                                                                 @"Contact Us",
+                                                                                 @"Help?"]
+                                                                    closeImage:[UIImage imageNamed:@"cancel_filled-50"]];
+        _menuController.delegate = self;
+        _menuController.slideInWithBounceAnimation = YES; // choose our animation type
+    }
+
+    return _menuController;
+}
+```
+
+* Then, we set our navigation controller, however we wanted it to be displayed.
+    
+    * Here, I set the menu image I want to display, the color of the menu button.
 
 ```objc
 - (void)viewWillAppear:(BOOL)animated
@@ -56,49 +87,37 @@ Using JVMenuPopover with your own project.
     self.navigationController.delegate = self;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-
-    // make the navigation bar transparent
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-    forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.view.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
 }
 ```
 
-* Finally but not least, I do the animation of the view controllers. So far I found better to take a screenshot after I have finished scaling the current view controller that I am animating.
-
-    * So, from the menu delegates I let the RootViewController know which of my view controller I would like to display, I could also have an NSArray with my controllers in it.
-    * After, I do the animations...
+* Finally but not least, I set the showing menu controller from our root controller. Also, we need to implement the close menu button delegate to dismiss the menu and get back to our previous controller. And the setNewViewController delegate which I tell my own navigation controller to handle all the display and animations for presenting new controllers.
 
 ```objc
+// showing menu from our root controller
+- (void)showMenu
+{
+    [self.menuController showMenuFromController:self];
+}
+
+// closing menu when close button is pressed
 - (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
 {
     [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
 }
 
+// setting the view controllers to be presented
 - (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0)
     {
         self.mainController = [[JVMenuRootViewController alloc] init];
-        self.mainController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-        [navController setViewControllers:@[self.mainController]];
+        [self.navigationController setViewControllers:@[self.mainController]];
     }
     else if(indexPath.row == 1)
     {
         self.secondController = [[JVMenuSecondController alloc] init];
-        self.secondController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-        [navController setViewControllers:@[self.secondController]];
+        [self.navigationController setViewControllers:@[self.secondController]];
     }
-}
-
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    [UIView animateWithDuration:0.3/1.5 animations:^{
-        viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-    } completion:nil];
 }
 ```
 

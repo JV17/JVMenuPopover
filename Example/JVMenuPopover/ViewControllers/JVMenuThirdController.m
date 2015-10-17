@@ -8,38 +8,25 @@
 
 #import "JVMenuThirdController.h"
 
-@interface JVMenuThirdController ()
-
-@end
 
 @implementation JVMenuThirdController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // removing previous gradient from container
-    [JVMenuHelper removeLayerFromView:self.containerView];
-    
-    // gradient background color
-    CAGradientLayer *newGradient = [CAGradientLayer layer];
-    newGradient.frame = self.view.frame;
     UIColor *firstColor = [JVMenuHelper colorWithHexString:@"FB2B69"];
     UIColor *secondColor = [JVMenuHelper colorWithHexString:@"FF5B37"];
     
-    newGradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-    [self.containerView.layer insertSublayer:newGradient atIndex:0];
+    // setting up new gradient colors
+    [self.containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
     
     // overriding root controllers label, image and imageview
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"settings-48"] withColor:[UIColor blackColor]];
-    [self.imageView setImage:self.image];
+    self.imageView.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"settings-48"] withColor:[UIColor blackColor]];
     self.label.text = @"Our Services";
-    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 @end

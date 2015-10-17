@@ -6,27 +6,49 @@
 //  Copyright (c) 2014 Jorge Valbuena. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "JVMenuRootViewController.h"
 #import "JVMenuSecondController.h"
 #import "JVMenuThirdController.h"
 #import "JVMenuFourthController.h"
 #import "JVMenuFifthController.h"
 
-@interface JVMenuRootViewController ()
 
-@property (nonatomic, strong) UIImage *menuImg;
+@interface JVMenuRootViewController () <UINavigationControllerDelegate, JVMenuPopoverViewControllerDelegate>
+
 @property (nonatomic, strong) JVMenuPopoverViewController *menuController;
 
-// view controllers
-@property (nonatomic, strong) JVMenuRootViewController *mainController;
+@property (nonatomic, strong) CAGradientLayer *gradient;
+
 @property (nonatomic, strong) JVMenuSecondController *secondController;
+
 @property (nonatomic, strong) JVMenuThirdController *thirdController;
+
 @property (nonatomic, strong) JVMenuFourthController *fourthController;
+
 @property (nonatomic, strong) JVMenuFifthController *fifthController;
+
 
 @end
 
+
 @implementation JVMenuRootViewController
+
+#pragma mark - Lifecycle
+
+- (instancetype)initWithMenuImage:(UIImage *)menuImage
+{
+    self = [super init];
+    
+    if (self)
+    {
+        _menuImg = menuImage;
+    }
+    
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
@@ -35,6 +57,7 @@
     // setting up controllers
     [self commonInit];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -45,50 +68,20 @@
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)commonInit
 {
-    // no background color
     self.view.backgroundColor = [UIColor clearColor];
-    self.containerView = [[UIView alloc] initWithFrame:self.view.frame];
-    
-    // gradient background color
-    self.gradient = [CAGradientLayer layer];
-    self.gradient.frame = self.view.frame;
-    UIColor *firstColor = [JVMenuHelper colorWithHexString:@"52EDC7"];
-    UIColor *secondColor = [JVMenuHelper colorWithHexString:@"5AC8FB"];
-    
-    // gradient colors
-    self.gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-    [self.containerView.layer insertSublayer:self.gradient atIndex:0];
-    
-    // setting up controller image
-    self.menuImg = [UIImage imageNamed:@"menu_black-48"];
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-48"] withColor:[UIColor blackColor]];
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height)];
-    [self.imageView setImage:self.image];
     
     [self.containerView addSubview:self.imageView];
-    
-    // setting controllers label
-    self.label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60)];
-    self.label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.font = [UIFont fontWithName:@"HelveticaNeue" size:20];
-    self.label.textColor = [UIColor blackColor];
-    self.label.text = @"Home";
-    
     [self.containerView addSubview:self.label];
+    
     [self.view addSubview:self.containerView];
     
     // creating menu controller
     self.menuController = [self menuController];
 }
+
 
 #pragma mark - Custom getters & setters
 
@@ -115,6 +108,110 @@
 }
 
 
+- (UIView *)containerView
+{
+    if (!_containerView)
+    {
+        _containerView = [[UIView alloc] initWithFrame:self.view.frame];
+
+        // gradient background color
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.frame = self.view.frame;
+        UIColor *firstColor = [JVMenuHelper colorWithHexString:@"52EDC7"];
+        UIColor *secondColor = [JVMenuHelper colorWithHexString:@"5AC8FB"];
+        
+        // gradient colors
+        gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
+        [_containerView.layer insertSublayer:gradient atIndex:0];
+    }
+    
+    return _containerView;
+}
+
+
+- (UIImageView *)imageView
+{
+    if (!_imageView)
+    {
+        _imageView = [[UIImageView alloc] initWithImage:self.image];
+        _imageView.frame = CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height);
+    }
+    
+    return _imageView;
+}
+
+
+- (UIImage *)image
+{
+    if (!_image)
+    {
+        _image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-48"] withColor:[UIColor blackColor]];
+    }
+                  
+    return _image;
+}
+
+
+- (UILabel *)label
+{
+    if (!_label)
+    {
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60)];
+        _label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        _label.textAlignment = NSTextAlignmentCenter;
+        _label.font = [UIFont fontWithName:@"HelveticaNeue" size:20];
+        _label.textColor = [UIColor blackColor];
+        _label.text = @"Home";
+    }
+    
+    return _label;
+}
+
+
+- (JVMenuSecondController *)secondController
+{
+    if (!_secondController)
+    {
+        _secondController = [[JVMenuSecondController alloc] init];
+    }
+    
+    return _secondController;
+}
+
+
+- (JVMenuThirdController *)thirdController
+{
+    if (!_thirdController)
+    {
+        _thirdController = [[JVMenuThirdController alloc] init];
+    }
+    
+    return _thirdController;
+}
+
+
+- (JVMenuFourthController *)fourthController
+{
+    if (!_fourthController)
+    {
+        _fourthController = [[JVMenuFourthController alloc] init];
+    }
+    
+    return _fourthController;
+}
+
+
+- (JVMenuFifthController *)fifthController
+{
+    if (!_fifthController)
+    {
+        _fifthController = [[JVMenuFifthController alloc] init];
+    }
+    
+    return _fifthController;
+}
+
+
 #pragma mark - Navigation helper functions
 
 - (void)showMenu
@@ -130,39 +227,35 @@
     // [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
 }
 
+
 - (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
 {
     [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
 }
 
+
 - (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0)
     {
-        self.mainController = [[JVMenuRootViewController alloc] init];
-        [self.navigationController setViewControllers:@[self.mainController]];
+        [self.navigationController setViewControllers:@[self]];
     }
     else if(indexPath.row == 1)
     {
-        self.secondController = [[JVMenuSecondController alloc] init];
         [self.navigationController setViewControllers:@[self.secondController]];
     }
     else if (indexPath.row == 2)
     {
-        self.thirdController = [[JVMenuThirdController alloc] init];
         [self.navigationController setViewControllers:@[self.thirdController]];
     }
     else if (indexPath.row == 3)
     {
-        self.fourthController = [[JVMenuFourthController alloc] init];
         [self.navigationController setViewControllers:@[self.fourthController]];
     }
     else if (indexPath.row == 4)
     {
-        self.fifthController = [[JVMenuFifthController alloc] init];
         [self.navigationController setViewControllers:@[self.fifthController]];
     }
-    
 }
 
 @end

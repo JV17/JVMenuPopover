@@ -8,38 +8,25 @@
 
 #import "JVMenuSecondController.h"
 
-@interface JVMenuSecondController ()
-
-@end
 
 @implementation JVMenuSecondController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // removing previous gradient from container
-    [JVMenuHelper removeLayerFromView:self.containerView];
-    
-    // gradient background color
-    CAGradientLayer *newGradient = [CAGradientLayer layer];
-    newGradient.frame = self.view.frame;
     UIColor *firstColor = [JVMenuHelper colorWithHexString:@"87FC70"];
     UIColor *secondColor = [JVMenuHelper colorWithHexString:@"0BD318"];
     
-    newGradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-    [self.containerView.layer insertSublayer:newGradient atIndex:0];
+    // setting up new gradient colors
+    [self.containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
     
     // overriding root controllers label, image and imageview
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"about-48"] withColor:[UIColor blackColor]];
-    [self.imageView setImage:self.image];
+    self.imageView.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"about-48"] withColor:[UIColor blackColor]];
     self.label.text = @"About Us";
-
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 @end

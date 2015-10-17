@@ -14,7 +14,9 @@
 @interface JVMenuAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) JVMenuRootViewController *rootViewController;
+
 @property (strong, nonatomic) JVMenuNavigationController *navigationController;
-@property (strong, nonatomic) JVTouchEventsWindow *window;
+
+@property (strong, nonatomic) UIWindow *window;
 
 @end

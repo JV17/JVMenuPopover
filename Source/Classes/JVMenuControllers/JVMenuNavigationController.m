@@ -9,41 +9,29 @@
 #import "JVMenuNavigationController.h"
 
 
-@interface JVMenuNavigationController () <UINavigationControllerDelegate>
-
-@property (nonatomic, strong) UIViewController *rootViewController;
-
-@end
-
-
 @implementation JVMenuNavigationController
 
-- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
+#pragma mark - Lifecycle
+
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController transparentNavBar:(BOOL)transparentNavBar
 {
-    if (!(self = [super initWithRootViewController:rootViewController]))
-        return nil;
+    self = [super initWithRootViewController:rootViewController];
     
-    // keeping track of the view controller
-    // self.rootViewController = rootViewController;
+    if (self)
+    {
+        // initializer
+        self.withTransparentNavBar = transparentNavBar;
+    }
     
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
     self.delegate = self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -63,7 +51,8 @@
                      animations:^{
                          // animations
                          viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                     } completion:nil];
+                     }
+                     completion:nil];
 }
 
 
@@ -73,11 +62,10 @@
 {
     _withTransparentNavBar = withTransparentNavBar;
     
-    if(withTransparentNavBar)
+    if(self.withTransparentNavBar)
     {
         // make the navigation bar transparent
-        [self.navigationBar setBackgroundImage:[UIImage new]
-                                                      forBarMetrics:UIBarMetricsDefault];
+        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = [UIImage new];
         self.navigationBar.translucent = YES;
         self.view.backgroundColor = [UIColor clearColor];

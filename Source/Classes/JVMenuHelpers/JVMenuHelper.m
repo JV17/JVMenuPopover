@@ -219,12 +219,12 @@
     
     //clean up
     CGContextRelease(ctx);
-    CGColorSpaceRelease(colorSpace);
+//    CGColorSpaceRelease(colorSpace);
     
     free(pixelBuffer);
     CFRelease(inBitmapData);
     
-    CGColorSpaceRelease(colorSpace);
+//    CGColorSpaceRelease(colorSpace);
     CGImageRelease(imageRef);
     
     return returnImage;

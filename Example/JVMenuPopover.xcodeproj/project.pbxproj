@@ -26,6 +26,7 @@
 		3CE5F0FF1ACA419D009CFC23 /* JVMenuThirdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F0FC1ACA419D009CFC23 /* JVMenuThirdController.m */; };
 		3CE5F1021ACA41B4009CFC23 /* JVMenuRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F1011ACA41B4009CFC23 /* JVMenuRootViewController.m */; };
 		3CE5F1091ACA51E9009CFC23 /* JVMenuFifthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F1081ACA51E9009CFC23 /* JVMenuFifthController.m */; };
+		3CEE1CC51BD3056300D7DF4C /* UIView+JVMenuCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE1CC41BD3056300D7DF4C /* UIView+JVMenuCategory.m */; settings = {ASSET_TAGS = (); }; };
 		3CF8C1D41ACCB22C00BB0CDE /* app_bg1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8C1D21ACCB22C00BB0CDE /* app_bg1@2x.jpg */; };
 		3CF8C1D51ACCB22C00BB0CDE /* app_bg2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8C1D31ACCB22C00BB0CDE /* app_bg2@2x.jpg */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -85,6 +86,8 @@
 		3CE5F1011ACA41B4009CFC23 /* JVMenuRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVMenuRootViewController.m; sourceTree = "<group>"; };
 		3CE5F1071ACA51E9009CFC23 /* JVMenuFifthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVMenuFifthController.h; sourceTree = "<group>"; };
 		3CE5F1081ACA51E9009CFC23 /* JVMenuFifthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVMenuFifthController.m; sourceTree = "<group>"; };
+		3CEE1CC31BD3056300D7DF4C /* UIView+JVMenuCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JVMenuCategory.h"; sourceTree = "<group>"; };
+		3CEE1CC41BD3056300D7DF4C /* UIView+JVMenuCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JVMenuCategory.m"; sourceTree = "<group>"; };
 		3CF8C1D21ACCB22C00BB0CDE /* app_bg1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "app_bg1@2x.jpg"; sourceTree = "<group>"; };
 		3CF8C1D31ACCB22C00BB0CDE /* app_bg2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "app_bg2@2x.jpg"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* JVMenuPopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVMenuPopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +190,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		3CEE1CC21BD3052100D7DF4C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3CEE1CC31BD3056300D7DF4C /* UIView+JVMenuCategory.h */,
+				3CEE1CC41BD3056300D7DF4C /* UIView+JVMenuCategory.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		50589ADB59DE7E985AA27713 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +247,7 @@
 		6003F593195388D20070C39A /* JVMenuPopover */ = {
 			isa = PBXGroup;
 			children = (
+				3CEE1CC21BD3052100D7DF4C /* Categories */,
 				3C3BEF3E1B0E83900052FB8F /* JVTouchEventsWindow */,
 				6003F59C195388D20070C39A /* JVMenuAppDelegate.h */,
 				6003F59D195388D20070C39A /* JVMenuAppDelegate.m */,
@@ -339,7 +352,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = JVMenu;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jorge Valbuena";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -468,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CEE1CC51BD3056300D7DF4C /* UIView+JVMenuCategory.m in Sources */,
 				3C3BEF451B0E83B10052FB8F /* JVTouchEventsWindow.m in Sources */,
 				3CE5F0FE1ACA419D009CFC23 /* JVMenuSecondController.m in Sources */,
 				3CE5F1021ACA41B4009CFC23 /* JVMenuRootViewController.m in Sources */,
@@ -553,6 +567,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -616,7 +631,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JVMenuPopover/JVMenuPopover-Prefix.pch";
 				INFOPLIST_FILE = "JVMenuPopover/JVMenuPopover-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -630,7 +648,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JVMenuPopover/JVMenuPopover-Prefix.pch";
 				INFOPLIST_FILE = "JVMenuPopover/JVMenuPopover-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -652,6 +673,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -671,6 +693,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

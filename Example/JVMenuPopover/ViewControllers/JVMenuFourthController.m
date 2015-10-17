@@ -8,38 +8,25 @@
 
 #import "JVMenuFourthController.h"
 
-@interface JVMenuFourthController ()
-
-@end
 
 @implementation JVMenuFourthController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // remove gradient layer from container view
-    [JVMenuHelper removeLayerFromView:self.containerView];
-    
-    // gradient background color
-    CAGradientLayer *newGradient = [CAGradientLayer layer];
-    newGradient.frame = self.view.frame;
     UIColor *firstColor = [JVMenuHelper colorWithHexString:@"1AD6FD"];
     UIColor *secondColor = [JVMenuHelper colorWithHexString:@"1D62F0"];
     
-    newGradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-    [self.containerView.layer insertSublayer:newGradient atIndex:0];
+    // setting up new gradient colors
+    [self.containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
         
     // overriding root controllers label, image and imageview
-    self.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"business_contact-48"] withColor:[UIColor blackColor]];
-    [self.imageView setImage:self.image];
+    self.imageView.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"business_contact-48"] withColor:[UIColor blackColor]];
     self.label.text = @"Contact Us";
-    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 @end

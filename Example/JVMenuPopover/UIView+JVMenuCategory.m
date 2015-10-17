@@ -14,7 +14,7 @@
 - (void)gradientEffectWithFirstColor:(UIColor *)firstColor secondColor:(UIColor *)secondColor
 {
     // removing previous gradient from container
-    [self removeLayerFromView:self];
+    [self removeLayerFromView];
     
     // gradient background color
     CAGradientLayer *newGradient = [CAGradientLayer layer];
@@ -28,11 +28,11 @@
 }
 
 
-- (void)removeLayerFromView:(UIView *)view
+- (void)removeLayerFromView
 {
     CAGradientLayer *layerToRemove;
  
-    for (CALayer *aLayer in view.layer.sublayers)
+    for (CALayer *aLayer in self.layer.sublayers)
     {
         if ([aLayer isKindOfClass:[CAGradientLayer class]])
         {

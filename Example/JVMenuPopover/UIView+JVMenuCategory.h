@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface UIView (JVMenuCategory)
 
 /**
@@ -19,5 +20,9 @@
     The second color to be used in the gradient effect.
  */
 - (void)gradientEffectWithFirstColor:(UIColor *)firstColor secondColor:(UIColor *)secondColor;
+
+
+/** Removes layer from caller view. */
+- (void)removeLayerFromView;
 
 @end

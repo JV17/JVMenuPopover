@@ -27,6 +27,7 @@
 		3CE5F1021ACA41B4009CFC23 /* JVMenuRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F1011ACA41B4009CFC23 /* JVMenuRootViewController.m */; };
 		3CE5F1091ACA51E9009CFC23 /* JVMenuFifthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5F1081ACA51E9009CFC23 /* JVMenuFifthController.m */; };
 		3CEE1CC51BD3056300D7DF4C /* UIView+JVMenuCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE1CC41BD3056300D7DF4C /* UIView+JVMenuCategory.m */; settings = {ASSET_TAGS = (); }; };
+		3CEE1CC81BD30D4F00D7DF4C /* UIImage+JVMenuCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE1CC71BD30D4F00D7DF4C /* UIImage+JVMenuCategory.m */; settings = {ASSET_TAGS = (); }; };
 		3CF8C1D41ACCB22C00BB0CDE /* app_bg1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8C1D21ACCB22C00BB0CDE /* app_bg1@2x.jpg */; };
 		3CF8C1D51ACCB22C00BB0CDE /* app_bg2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3CF8C1D31ACCB22C00BB0CDE /* app_bg2@2x.jpg */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -88,6 +89,8 @@
 		3CE5F1081ACA51E9009CFC23 /* JVMenuFifthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVMenuFifthController.m; sourceTree = "<group>"; };
 		3CEE1CC31BD3056300D7DF4C /* UIView+JVMenuCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JVMenuCategory.h"; sourceTree = "<group>"; };
 		3CEE1CC41BD3056300D7DF4C /* UIView+JVMenuCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JVMenuCategory.m"; sourceTree = "<group>"; };
+		3CEE1CC61BD30D4F00D7DF4C /* UIImage+JVMenuCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JVMenuCategory.h"; sourceTree = "<group>"; };
+		3CEE1CC71BD30D4F00D7DF4C /* UIImage+JVMenuCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JVMenuCategory.m"; sourceTree = "<group>"; };
 		3CF8C1D21ACCB22C00BB0CDE /* app_bg1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "app_bg1@2x.jpg"; sourceTree = "<group>"; };
 		3CF8C1D31ACCB22C00BB0CDE /* app_bg2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "app_bg2@2x.jpg"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* JVMenuPopover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JVMenuPopover.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +198,8 @@
 			children = (
 				3CEE1CC31BD3056300D7DF4C /* UIView+JVMenuCategory.h */,
 				3CEE1CC41BD3056300D7DF4C /* UIView+JVMenuCategory.m */,
+				3CEE1CC61BD30D4F00D7DF4C /* UIImage+JVMenuCategory.h */,
+				3CEE1CC71BD30D4F00D7DF4C /* UIImage+JVMenuCategory.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 			files = (
 				3CEE1CC51BD3056300D7DF4C /* UIView+JVMenuCategory.m in Sources */,
 				3C3BEF451B0E83B10052FB8F /* JVTouchEventsWindow.m in Sources */,
+				3CEE1CC81BD30D4F00D7DF4C /* UIImage+JVMenuCategory.m in Sources */,
 				3CE5F0FE1ACA419D009CFC23 /* JVMenuSecondController.m in Sources */,
 				3CE5F1021ACA41B4009CFC23 /* JVMenuRootViewController.m in Sources */,
 				3CE5F0FD1ACA419D009CFC23 /* JVMenuFourthController.m in Sources */,

@@ -96,17 +96,8 @@
 - (void)setupCustomWindow
 {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//
-//    NSLog(@"bound: %@", NSStringFromCGRect(self.window.bounds));
-//    self.window.translatesAutoresizingMaskIntoConstraints = NO;
-    
-//    [self.window addConstraint:[NSLayoutConstraint constraintWithItem:redView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.window.superview attribute:NSLayoutAttributeBottom multiplier:1.0f constant:0.0f]];
-//    [self.window addConstraint:[NSLayoutConstraint constraintWithItem:redView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0f constant:0.0f]];
-//    [self.window addConstraint:[NSLayoutConstraint constraintWithItem:redView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0f constant:0.0f]];
-//    [self.window addConstraint:[NSLayoutConstraint constraintWithItem:redView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0f constant:0.0f]];
     self.window.rootViewController = self.navigationController;
     self.window.backgroundColor = [UIColor colorWithPatternImage:[JVMenuHelper imageWithImage:[UIImage imageNamed:@"app_bg1.jpg"] scaledToWidth:self.window.frame.size.width]];
-//    self.window.contentMode = UIViewContentModeScaleAspectFit;
     
     [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];

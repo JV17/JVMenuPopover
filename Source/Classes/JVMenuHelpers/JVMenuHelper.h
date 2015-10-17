@@ -12,8 +12,6 @@
 
 + (CGSize)getScreenSize;
 
-+ (UIImage *)imageWithImage:(UIImage *)sourceImage scaledToWidth:(float)i_width;
-
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert;
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex;
@@ -23,16 +21,6 @@
 + (UIViewController *)topViewController;
 
 + (UIViewController *)topViewController:(UIViewController *)rootViewController;
-
-+ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated;
-
-+ (UIImage *)changeImageColor:(UIImage *)img withColor:(UIColor *)color;
-
-+ (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size;
-
-+ (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
-
-+ (UIImage *)applyBlurWithRadius:(CGFloat)blurRadius tintColor:(UIColor *)tintColor saturationDeltaFactor:(CGFloat)saturationDeltaFactor maskImage:(UIImage *)maskImage inView:(UIView *)senderView;
 
 + (UIVisualEffectView * )applyBlurrWithEfftectStyle:(UIBlurEffectStyle)style withFrame:(CGRect)frame;
 

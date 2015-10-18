@@ -9,9 +9,12 @@
 #ifndef Pods_JVMenuPopover_h
 #define Pods_JVMenuPopover_h
 
-    #import <JVMenuPopover/UIView+JVMenuCategory.h>
-    #import <JVMenuPopover/UIImage+JVMenuCategory.h>
-    #import <JVMenuPopover/JVMenuPopoverViewController.h>
-    #import <JVMenuPopover/JVMenuNavigationController.h>
+    #import "JVMenuControllers/JVMenuPopoverViewController.h"
+    #import "JVMenuControllers/JVMenuNavigationController.h"
+    #import "JVMenuCategories/UIColor+JVMenuCategory.h"
+    #import "JVMenuCategories/UIView+JVMenuCategory.h"
+    #import "JVMenuCategories/UIImage+JVMenuCategory.h"
+    #import "JVMenuCategories/UIViewController+JVMenuCategory.h"
+    #import "JVMenuCategories/UIVisualEffectView+JVMenuCategory.h"
 
 #endif

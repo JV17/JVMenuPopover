@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '425AC39E1C060810D4673F8B'
+               BlueprintIdentifier = 'F9754B2C57955DCD97820C36'
                BlueprintName = 'JVMenuPopover'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libJVMenuPopover.a'>

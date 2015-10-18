@@ -17,8 +17,8 @@
 {
     [super viewDidLoad];
     
-    UIColor *firstColor = [JVMenuHelper colorWithHexString:@"FB2B69"];
-    UIColor *secondColor = [JVMenuHelper colorWithHexString:@"FF5B37"];
+    UIColor *firstColor = [UIColor colorWithHexString:@"FB2B69"];
+    UIColor *secondColor = [UIColor colorWithHexString:@"FF5B37"];
     
     // setting up new gradient colors
     [self.containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];

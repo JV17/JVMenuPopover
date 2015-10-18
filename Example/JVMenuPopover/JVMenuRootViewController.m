@@ -113,16 +113,12 @@
     if (!_containerView)
     {
         _containerView = [[UIView alloc] initWithFrame:self.view.frame];
-
-        // gradient background color
-        CAGradientLayer *gradient = [CAGradientLayer layer];
-        gradient.frame = self.view.frame;
-        UIColor *firstColor = [JVMenuHelper colorWithHexString:@"52EDC7"];
-        UIColor *secondColor = [JVMenuHelper colorWithHexString:@"5AC8FB"];
         
-        // gradient colors
-        gradient.colors = [NSArray arrayWithObjects:(id)firstColor.CGColor, (id)secondColor.CGColor, nil];
-        [_containerView.layer insertSublayer:gradient atIndex:0];
+        UIColor *firstColor = [UIColor colorWithHexString:@"52EDC7"];
+        UIColor *secondColor = [UIColor colorWithHexString:@"5AC8FB"];
+        
+        // setting up new gradient colors
+        [_containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
     }
     
     return _containerView;

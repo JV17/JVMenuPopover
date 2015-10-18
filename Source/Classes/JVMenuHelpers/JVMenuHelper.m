@@ -76,17 +76,15 @@
 + (UIVisualEffectView * )applyBlurrWithEfftectStyle:(UIBlurEffectStyle)style withFrame:(CGRect)frame
 {
     //only apply the blur if the user hasn't disabled transparency effects
-    if(UIAccessibilityIsReduceTransparencyEnabled != NULL) {
-        if(!UIAccessibilityIsReduceTransparencyEnabled())
-        {
-            UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:style];
-            UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-            blurEffectView.alpha = 0.6f;
-            blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-            blurEffectView.frame = frame;
-            
-            return blurEffectView;
-        }
+    if(!UIAccessibilityIsReduceTransparencyEnabled())
+    {
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:style];
+        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        blurEffectView.alpha = 0.6f;
+        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        blurEffectView.frame = frame;
+        
+        return blurEffectView;
     }
     else {
         // ios 7 implementation

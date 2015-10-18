@@ -16,8 +16,6 @@
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex;
 
-+ (void)removeLayerFromView:(UIView *)view;
-
 + (UIViewController *)topViewController;
 
 + (UIViewController *)topViewController:(UIViewController *)rootViewController;

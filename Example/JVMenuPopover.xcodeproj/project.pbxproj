@@ -302,6 +302,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				5D26ADEF4AE4A6DEDDFF943C /* Copy Pods Resources */,
+				B5F41568FB09ABF73E5CE5EA /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -321,6 +322,7 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				B8C3A07AA6F317894D233389 /* Copy Pods Resources */,
+				802D62BF7522C8D025126A79 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,6 +431,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		802D62BF7522C8D025126A79 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5F41568FB09ABF73E5CE5EA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B8C3A07AA6F317894D233389 /* Copy Pods Resources */ = {

@@ -7,7 +7,9 @@
 //
 
 #import "JVMenuPopoverViewController.h"
-#import <JVMenuHelper.h>
+#import "UIImage+JVMenuCategory.h"
+#import "JVMenuHelper.h"
+
 
 @interface JVMenuPopoverViewController ()
 
@@ -66,7 +68,7 @@
 - (void)controllerSetup
 {
     // get main screen size
-    self.screenSize = [JVMenuHelper getScreenSize];
+    self.screenSize = [UIScreen mainScreen].bounds.size;
     
     self.view.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     self.view.backgroundColor = [UIColor clearColor];
@@ -195,16 +197,14 @@
             self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
             
             //only apply the blur if the user hasn't disabled transparency effects
-            if(UIAccessibilityIsReduceTransparencyEnabled != NULL) {
-                if(!UIAccessibilityIsReduceTransparencyEnabled())
-                {
-                    // uncomment for vibrance effect
-                    // [self.vibrancyEffectView.contentView addSubview:self.menuView];
-                    // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
-                    // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
-                    // [self.view addSubview:self.blurEffectView];
-                    [self.view insertSubview:self.blurEffectView atIndex:0];
-                }
+            if(!UIAccessibilityIsReduceTransparencyEnabled())
+            {
+                // uncomment for vibrance effect
+                // [self.vibrancyEffectView.contentView addSubview:self.menuView];
+                // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
+                // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
+                // [self.view addSubview:self.blurEffectView];
+                [self.view insertSubview:self.blurEffectView atIndex:0];
             }
             
             self.doneAnimations = YES;

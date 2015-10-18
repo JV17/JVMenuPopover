@@ -24,7 +24,8 @@
     [self.containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
         
     // overriding root controllers label, image and imageview
-    self.imageView.image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"business_contact-48"] withColor:[UIColor blackColor]];
+    UIImage *newImage = [UIImage imageNamed:@"business_contact-48"];
+    self.imageView.image = [newImage changeImageColor:[UIColor blackColor]];
     self.label.text = @"Contact Us";
 }
 

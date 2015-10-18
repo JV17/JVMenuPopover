@@ -19,11 +19,11 @@
  */
 - (UIImage *)imageScaledToWidth:(CGFloat)toWidth;
 
-+ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated;
-
 - (UIImage *)changeImageColor:(UIColor *)color;
 
 - (UIImage *)convertImageToSize:(CGSize)size;
+
++ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated;
 
 + (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
 

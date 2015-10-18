@@ -30,20 +30,6 @@
 }
 
 
-+ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated
-{
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
-    
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:updated];
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
-
-
 - (UIImage *)changeImageColor:(UIColor *)color
 {
     if (color)
@@ -84,6 +70,20 @@
     UIGraphicsEndImageContext();
     
     return destImage;
+}
+
+
++ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+    
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:updated];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 

@@ -145,7 +145,7 @@
 {
     if (!_image)
     {
-        _image = [JVMenuHelper changeImageColor:[UIImage imageNamed:@"home-48"] withColor:[UIColor blackColor]];
+        _image = [[UIImage imageNamed:@"home-48"] changeImageColor:[UIColor blackColor]];
     }
                   
     return _image;

@@ -14,5 +14,4 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <JVMenuPopover/JVMenuPopover.h>
-    #import "UIView+JVMenuCategory.h"
 #endif

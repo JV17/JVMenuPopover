@@ -30,7 +30,7 @@
 }
 
 
-- (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated
++ (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated
 {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
     

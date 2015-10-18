@@ -104,7 +104,7 @@
 
 - (UIImage *)image
 {
-    return [JVMenuHelper takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+    return [UIImage takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
 }
 
 - (UIButton *)closeBtn

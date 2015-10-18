@@ -7,7 +7,7 @@
 //
 
 #import "JVMenuPopoverView.h"
-#import <JVMenuHelper.h>
+
 
 #pragma mark - Interface
 @interface JVMenuPopoverView()
@@ -69,7 +69,7 @@
     // setting up menu view
     if(self.frame.size.width == 0)
     {
-        self.screenSize = [JVMenuHelper getScreenSize];
+        self.screenSize = [UIScreen mainScreen].bounds.size;
         self.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     }
     

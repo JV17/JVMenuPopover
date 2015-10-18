@@ -8,7 +8,7 @@
 
 #import "JVMenuPopoverViewController.h"
 #import "UIImage+JVMenuCategory.h"
-#import "JVMenuHelper.h"
+#import "UIViewController+JVMenuCategory.h"
 
 
 @interface JVMenuPopoverViewController ()
@@ -177,7 +177,7 @@
         return;
     
     // find the navigation controller and then get the current visible controller
-    self.navController = (UINavigationController *)[JVMenuHelper topViewController];
+    self.navController = (UINavigationController *)[UIViewController topViewController];
     // self.currentController = self.navController.visibleViewController;
     self.currentController = viewController;
     

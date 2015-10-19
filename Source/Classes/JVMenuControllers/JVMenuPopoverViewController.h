@@ -57,18 +57,31 @@
 
 @interface JVMenuPopoverViewController : UIViewController <JVMenuPopoverDelegate>
 
+/** JVMenuPopoverViewControllerDelegate. */
 @property (nonatomic, weak) id <JVMenuPopoverViewControllerDelegate> delegate;
 
+
+/** The menu popover view which holds the menu. */
 @property (nonatomic, strong, readwrite) JVMenuPopoverView *menuView;
 
+
+/** The array of images to be used in the menu. */
 @property (nonatomic, strong, readwrite) NSArray *images;
 
+
+/** The array of titles to be used in the menu. */
 @property (nonatomic, strong, readwrite) NSArray *titles;
 
+
+/** The close image to be used in the close button in the menu. */
 @property (nonatomic, strong, readwrite) UIImage *closeImage;
 
+
+/** This is the type of animation @a slideInAnimation used for how the content of the menu shows up. */
 @property (nonatomic, assign, readwrite) BOOL slideInAnimation;
 
+
+/** This is the type of animation @a slideInWithBounceAnimation used for how the content of the menu shows up. */
 @property (nonatomic, assign, readwrite) BOOL slideInWithBounceAnimation;
 
 

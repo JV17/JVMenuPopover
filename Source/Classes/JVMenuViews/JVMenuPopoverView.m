@@ -26,6 +26,7 @@
 
 
 #pragma mark - Implementation
+
 @implementation JVMenuPopoverView
 
 - (instancetype)init
@@ -33,36 +34,42 @@
     @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
 }
 
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
 }
+
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
 }
 
+
 - (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles
 {
-    if(!(self = [super initWithFrame:frame]))
-        return nil;
+    self = [super initWithFrame:frame];
     
-    // first we need to get the images and titles to provide a check in our
-    self.images = images;
-    self.titles = titles;
-    
-    // checking if we have images or title for display
-    if(self.images.count == 0 || self.titles.count == 0)
+    if (self)
     {
-        NSLog(@"Initializing JVMenuView without images or title may result on an empty menu.");
+        // first we need to get the images and titles to provide a check in our
+        _images = images;
+        _titles = titles;
+        
+        // checking if we have images or title for display
+        if(_images.count == 0 || _titles.count == 0)
+        {
+            NSLog(@"Initializing JVMenuView without images or title may result on an empty menu.");
+        }
+        
+        // setting up the view
+        [self setupView];
     }
-    
-    // setting up the view
-    [self setupView];
     
     return self;
 }
+
 
 - (void)setupView
 {

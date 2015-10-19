@@ -73,7 +73,7 @@
     if (!_rootViewController)
     {
         _rootViewController = [[JVMenuRootViewController alloc] initWithMenuImage:[UIImage imageNamed:@"menu_black-48"]];
-        _rootViewController.view.frame = self.window.frame;
+        _rootViewController.view.frame = self.window.bounds;
     }
     
     return _rootViewController;
@@ -95,7 +95,7 @@
 
 - (void)setupCustomWindow
 {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window = [[UIWindow alloc] init];
     self.window.rootViewController = self.navigationController;
     self.window.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
     

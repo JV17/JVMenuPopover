@@ -26,7 +26,7 @@
 
 + (UIViewController *)topViewController
 {
-    return [self topViewControllerWithRootController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    return [self topViewControllerWithRootController:[UIApplication sharedApplication].keyWindow.rootViewController.navigationController];
 }
 
 

@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JVMenuNavigationController.h"
-#import "JVMenuRootViewController.h"
-#import "JVTouchEventsWindow.h"
 
+@class JVMenuRootViewController, JVMenuNavigationController;
 
 @interface JVMenuAppDelegate : UIResponder <UIApplicationDelegate>
 

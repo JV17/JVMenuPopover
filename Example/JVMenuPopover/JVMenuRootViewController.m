@@ -39,19 +39,6 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithMenuImage:(UIImage *)menuImage
-{
-    self = [super init];
-    
-    if (self)
-    {
-        _menuImg = menuImage;
-    }
-    
-    return self;
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

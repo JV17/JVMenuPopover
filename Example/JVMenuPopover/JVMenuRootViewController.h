@@ -26,16 +26,4 @@
 /** Holds the menu title label. */
 @property (nonatomic, strong, readwrite) UILabel *label;
 
-
-/**
- Custom intializer of JVMenuRootViewController with custom menu image.
- 
- @param menuImage
-    The menu image.
- 
- @return 
-    The initialized JVMenuRootViewController.
- */
-- (instancetype)initWithMenuImage:(UIImage *)menuImage;
-
 @end

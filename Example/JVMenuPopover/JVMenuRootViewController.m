@@ -74,12 +74,12 @@
     self.menuPopover = [self menuPopover];
     
     // setting up menu bar button
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_black-48"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
 }
 
 
-#pragma mark - Custom getters & setters
+#pragma mark - Custom Accessors
 
 - (JVMenuItems *)menuItems
 {
@@ -228,7 +228,7 @@
 
 - (void)menuPopoverDidSelectViewControllerAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 0 && self.presentedViewController != self)
+    if(indexPath.row == 0)
     {
         [self.navigationController setViewControllers:@[self]];
     }

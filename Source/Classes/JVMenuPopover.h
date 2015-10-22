@@ -9,6 +9,7 @@
 #ifndef Pods_JVMenuPopover_h
 #define Pods_JVMenuPopover_h
 
+    #import <JVMenuPopover/JVMenuNavigationController.h>
     #import <JVMenuPopover/JVMenuPopoverView.h>
     #import <JVMenuPopover/JVMenuItems.h>
     #import <JVMenuPopover/UIColor+JVMenuCategory.h>

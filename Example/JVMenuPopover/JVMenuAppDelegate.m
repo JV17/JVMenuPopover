@@ -9,7 +9,6 @@
 #import "JVMenuAppDelegate.h"
 #import "JVTouchEventsWindow.h"
 #import "JVMenuRootViewController.h"
-#import "JVMenuNavigationController.h"
 #import <JVMenuPopover/JVMenuPopover.h>
 
 
@@ -76,7 +75,7 @@
 {
     if (!_rootViewController)
     {
-        _rootViewController = [[JVMenuRootViewController alloc] initWithMenuImage:[UIImage imageNamed:@"menu_black-48"]];
+        _rootViewController = [[JVMenuRootViewController alloc] init];
     }
     
     return _rootViewController;

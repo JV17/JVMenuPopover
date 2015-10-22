@@ -29,12 +29,4 @@
     self.label.text = @"About Us";
 }
 
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    self.navigationController.navigationBarHidden = NO;
-}
-
 @end

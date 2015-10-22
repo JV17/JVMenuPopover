@@ -10,7 +10,7 @@
 #import <JVMenuPopoverView.h>
 
 
-@class JVMenuPopoverViewController;
+@class JVMenuPopoverViewController, JVMenuNavigationController;
 
 #pragma mark - Protocol
 
@@ -21,12 +21,10 @@
 /**
  Sets new view controller depending on selected @a indexPath.
  
- @param navController
-    The navigation controller.
  @param indexPath
   The selected index path.
  */
-- (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath;
+- (void)setNewViewControllerWithIndexPath:(NSIndexPath *)indexPath;
 
 
 @optional

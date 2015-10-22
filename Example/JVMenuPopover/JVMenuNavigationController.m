@@ -21,17 +21,10 @@
     {
         // initializer
         self.withTransparentNavBar = transparentNavBar;
+        self.delegate = self;
     }
     
     return self;
-}
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    self.delegate = self;
 }
 
 
@@ -40,23 +33,23 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     // perparing view controller before display
-    viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-    
-    // presenting view controller animations
-    [UIView animateWithDuration:0.2
-                          delay:0
-         usingSpringWithDamping:1.0
-          initialSpringVelocity:1.0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         // animations
-                         viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                     }
-                     completion:nil];
+//    viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+//    
+//    // presenting view controller animations
+//    [UIView animateWithDuration:0.2
+//                          delay:0
+//         usingSpringWithDamping:1.0
+//          initialSpringVelocity:1.0
+//                        options:UIViewAnimationOptionCurveEaseIn
+//                     animations:^{
+//                         // animations
+//                         viewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+//                     }
+//                     completion:nil];
 }
 
 
-#pragma mark - Custom getters & setters
+#pragma mark - Custom Accessors
 
 - (void)setWithTransparentNavBar:(BOOL)withTransparentNavBar
 {

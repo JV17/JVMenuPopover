@@ -7,6 +7,10 @@
 //
 
 #import "JVMenuAppDelegate.h"
+#import "JVTouchEventsWindow.h"
+#import "JVMenuRootViewController.h"
+#import "JVMenuNavigationController.h"
+#import <JVMenuPopover/JVMenuPopover.h>
 
 
 @implementation JVMenuAppDelegate
@@ -73,7 +77,6 @@
     if (!_rootViewController)
     {
         _rootViewController = [[JVMenuRootViewController alloc] initWithMenuImage:[UIImage imageNamed:@"menu_black-48"]];
-        _rootViewController.view.frame = self.window.bounds;
     }
     
     return _rootViewController;
@@ -99,8 +102,8 @@
     self.window.rootViewController = self.navigationController;
     self.window.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
     
-    [self.window addSubview:self.navigationController.view];
     [self.window makeKeyAndVisible];
+    [self.window addSubview:self.navigationController.view];
 }
 
 @end

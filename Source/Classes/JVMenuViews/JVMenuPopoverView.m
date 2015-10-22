@@ -7,17 +7,39 @@
 //
 
 #import "JVMenuPopoverView.h"
+#import "JVMenuItems.h"
+#import "UIImage+JVMenuCategory.h"
 
 
 #pragma mark - Interface
+
 @interface JVMenuPopoverView()
 
+@property (nonatomic, strong) UIViewController *currentViewController;
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) UIButton *closeBtn;
+
+@property (nonatomic, strong) UIView *shadowView;
+
+@property (nonatomic, strong) UIView *backgroundView;
+
+@property (nonatomic, strong) UIBlurEffect *blurEffect;
+
+@property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+
+@property (nonatomic, strong) UIVisualEffectView *vibrancyEffectView;
+
+@property (nonatomic, strong) UIVibrancyEffect *vibrancyEffect;
+
 @property (nonatomic) CGSize screenSize;
+
 @property (nonatomic, assign) BOOL doneCellAnimations;
+
 @property (nonatomic) NSInteger rowCount;
 
-@property (nonatomic, strong) NSArray *images;
-@property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, assign) BOOL doneAnimations;
 
 // Protected Methods
 - (void)setupView;
@@ -47,18 +69,16 @@
 }
 
 
-- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles
+- (instancetype)initWithFrame:(CGRect)frame menuItems:(JVMenuItems *)menuItems
 {
     self = [super initWithFrame:frame];
     
     if (self)
     {
-        // first we need to get the images and titles to provide a check in our
-        _images = images;
-        _titles = titles;
+        _menuItems = menuItems;
         
         // checking if we have images or title for display
-        if(_images.count == 0 || _titles.count == 0)
+        if(_menuItems.menuImages.count == 0 || _menuItems.menuTitles.count == 0)
         {
             NSLog(@"Initializing JVMenuView without images or title may result on an empty menu.");
         }
@@ -80,9 +100,12 @@
         self.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     }
     
-    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    [self addSubview:self.backgroundView];
+    [self addSubview:self.shadowView];
     [self addSubview:self.tableView];
+    [self addSubview:self.closeBtn];
 }
+
 
 - (void)willMoveToWindow:(UIWindow *)newWindow
 {
@@ -90,7 +113,8 @@
     [super willMoveToWindow:newWindow];
 }
 
-#pragma mark - TableView getter & setter
+
+#pragma mark - Custom Accessors
 
 - (UITableView *)tableView
 {
@@ -116,12 +140,96 @@
 }
 
 
-#pragma mark - UITableView Delegate & Datasource
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIButton *)closeBtn
 {
-    // do something after display
+    if(!_closeBtn)
+    {
+        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeBtn.frame = CGRectMake(15, 28, self.menuItems.menuCloseButtonImage.size.width, self.menuItems.menuCloseButtonImage.size.height);
+        _closeBtn.backgroundColor = [UIColor clearColor];
+        [_closeBtn setImage:self.menuItems.menuCloseButtonImage forState:UIControlStateNormal];
+        [_closeBtn addTarget:self action:@selector(closeMenu) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _closeBtn;
 }
+
+
+- (UIView *)shadowView
+{
+    if (!_shadowView)
+    {
+        _shadowView = [[UIView alloc] initWithFrame:self.frame];
+        _shadowView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    }
+    
+    return _shadowView;
+}
+
+
+- (UIView *)backgroundView
+{
+    if (!_backgroundView)
+    {
+        _backgroundView = [[UIView alloc] initWithFrame:self.frame];
+        _backgroundView.backgroundColor = [UIColor clearColor];
+        _backgroundView.alpha = 0.0;
+    }
+    
+    return _backgroundView;
+}
+
+
+- (UIBlurEffect *)blurEffect
+{
+    if(!_blurEffect)
+    {
+        _blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    }
+    
+    return _blurEffect;
+}
+
+
+- (UIVisualEffectView *)blurEffectView
+{
+    if(!_blurEffectView)
+    {
+        _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:self.blurEffect];
+        _blurEffectView.alpha = 0.6;
+        _blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _blurEffectView.frame = self.frame;
+    }
+    
+    return _blurEffectView;
+}
+
+
+- (UIVibrancyEffect *)vibrancyEffect
+{
+    if(!_vibrancyEffect)
+    {
+        _vibrancyEffect = [UIVibrancyEffect effectForBlurEffect:self.blurEffect];
+    }
+    
+    return _vibrancyEffect;
+}
+
+
+- (UIVisualEffectView *)vibrancyEffectView
+{
+    if(!_vibrancyEffectView)
+    {
+        _vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:self.vibrancyEffect];
+        _vibrancyEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _vibrancyEffectView.frame = self.frame;
+    }
+    
+    return _vibrancyEffectView;
+}
+
+
+#pragma mark - UITableView Delegate & Datasource
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -129,12 +237,12 @@
     if(self.doneCellAnimations)
         return;
     
-    if(self.slideInAnimation)
+    if(self.menuItems.menuSlideInAnimation)
     {
         // slide in animations
         [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
     }
-    else if(self.slideInWithBounceAnimation)
+    else if(self.menuItems.menuSlideInWithBounceAnimation)
     {
         // slide with bounce animations
         [self performSlideInWithBounceCellAnimationsWithCell:cell forRowIndexPath:indexPath];
@@ -145,6 +253,7 @@
         [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
     }
 }
+
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -195,22 +304,30 @@
         self.rowCount = 0;
         
         // setting first row
-        if(self.images.count > 0)
-            [cell.imageView setImage:self.images[0]];
+        if(self.menuItems.menuImages.count > 0)
+        {
+            [cell.imageView setImage:self.self.menuItems.menuImages[0]];
+        }
         
-        if(self.titles.count > 0)
-            cell.textLabel.text = self.titles[0];
+        if(self.menuItems.menuTitles.count > 0)
+        {
+            cell.textLabel.text = self.menuItems.menuTitles[0];
+        }
         
         self.rowCount++;
     }
     else if (indexPath.row == self.rowCount)
     {
         // setting second row
-        if(self.images.count >= self.rowCount)
-            [cell.imageView setImage:self.images[self.rowCount]];
+        if(self.menuItems.menuImages.count >= self.rowCount)
+        {
+            [cell.imageView setImage:self.menuItems.menuImages[self.rowCount]];
+        }
         
-        if(self.titles.count >= self.rowCount)
-            cell.textLabel.text = self.titles[self.rowCount];
+        if(self.menuItems.menuTitles.count >= self.rowCount)
+        {
+            cell.textLabel.text = self.menuItems.menuTitles[self.rowCount];
+        }
         
         self.rowCount++;
     }
@@ -218,21 +335,25 @@
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    if([self.delegate respondsToSelector:@selector(menuPopover:didSelectRowAtIndexPath:)])
+    if([self.delegate respondsToSelector:@selector(menuPopoverDidSelectViewControllerAtIndexPath:)])
     {
-        [self.delegate menuPopover:self didSelectRowAtIndexPath:indexPath];
+        [self closeMenu];
+        [self.delegate menuPopoverDidSelectViewControllerAtIndexPath:indexPath];
     }
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // return the number of sections in the tableview
-    return self.titles.count;
+    return self.menuItems.menuTitles.count;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -240,15 +361,18 @@
     return 70;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [UIView new];
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0;
 }
+
 
 #pragma mark - Cell animations
 
@@ -330,6 +454,107 @@
                                                                }];
                                           }];
                      }];
+}
+
+
+#pragma mark - Show & Close menu
+
+- (void)showMenuWithController:(UIViewController *)viewController
+{
+    if(self.doneAnimations)
+    {
+        return;
+    }
+    
+    self.currentViewController = viewController;
+    
+    // spring animations
+    [UIView animateWithDuration:0.15
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:0
+                     animations:^{
+                         // animation
+                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+                         //                         self.currentController.view.frame = CGRectMake(30, 100, 300, 500);
+                         //                         self.currentController.view.clipsToBounds = YES;
+                     } completion:^(BOOL finished) {
+                         if(!finished)
+                         {
+                             return;
+                         }
+                         
+                         self.backgroundView = [self snapshotViewAfterScreenUpdates:NO];
+                         [self showBackgroundViewAnimated];
+                         
+                         //only apply the blur if the user hasn't disabled transparency effects
+                         if(!UIAccessibilityIsReduceTransparencyEnabled())
+                         {
+                             // uncomment for vibrance effect
+                             // [self.vibrancyEffectView.contentView addSubview:self.menuView];
+                             // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
+                             // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
+                             // [self.view addSubview:self.blurEffectView];
+                             [self insertSubview:self.blurEffectView atIndex:0];
+                         }
+                         
+                         self.doneAnimations = YES;
+                         self.closeBtn.alpha = 0.0;
+                         self.alpha = 0.0;
+                         
+                         [[UIApplication sharedApplication].keyWindow addSubview:self];
+                         
+                         [UIView animateWithDuration:0.15
+                                               delay:0.0
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              self.closeBtn.alpha = 1.0;
+                                              self.alpha = 1.0;
+                                              [self.tableView reloadData];
+                                          } completion:nil];
+                     }];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+}
+
+
+- (void)closeMenu
+{
+    // if we haven't finished show menu animations then return to avoid overlaps or interruptions
+    if(!self.doneAnimations)
+    {
+        return;
+    }
+    
+    [self removeFromSuperview];
+    
+    // resetting current visible controller scale & dimissing menu controller
+    [UIView animateWithDuration:0.3/1.5
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:0
+                     animations:^{
+                         // animations
+                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                     } completion:^(BOOL finished) {
+                         // completion
+                         self.doneAnimations = NO;
+                         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+                     }];
+}
+
+
+- (void)showBackgroundViewAnimated
+{
+    [UIView animateKeyframesWithDuration:0.1
+                                   delay:0.0
+                                 options:UIViewKeyframeAnimationOptionOverrideInheritedDuration
+                              animations:^{
+                                  self.backgroundView.alpha = 1.0;
+                              }
+                              completion:nil];
 }
 
 @end

@@ -13,24 +13,32 @@
 
 @interface JVMenuPopoverViewController ()
 
-// Protected Properties
-@property (nonatomic, strong) UINavigationController *navController;
+@property (nonatomic, strong) UIViewController *viewController;
+
 @property (nonatomic, strong) UIViewController *currentController;
+
 @property (nonatomic, strong) UIButton *closeBtn;
+
 @property (nonatomic, strong) UIImage *image;
+
 @property (nonatomic) CGSize screenSize;
+
 @property (nonatomic, assign) BOOL doneAnimations;
 
 @property (nonatomic, strong) UIBlurEffect *blurEffect;
+
 @property (nonatomic, strong) UIVisualEffectView *blurEffectView;
+
 @property (nonatomic, strong) UIVisualEffectView *vibrancyEffectView;
+
 @property (nonatomic, strong) UIVibrancyEffect *vibrancyEffect;
 
 @end
 
+
 @implementation JVMenuPopoverViewController
 
-#pragma mark - Initializers
+#pragma mark - Lifecycle
 
 - (instancetype)initWithImages:(NSArray *)images titles:(NSArray *)titles closeImage:(UIImage *)closeImage
 {
@@ -51,6 +59,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,10 +69,6 @@
     
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 - (void)controllerSetup
 {
@@ -88,40 +93,15 @@
 }
 
 
-#pragma mark - Custom getters & setters
+#pragma mark - Custom Accessors
 
-- (JVMenuPopoverView *)menuView
-{
-    if(!_menuView)
-    {
-        _menuView = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame
-                                                      images:self.images
-                                                      titles:self.titles];
-        _menuView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-        _menuView.delegate = self;
-    }
-    
-    return _menuView;
-}
+
 
 - (UIImage *)image
 {
-    return [UIImage takeScreenShotOfView:self.navController.view afterScreenUpdates:NO];
+    return [UIImage takeScreenShotOfView:self.viewController.view afterScreenUpdates:NO];
 }
 
-- (UIButton *)closeBtn
-{
-    if(!_closeBtn)
-    {
-        _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(15, 28, self.closeImage.size.width, self.closeImage.size.height);
-        _closeBtn.backgroundColor = [UIColor clearColor];
-        [_closeBtn setImage:self.closeImage forState:UIControlStateNormal];
-        [_closeBtn addTarget:self action:@selector(closeMenuFromController:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
-    return _closeBtn;
-}
 
 - (UIBlurEffect *)blurEffect
 {
@@ -132,6 +112,7 @@
     
     return _blurEffect;
 }
+
 
 - (UIVisualEffectView *)blurEffectView
 {
@@ -146,6 +127,7 @@
     return _blurEffectView;
 }
 
+
 - (UIVibrancyEffect *)vibrancyEffect
 {
     if(!_vibrancyEffect)
@@ -155,6 +137,7 @@
     
     return _vibrancyEffect;
 }
+
 
 - (UIVisualEffectView *)vibrancyEffectView
 {
@@ -169,17 +152,34 @@
 }
 
 
+- (JVMenuNavigationController *)navController
+{
+    if (!_navController)
+    {
+        _navController = (JVMenuNavigationController *)[UIViewController topViewController];
+    }
+    
+    return _navController;
+}
+
+
 #pragma mark - Show & Close menu
 
 - (void)showMenuFromController:(UIViewController *)viewController
 {
     if(self.doneAnimations)
+    {
         return;
-    
-    // find the navigation controller and then get the current visible controller
-    self.navController = (UINavigationController *)[UIViewController topViewController];
-    // self.currentController = self.navController.visibleViewController;
+    }
+
     self.currentController = viewController;
+    
+//    [viewController addChildViewController:self];
+//    [viewController.view addSubview:self.view];
+//    [self didMoveToParentViewController:viewController];
+    
+//     self.currentController = self.rootController.visibleViewController;
+//    self.currentController = viewController;
     
     // spring animations
     [UIView animateWithDuration:0.15
@@ -190,52 +190,63 @@
                      animations:^{
                          // animation
                          self.currentController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+//                         self.currentController.view.frame = CGRectMake(30, 100, 300, 500);
+//                         self.currentController.view.clipsToBounds = YES;
     } completion:^(BOOL finished) {
-        if(finished)
+        if(!finished)
         {
-            // setting blurred bg image to view and preparing controller objects for animation
-            self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
-            
-            //only apply the blur if the user hasn't disabled transparency effects
-            if(!UIAccessibilityIsReduceTransparencyEnabled())
-            {
-                // uncomment for vibrance effect
-                // [self.vibrancyEffectView.contentView addSubview:self.menuView];
-                // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
-                // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
-                // [self.view addSubview:self.blurEffectView];
-                [self.view insertSubview:self.blurEffectView atIndex:0];
-            }
-            
-            self.doneAnimations = YES;
-            self.closeBtn.alpha = 0.0;
-            self.menuView.alpha = 0.0;
-
-            // trigger "present menu controller" animation
-            [self.navController presentViewController:self
-                                             animated:NO
-                                           completion:^{
-                                                   [UIView animateWithDuration:0.15
-                                                                         delay:0.0
-                                                                       options:UIViewAnimationOptionCurveEaseInOut
-                                                                    animations:^{
-                                                                        self.closeBtn.alpha = 1.0;
-                                                                        self.menuView.alpha = 1.0;
-                                                                        [self.menuView.tableView reloadData];
-                                                                    } completion:nil];
-            }];
+            return;
         }
-    }];
+        
+        // setting blurred bg image to view and preparing controller objects for animation
+        self.view.backgroundColor = [UIColor colorWithPatternImage:self.image];
+        
+        //only apply the blur if the user hasn't disabled transparency effects
+        if(!UIAccessibilityIsReduceTransparencyEnabled())
+        {
+            // uncomment for vibrance effect
+            // [self.vibrancyEffectView.contentView addSubview:self.menuView];
+            // [self.vibrancyEffectView.contentView addSubview:self.closeBtn];
+            // [self.blurEffectView.contentView addSubview:self.vibrancyEffectView];
+            // [self.view addSubview:self.blurEffectView];
+            [self.view insertSubview:self.blurEffectView atIndex:0];
+        }
+        
+        self.doneAnimations = YES;
+        self.closeBtn.alpha = 0.0;
+        self.menuView.alpha = 0.0;
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:self.view];
+
+        // trigger "present menu controller" animation
+//        [self.currentController.navigationController presentViewController:self
+//                                          animated:NO
+//                                        completion:^{
+                                        [UIView animateWithDuration:0.15
+                                                              delay:0.0
+                                                            options:UIViewAnimationOptionCurveEaseInOut
+                                                         animations:^{
+                                                            self.closeBtn.alpha = 1.0;
+                                                            self.menuView.alpha = 1.0;
+                                                            [self.menuView.tableView reloadData];
+                                                        } completion:nil];
+        }];
+//    }];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
+
 
 - (void)closeMenuFromController:(UIViewController *)viewController
 {
     // if we haven't finished show menu animations then return to avoid overlaps or interruptions
     if(!self.doneAnimations)
+    {
         return;
-    
+    }
+
+    [self.view removeFromSuperview];
+
     // resetting current visible controller scale & dimissing menu controller
     [UIView animateWithDuration:0.3/1.5
                           delay:0.0
@@ -249,30 +260,33 @@
                          // completion
                          self.doneAnimations = NO;
                          [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-                         [self.navController dismissViewControllerAnimated:NO
-                                                                completion:^{
-                                                                    [self.currentController dismissViewControllerAnimated:NO completion:nil];
-                                                                }];
+//                         [self.navController dismissViewControllerAnimated:NO
+//                                                                 completion:^{
+//                                                                     [self dismissViewControllerAnimated:NO completion:nil];
+//                                                                 }];
     }];
 }
 
 
 #pragma mark - Delegates
 
-- (void)menuPopover:(JVMenuPopoverView *)JVMenuPopoverView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)menuPopoverDidSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([self.delegate respondsToSelector:@selector(setNewViewController:fromIndexPath:)])
+    if([self.delegate respondsToSelector:@selector(setNewViewControllerWithIndexPath:)])
     {
-        [self closeMenuFromController:nil];
-        [self.delegate setNewViewController:self.navController fromIndexPath:indexPath];
-    }
+        [self.view removeFromSuperview];
+//        [self closeMenuFromController:self.viewController];
+        [self.delegate setNewViewControllerWithIndexPath:indexPath];
+  }
 }
+
 
 - (void)closeMenu
 {
     if([self.delegate respondsToSelector:@selector(closeMenu:)])
     {
-        [self.delegate closeMenu:self];
+        [self.view removeFromSuperview];
+//        [self.delegate closeMenu:self];
     }
 }
 

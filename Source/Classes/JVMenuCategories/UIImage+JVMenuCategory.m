@@ -62,9 +62,9 @@
 
 + (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated
 {
-    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, [UIScreen mainScreen].scale);
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, NO, [UIScreen mainScreen].scale);
     
-    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:updated];
+    [view drawViewHierarchyInRect:view.frame afterScreenUpdates:updated];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     

@@ -15,9 +15,11 @@
 #import "JVMenuFifthController.h"
 
 
-@interface JVMenuRootViewController () <UINavigationControllerDelegate, JVMenuPopoverViewControllerDelegate>
+@interface JVMenuRootViewController () <UINavigationControllerDelegate, JVMenuPopoverDelegate>
 
-@property (nonatomic, strong) JVMenuPopoverViewController *menuController;
+@property (nonatomic, strong) JVMenuPopoverView *menuPopover;
+
+@property (nonatomic, strong) JVMenuItems *menuItems;
 
 @property (nonatomic, strong) CAGradientLayer *gradient;
 
@@ -59,16 +61,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // setting up menu bar button
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-}
-
-
 - (void)commonInit
 {
     self.view.backgroundColor = [UIColor clearColor];
@@ -78,33 +70,49 @@
     
     [self.view addSubview:self.containerView];
     
-    // creating menu controller
-    self.menuController = [self menuController];
+    // creating menu
+    self.menuPopover = [self menuPopover];
+    
+    // setting up menu bar button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:self.menuImg style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
 }
 
 
 #pragma mark - Custom getters & setters
 
-- (JVMenuPopoverViewController *)menuController
+- (JVMenuItems *)menuItems
 {
-    if(!_menuController)
+    if(!_menuItems)
     {
-        _menuController = [[JVMenuPopoverViewController alloc] initWithImages:@[[UIImage imageNamed:@"home-48"],
-                                                                                [UIImage imageNamed:@"about-48"],
-                                                                                [UIImage imageNamed:@"settings-48"],
-                                                                                [UIImage imageNamed:@"business_contact-48"],
-                                                                                [UIImage imageNamed:@"ask_question-48"]]
-                                                                       titles:@[@"Home",
-                                                                                @"About Us",
-                                                                                @"Our Service",
-                                                                                @"Contact Us",
-                                                                                @"Help?"]
-                                                                   closeImage:[UIImage imageNamed:@"cancel_filled-50"]];
-        _menuController.delegate = self;
-        _menuController.slideInAnimation = YES; // choose our animation type
+        _menuItems = [[JVMenuItems alloc] initWithMenuImages:@[[UIImage imageNamed:@"home-48"],
+                                                               [UIImage imageNamed:@"about-48"],
+                                                               [UIImage imageNamed:@"settings-48"],
+                                                               [UIImage imageNamed:@"business_contact-48"],
+                                                               [UIImage imageNamed:@"ask_question-48"]]
+                                                  menuTitles:@[@"Home",
+                                                               @"About Us",
+                                                               @"Our Service",
+                                                               @"Contact Us",
+                                                               @"Help?"]
+                                        menuCloseButtonImage:[UIImage imageNamed:@"cancel_filled-50"]];
+        _menuItems.menuSlideInAnimation = YES; 
     }
     
-    return _menuController;
+    return _menuItems;
+}
+
+
+- (JVMenuPopoverView *)menuPopover
+{
+    if(!_menuPopover)
+    {
+        _menuPopover = [[JVMenuPopoverView alloc] initWithFrame:self.view.frame menuItems:self.menuItems];
+        _menuPopover.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+        _menuPopover.delegate = self;
+    }
+    
+    return _menuPopover;
 }
 
 
@@ -212,27 +220,15 @@
 
 - (void)showMenu
 {
-    [self.menuController showMenuFromController:self];
+    [self.menuPopover showMenuWithController:self];
 }
 
 
 #pragma mark - Menu Delegate
 
-- (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController
+- (void)menuPopoverDidSelectViewControllerAtIndexPath:(NSIndexPath *)indexPath
 {
-    // [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
-}
-
-
-- (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
-{
-    [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
-}
-
-
-- (void)setNewViewController:(UINavigationController *)navController fromIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.row == 0)
+    if(indexPath.row == 0 && self.presentedViewController != self)
     {
         [self.navigationController setViewControllers:@[self]];
     }
@@ -253,5 +249,16 @@
         [self.navigationController setViewControllers:@[self.fifthController]];
     }
 }
+
+//- (void)showMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController inViewController:(UIViewController *)viewController
+//{
+//    [self.navigationController presentViewController:JVMenuPopoverViewController animated:NO completion:nil];
+//}
+//
+//
+//- (void)closeMenu:(JVMenuPopoverViewController *)JVMenuPopoverViewController
+//{
+//    [self.navigationController popToViewController:JVMenuPopoverViewController animated:NO];
+//}
 
 @end

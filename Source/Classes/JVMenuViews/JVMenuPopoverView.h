@@ -11,7 +11,7 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
-@class JVMenuPopoverView;
+@class JVMenuPopoverView, JVMenuItems;
 
 
 #pragma mark - Protocol
@@ -21,14 +21,12 @@
 @optional
 
 /**
- Tells the selected index path from the menu.
+ Tells the selected view controller with @a indexPath.
  
- @param JVMenuPopoverView
-    The menu view.
  @param indexPath
     The index path of the menu.
  */
-- (void)menuPopover:(JVMenuPopoverView *)JVMenuPopoverView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)menuPopoverDidSelectViewControllerAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -37,21 +35,17 @@
 
 @interface JVMenuPopoverView : UIView <UITableViewDelegate, UITableViewDataSource>
 
+#pragma mark Properties
+
 /** JVMenuPopoverDelegate. */
 @property (nonatomic, weak) id<JVMenuPopoverDelegate> delegate;
 
 
-/** The table view that holds the menu. */
-@property (nonatomic, strong, readwrite) UITableView *tableView;
+/** Holds the menu data model containig an array of images, titles and the close button image. */
+@property (nonatomic, strong, readwrite) JVMenuItems *menuItems;
 
 
-/** The type of animation. */
-@property (nonatomic, assign, readwrite) BOOL slideInAnimation;
-
-
-/** The type of animation. */
-@property (nonatomic, assign, readwrite) BOOL slideInWithBounceAnimation;
-
+#pragma mark Initializers
 
 /** Throws an @a NSException telling the user that should use custom initializer. */
 - (instancetype)init;
@@ -70,14 +64,28 @@
  
  @param frame
     The view frame to be drawn.
- @param images
-    The array of images to be used in the menu.
- @param titles
-    The array of titles to be used in the menu.
+ @param menuItems
+    The menu data model with an array of images, titles and the close button image.
  
  @return
     An instance type of @a JVMenuPopoverView.
  */
-- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles;
+- (instancetype)initWithFrame:(CGRect)frame menuItems:(JVMenuItems *)menuItems;
+
+
+#pragma mark Show & Close Menu
+
+/**
+ Shows @a JVMenuPopover from specified view controller.
+ 
+ @param viewController
+    The view controller where to show the menu from.
+ */
+- (void)showMenuWithController:(UIViewController *)viewController;
+
+
+/** Closes @a JVMenuPopover from specified view controller. */
+- (void)closeMenu;
+
 
 @end

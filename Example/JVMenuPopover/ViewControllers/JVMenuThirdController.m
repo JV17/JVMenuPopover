@@ -26,8 +26,7 @@
     // overriding root controllers label, image and imageview
     UIImage *newImage = [UIImage imageNamed:@"settings-48"];
     self.imageView.image = [newImage changeImageColor:[UIColor blackColor]];
-    self.label.text = @"Our Services";
+    self.label.text = @"Our Services";    
 }
-
 
 @end

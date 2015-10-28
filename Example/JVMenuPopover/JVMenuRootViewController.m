@@ -203,7 +203,7 @@
 }
 
 
-#pragma mark - Navigation helper functions
+#pragma mark - Menu Helper Functions
 
 - (void)showMenu
 {

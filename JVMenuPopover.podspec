@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "JVMenuPopover"
-  s.version          = "0.0.4"
+  s.version          = "1.0"
   s.summary          = "A Simple popover like menu."
   s.description      = "JVMenuPopover is a simple and cool menu popover like. It animates the view controllers and scales them to make  a similar iOS switch window like animation."
   s.homepage         = "https://github.com/JV17/JVMenuPopover"
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/JV17/JVMenuPopover.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/Justv17'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.0'
   s.requires_arc = true
 
   s.source_files = 'Source/Classes/**/*'

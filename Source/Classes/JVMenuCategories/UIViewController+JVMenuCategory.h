@@ -12,15 +12,6 @@
 @interface UIViewController (JVMenuCategory)
 
 /**
- Gets the device screen size regardless the iOS version.
- 
- @return 
-    The device screen size.
- */
-+ (CGSize)getScreenSize;
-
-
-/**
  Gets the top view controller.
  
  @return

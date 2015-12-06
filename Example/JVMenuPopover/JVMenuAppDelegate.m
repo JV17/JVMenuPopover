@@ -7,7 +7,6 @@
 //
 
 #import "JVMenuAppDelegate.h"
-#import "JVTouchEventsWindow.h"
 #import "JVMenuRootViewController.h"
 #import <JVMenuPopover/JVMenuPopover.h>
 
@@ -57,20 +56,6 @@
 
 #pragma mark - Custom Accessors
 
-//- (JVTouchEventsWindow *)window
-//{
-//    static JVTouchEventsWindow *sharedWindow = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        sharedWindow = [[JVTouchEventsWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]
-//                                                    andImageColor:[[UIColor grayColor] colorWithAlphaComponent:0.7]
-//                                                    withImageSize:CGSizeMake(40, 40)];
-//    });
-//    
-//    return sharedWindow;
-//}
-
-
 - (JVMenuRootViewController *)rootViewController
 {
     if (!_rootViewController)
@@ -102,7 +87,6 @@
     self.window.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
     
     [self.window makeKeyAndVisible];
-    [self.window addSubview:self.navigationController.view];
 }
 
 @end

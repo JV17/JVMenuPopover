@@ -78,7 +78,7 @@
         _menuItems = menuItems;
         
         // checking if we have images or title for display
-        if(_menuItems.menuImages.count == 0 || _menuItems.menuTitles.count == 0)
+        if(!_menuItems.menuImages.count || !_menuItems.menuTitles.count)
         {
             NSLog(@"Initializing JVMenuView without images or title may result on an empty menu.");
         }

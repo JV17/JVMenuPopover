@@ -20,11 +20,19 @@
     if (self)
     {
         // initializer
-        self.withTransparentNavBar = transparentNavBar;
-        self.delegate = self;
+        _withTransparentNavBar = transparentNavBar;
     }
     
     return self;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self setTransparentNavBar];
+    self.delegate = self;
 }
 
 
@@ -55,6 +63,12 @@
 {
     _withTransparentNavBar = withTransparentNavBar;
     
+    [self setTransparentNavBar];
+}
+
+
+- (void)setTransparentNavBar
+{
     if(self.withTransparentNavBar)
     {
         // make the navigation bar transparent

@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) CAGradientLayer *gradient;
 
+@property (nonatomic, strong) JVMenuRootViewController *rootController;
+
 @property (nonatomic, strong) JVMenuSecondController *secondController;
 
 @property (nonatomic, strong) JVMenuThirdController *thirdController;
@@ -159,6 +161,17 @@
 }
 
 
+- (JVMenuRootViewController *)rootController
+{
+    if (!_rootController)
+    {
+        _rootController = [[JVMenuRootViewController alloc] init];
+    }
+    
+    return _rootController;
+}
+
+
 - (JVMenuSecondController *)secondController
 {
     if (!_secondController)
@@ -217,23 +230,23 @@
 {
     if(indexPath.row == 0)
     {
-        [self.navigationController setViewControllers:@[self]];
+        self.navigationController.viewControllers = @[self.rootController];
     }
     else if(indexPath.row == 1)
     {
-        [self.navigationController setViewControllers:@[self.secondController]];
+        self.navigationController.viewControllers = @[self.secondController];
     }
     else if (indexPath.row == 2)
     {
-        [self.navigationController setViewControllers:@[self.thirdController]];
+        self.navigationController.viewControllers = @[self.thirdController];
     }
     else if (indexPath.row == 3)
     {
-        [self.navigationController setViewControllers:@[self.fourthController]];
+        self.navigationController.viewControllers = @[self.fourthController];
     }
     else if (indexPath.row == 4)
     {
-        [self.navigationController setViewControllers:@[self.fifthController]];
+        self.navigationController.viewControllers = @[self.fifthController];
     }
 }
 

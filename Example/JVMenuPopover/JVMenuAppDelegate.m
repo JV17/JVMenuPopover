@@ -16,7 +16,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // setting up app window
-    [self setupCustomWindow];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
+    self.window.rootViewController = self.navigationController;
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -75,18 +79,6 @@
     }
     
     return _navigationController;
-}
-
-
-#pragma mark - UIWindow Customization
-
-- (void)setupCustomWindow
-{
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = self.navigationController;
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
-    
-    [self.window makeKeyAndVisible];
 }
 
 @end

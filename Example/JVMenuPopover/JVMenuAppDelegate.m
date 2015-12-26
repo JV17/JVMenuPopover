@@ -64,10 +64,22 @@
 {
     if (!_rootViewController)
     {
-        _rootViewController = [[JVMenuRootViewController alloc] init];
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:self.storyboardName bundle:nil];
+        _rootViewController = [storyBoard instantiateViewControllerWithIdentifier:@"JVRootController"];
     }
     
     return _rootViewController;
+}
+
+
+- (NSString *)storyboardName
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        return @"Main_iPhone";
+    }
+    
+    return @"Main_iPad";
 }
 
 

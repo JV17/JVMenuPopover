@@ -41,6 +41,32 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self)
+    {
+        // init
+    }
+    
+    return self;
+}
+
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        
+    }
+    
+    return self;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

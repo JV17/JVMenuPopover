@@ -73,4 +73,22 @@
     return image;
 }
 
+
++ (UIImage *)screenShotFromWindow
+{
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    CGRect rect = keyWindow.bounds;
+    
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    [keyWindow.layer renderInContext:context];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
+
 @end

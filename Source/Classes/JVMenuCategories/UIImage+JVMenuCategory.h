@@ -45,4 +45,10 @@
  */
 + (UIImage *)takeScreenShotOfView:(UIView *)view afterScreenUpdates:(BOOL)updated;
 
+
+/**
+ Returns a screenshot of the application window.
+ */
++ (UIImage *)screenShotFromWindow;
+
 @end

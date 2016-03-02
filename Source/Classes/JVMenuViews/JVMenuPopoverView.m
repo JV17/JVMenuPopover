@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Jorge Valbuena. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "JVMenuPopoverView.h"
 #import "JVMenuItems.h"
 #import "UIImage+JVMenuCategory.h"
@@ -24,7 +25,7 @@
 
 @property (nonatomic, strong) UIView *shadowView;
 
-@property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @property (nonatomic, strong) UIBlurEffect *blurEffect;
 
@@ -42,7 +43,6 @@
 
 @property (nonatomic, assign) BOOL doneAnimations;
 
-// Protected Methods
 - (void)setupView;
 
 @end
@@ -116,7 +116,7 @@
         self.frame = CGRectMake(0, 0, self.screenSize.width, self.screenSize.height);
     }
     
-    [self addSubview:self.backgroundView];
+    [self addSubview:self.backgroundImageView];
     [self addSubview:self.shadowView];
     [self addSubview:self.tableView];
     [self addSubview:self.closeBtn];
@@ -201,20 +201,19 @@
 }
 
 
-- (UIView *)backgroundView
+- (UIImageView *)backgroundImageView
 {
-    if (!_backgroundView)
+    if (!_backgroundImageView)
     {
-        _backgroundView = [[UIView alloc] initWithFrame:self.backgroundViewFrame];
-        _backgroundView.backgroundColor = [UIColor clearColor];
-        _backgroundView.alpha = 0.0;
+        _backgroundImageView = [[UIImageView alloc] initWithFrame:self.backgroundImageViewFrame];
+        _backgroundImageView.alpha = 0.0;
     }
     
-    return _backgroundView;
+    return _backgroundImageView;
 }
 
 
-- (CGRect)backgroundViewFrame
+- (CGRect)backgroundImageViewFrame
 {
     return self.frame;
 }
@@ -290,7 +289,6 @@
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // don't do anything if we are animating
     if(self.doneCellAnimations)
     {
         return;
@@ -298,17 +296,14 @@
     
     if(self.menuItems.menuSlideInAnimation)
     {
-        // slide in animations
         [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
     }
     else if(self.menuItems.menuSlideInWithBounceAnimation)
     {
-        // slide with bounce animations
         [self performSlideInWithBounceCellAnimationsWithCell:cell forRowIndexPath:indexPath];
     }
     else
     {
-        // slide in default animations
         [self performSlideInCellAnimationsWithCell:cell forRowIndexPath:indexPath];
     }
 }
@@ -330,25 +325,21 @@
         self.tableView.layoutMargins = UIEdgeInsetsZero;
     }
     
-    // Remove seperator inset
     if ([cell respondsToSelector:@selector(setSeparatorInset:)])
     {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    // Prevent the cell from inheriting the Table View's margin settings
     if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
     {
         [cell setPreservesSuperviewLayoutMargins:NO];
     }
     
-    // Explictly set your cell's layout margins
     if ([cell respondsToSelector:@selector(setLayoutMargins:)])
     {
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
     
-    // setups cell
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
 
@@ -357,12 +348,10 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     
-    // setting up rows
     if (indexPath.row == 0)
     {
         self.rowCount = 0;
         
-        // setting first row
         if(self.menuItems.menuImages.count > 0)
         {
             [cell.imageView setImage:self.self.menuItems.menuImages[0]];
@@ -377,7 +366,6 @@
     }
     else if (indexPath.row == self.rowCount)
     {
-        // setting second row
         if(self.menuItems.menuImages.count >= self.rowCount)
         {
             [cell.imageView setImage:self.menuItems.menuImages[self.rowCount]];
@@ -409,14 +397,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // return the number of sections in the tableview
     return self.menuItems.menuTitles.count;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // return the height of row
     return 70;
 }
 
@@ -440,7 +426,6 @@
     CGRect oldFrame = cell.frame;
     CGRect newFrame = CGRectMake(-cell.frame.size.width, cell.frame.origin.y, 0, cell.frame.size.height);
     
-    // cell animations
     cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
     cell.frame = newFrame;
     cell.alpha = 0;
@@ -451,13 +436,11 @@
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         // cell animations
                          cell.frame = oldFrame;
                          cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1f, 1.0f);
                          cell.alpha = 1.0;
                      }
                      completion:^(BOOL finished) {
-                         // getting the number of rows in section to avoid overlaps in animation when scrolling
                          NSInteger rows = [self.tableView numberOfRowsInSection:0];
                          
                          if(rows == indexPath.row+1)
@@ -472,7 +455,6 @@
     CGRect oldFrame = cell.frame;
     CGRect newFrame = CGRectMake(-cell.frame.size.width, cell.frame.origin.y, 0, cell.frame.size.height);
     
-    // cell animations
     cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.0001f);
     cell.frame = newFrame;
     
@@ -482,12 +464,10 @@
           initialSpringVelocity:1.0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
-                         // animations
                          cell.frame = oldFrame;
                          cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.1f);
                      }
                      completion:^(BOOL finished) {
-                         // nested animations
                          [UIView animateWithDuration:0.1
                                                delay:0
                                              options:UIViewAnimationOptionCurveEaseIn
@@ -495,7 +475,6 @@
                                               cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95f, 0.9f);
                                           }
                                           completion:^(BOOL finished) {
-                                              // nested anomations
                                               [UIView animateWithDuration:0.1
                                                                     delay:0
                                                                   options:UIViewAnimationOptionCurveEaseIn
@@ -503,7 +482,6 @@
                                                                    cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0f, 1.0f);
                                                                }
                                                                completion:^(BOOL finished) {
-                                                                   // getting the number of rows in section to avoid overlaps in animation when scrolling
                                                                    NSInteger rows = [self.tableView numberOfRowsInSection:0];
                                                                    
                                                                    if(rows == indexPath.row+1)
@@ -527,37 +505,35 @@
     
     self.currentViewController = viewController;
     
-    // spring animations
     [UIView animateWithDuration:0.15
                           delay:0.0
          usingSpringWithDamping:1.0
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         // animation
+
                          self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
-                         //                         self.currentController.view.frame = CGRectMake(30, 100, 300, 500);
-                         //                         self.currentController.view.clipsToBounds = YES;
-                     } completion:^(BOOL finished) {
+                         
+                     }
+                     completion:^(BOOL finished) {
                          if(!finished)
                          {
                              return;
                          }
                          
-                         self.backgroundView = [self snapshotViewAfterScreenUpdates:NO];
-                         [self showBackgroundViewAnimated];
+                         self.backgroundImageView.image = [UIImage screenShotFromWindow];
+                         [self showBackgroundImageViewAnimated];
                          
-                         //only apply the blur if the user hasn't disabled transparency effects
                          if(!UIAccessibilityIsReduceTransparencyEnabled())
                          {                             
-                             [self insertSubview:self.blurEffectView atIndex:0];
+                             [self insertSubview:self.blurEffectView aboveSubview:self.shadowView];
                          }
+                         
+                         [[UIApplication sharedApplication].keyWindow addSubview:self];
                          
                          self.doneAnimations = YES;
                          self.closeBtn.alpha = 0.0;
                          self.alpha = 0.0;
-                         
-                         [[UIApplication sharedApplication].keyWindow addSubview:self];
                          
                          [UIView animateWithDuration:0.15
                                                delay:0.0
@@ -575,7 +551,6 @@
 
 - (void)closeMenu
 {
-    // if we haven't finished show menu animations then return to avoid overlaps or interruptions
     if(!self.doneAnimations)
     {
         return;
@@ -583,30 +558,29 @@
     
     [self removeFromSuperview];
     
-    // resetting current visible controller scale & dimissing menu controller
     [UIView animateWithDuration:0.3/1.5
                           delay:0.0
          usingSpringWithDamping:1.0
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         // animations
                          self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
-                     } completion:^(BOOL finished) {
-                         // completion
+                     }
+                     completion:^(BOOL finished) {
                          self.doneAnimations = NO;
+                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
                          [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                      }];
 }
 
 
-- (void)showBackgroundViewAnimated
+- (void)showBackgroundImageViewAnimated
 {
     [UIView animateKeyframesWithDuration:0.1
                                    delay:0.0
                                  options:UIViewKeyframeAnimationOptionOverrideInheritedDuration
                               animations:^{
-                                  self.backgroundView.alpha = 1.0;
+                                  self.backgroundImageView.alpha = 1.0;
                               }
                               completion:nil];
 }
@@ -628,13 +602,18 @@
     CGSize screenSize = [UIScreen screenSize];
     self.frame = CGRectMake(0, 0, screenSize.width, screenSize.height);
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.backgroundView.frame = self.backgroundViewFrame;
-        self.shadowView.frame = self.shadowViewFrame;
-        self.tableView.frame = self.tableViewFrame;
-        self.closeBtn.frame = self.closeBtnFrame;
-        self.blurEffectView.frame = self.blurEffectViewFrame;
-    }];
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.backgroundImageView.frame = self.backgroundImageViewFrame;
+                         self.shadowView.frame = self.shadowViewFrame;
+                         self.tableView.frame = self.tableViewFrame;
+                         self.closeBtn.frame = self.closeBtnFrame;
+                         self.blurEffectView.frame = self.blurEffectViewFrame;
+                     } completion:nil];
 }
 
 @end

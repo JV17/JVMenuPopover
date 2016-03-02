@@ -65,6 +65,8 @@
     // setting up menu bar button
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_black-48"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    
+    [self addObservers];
 }
 
 
@@ -110,11 +112,8 @@
     if (!_containerView)
     {
         _containerView = [[UIView alloc] initWithFrame:self.view.frame];
-        
         UIColor *firstColor = [UIColor colorWithHexString:@"52EDC7"];
         UIColor *secondColor = [UIColor colorWithHexString:@"5AC8FB"];
-        
-        // setting up new gradient colors
         [_containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
     }
     
@@ -127,10 +126,16 @@
     if (!_imageView)
     {
         _imageView = [[UIImageView alloc] initWithImage:self.image];
-        _imageView.frame = CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height);
+        _imageView.frame = self.imageViewFrame;
     }
     
     return _imageView;
+}
+
+
+- (CGRect)imageViewFrame
+{
+    return CGRectMake(self.view.frame.size.width/2-self.image.size.width/2, self.view.frame.size.height/2-30, self.image.size.width, self.image.size.height);
 }
 
 
@@ -149,7 +154,7 @@
 {
     if (!_label)
     {
-        _label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60)];
+        _label = [[UILabel alloc] initWithFrame:self.labelFrame];
         _label.textColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         _label.textAlignment = NSTextAlignmentCenter;
         _label.font = [UIFont fontWithName:@"HelveticaNeue" size:20];
@@ -158,6 +163,12 @@
     }
     
     return _label;
+}
+
+
+- (CGRect)labelFrame
+{
+    return CGRectMake(self.view.frame.size.width/2-110, self.view.frame.size.height/2-20, 220, 60);
 }
 
 
@@ -248,6 +259,29 @@
     {
         self.navigationController.viewControllers = @[self.fifthController];
     }
+}
+
+
+#pragma mark - Observers
+
+- (void)addObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didDeviceOrientationChange:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+
+- (void)didDeviceOrientationChange:(NSNotification *)notification
+{
+    self.containerView.frame = self.view.frame;
+    UIColor *firstColor = [UIColor colorWithHexString:@"52EDC7"];
+    UIColor *secondColor = [UIColor colorWithHexString:@"5AC8FB"];
+    [_containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
+
+    self.imageView.frame = self.imageViewFrame;
+    self.label.frame = self.labelFrame;
 }
 
 @end

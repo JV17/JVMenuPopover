@@ -9,6 +9,7 @@
 #import "JVMenuPopoverView.h"
 #import "JVMenuItems.h"
 #import "UIImage+JVMenuCategory.h"
+#import "UIScreen+JVMenuCategory.h"
 
 
 #pragma mark - Interface
@@ -53,19 +54,26 @@
 
 - (instancetype)init
 {
-    @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
+    return [self initWithFrame:CGRectZero menuItems:nil];
 }
 
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
+    return [self initWithFrame:frame menuItems:nil];
 }
 
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    @throw [NSException exceptionWithName:NSGenericException reason:@"Use the `initWithFrame:(CGRect)frame images:(NSArray *)images titles:(NSArray *)titles` method instead." userInfo:nil];
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self setupView];
+    }
+    
+    return self;
 }
 
 
@@ -77,13 +85,11 @@
     {
         _menuItems = menuItems;
         
-        // checking if we have images or title for display
         if(!_menuItems.menuImages.count || !_menuItems.menuTitles.count)
         {
             NSLog(@"Initializing JVMenuView without images or title may result on an empty menu.");
         }
         
-        // setting up the view
         [self setupView];
     }
     
@@ -91,9 +97,19 @@
 }
 
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 - (void)setupView
 {
-    // setting up menu view
+    if (!_menuItems)
+    {
+        return;
+    }
+
     if(self.frame.size.width == 0)
     {
         self.screenSize = [UIScreen mainScreen].bounds.size;
@@ -104,6 +120,8 @@
     [self addSubview:self.shadowView];
     [self addSubview:self.tableView];
     [self addSubview:self.closeBtn];
+    
+    [self addObservers];
 }
 
 
@@ -120,7 +138,7 @@
 {
     if(!_tableView)
     {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, self.frame.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:self.tableViewFrame style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
@@ -130,8 +148,6 @@
             _tableView.layoutMargins = UIEdgeInsetsZero;
         }
         
-        _tableView.bounces = NO;
-        _tableView.scrollEnabled = NO;
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -140,12 +156,18 @@
 }
 
 
+- (CGRect)tableViewFrame
+{
+    return CGRectMake(0, 70, self.frame.size.width, self.frame.size.height);
+}
+
+
 - (UIButton *)closeBtn
 {
     if(!_closeBtn)
     {
         _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _closeBtn.frame = CGRectMake(15, 28, self.menuItems.menuCloseButtonImage.size.width, self.menuItems.menuCloseButtonImage.size.height);
+        _closeBtn.frame = self.closeBtnFrame;
         _closeBtn.backgroundColor = [UIColor clearColor];
         [_closeBtn setImage:self.menuItems.menuCloseButtonImage forState:UIControlStateNormal];
         [_closeBtn addTarget:self action:@selector(closeMenu) forControlEvents:UIControlEventTouchUpInside];
@@ -155,11 +177,17 @@
 }
 
 
+- (CGRect)closeBtnFrame
+{
+    return CGRectMake(15, 28, self.menuItems.menuCloseButtonImage.size.width, self.menuItems.menuCloseButtonImage.size.height);
+}
+
+
 - (UIView *)shadowView
 {
     if (!_shadowView)
     {
-        _shadowView = [[UIView alloc] initWithFrame:self.frame];
+        _shadowView = [[UIView alloc] initWithFrame:self.shadowViewFrame];
         _shadowView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     }
     
@@ -167,16 +195,28 @@
 }
 
 
+- (CGRect)shadowViewFrame
+{
+    return self.frame;
+}
+
+
 - (UIView *)backgroundView
 {
     if (!_backgroundView)
     {
-        _backgroundView = [[UIView alloc] initWithFrame:self.frame];
+        _backgroundView = [[UIView alloc] initWithFrame:self.backgroundViewFrame];
         _backgroundView.backgroundColor = [UIColor clearColor];
         _backgroundView.alpha = 0.0;
     }
     
     return _backgroundView;
+}
+
+
+- (CGRect)backgroundViewFrame
+{
+    return self.frame;
 }
 
 
@@ -198,10 +238,16 @@
         _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:self.blurEffect];
         _blurEffectView.alpha = 0.6;
         _blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        _blurEffectView.frame = self.frame;
+        _blurEffectView.frame = self.blurEffectViewFrame;
     }
     
     return _blurEffectView;
+}
+
+
+- (CGRect)blurEffectViewFrame
+{
+    return self.frame;
 }
 
 
@@ -226,6 +272,17 @@
     }
     
     return _vibrancyEffectView;
+}
+
+
+- (void)setMenuItems:(JVMenuItems *)menuItems
+{
+    _menuItems = menuItems;
+    
+    if (self.menuItems && (self.menuItems.menuImages.count || self.menuItems.menuTitles.count))
+    {
+        [self setupView];
+    }
 }
 
 
@@ -552,6 +609,32 @@
                                   self.backgroundView.alpha = 1.0;
                               }
                               completion:nil];
+}
+
+
+#pragma mark - Observers
+
+- (void)addObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didDeviceOrientationChange:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+
+- (void)didDeviceOrientationChange:(NSNotification *)notification
+{
+    CGSize screenSize = [UIScreen screenSize];
+    self.frame = CGRectMake(0, 0, screenSize.width, screenSize.height);
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.backgroundView.frame = self.backgroundViewFrame;
+        self.shadowView.frame = self.shadowViewFrame;
+        self.tableView.frame = self.tableViewFrame;
+        self.closeBtn.frame = self.closeBtnFrame;
+        self.blurEffectView.frame = self.blurEffectViewFrame;
+    }];
 }
 
 @end

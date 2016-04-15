@@ -105,7 +105,7 @@
 - (void)showMenuWithController:(UIViewController *)viewController;
 
 
-/** Closes @a JVMenuPopover from specified view controller. */
+/** Closes @a JVMenuPopover. */
 - (void)closeMenu;
 
 

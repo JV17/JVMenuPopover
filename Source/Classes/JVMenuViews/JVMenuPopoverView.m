@@ -575,7 +575,7 @@ static CGFloat const kTransformToValue = 0.6;
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         self.currentViewController.view.transform = CGAffineTransformIdentity;//CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                         self.currentViewController.view.transform = CGAffineTransformIdentity;
                      }
                      completion:^(BOOL finished) {
                          self.doneAnimations = NO;

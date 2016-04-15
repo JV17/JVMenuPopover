@@ -47,15 +47,36 @@
 
 #pragma mark Initializers
 
-/** Throws an @a NSException telling the user that should use custom initializer. */
+/**
+ Custom initializer for the @a JVMenuPopoverView.
+ 
+ @return
+    An instance type of @a JVMenuPopoverView.
+ */
 - (instancetype)init;
 
 
-/** Throws an @a NSException telling the user that should use custom initializer. */
+/**
+ Custom initializer for the @a JVMenuPopoverView with specified frame.
+ 
+ @param frame
+    The view frame to be drawn.
+ 
+ @return
+    An instance type of @a JVMenuPopoverView.
+ */
 - (instancetype)initWithFrame:(CGRect)frame;
 
 
-/** Throws an @a NSException telling the user that should use custom initializer. */
+/**
+ Custom initializer for the @a JVMenuPopoverView with specified aDecoder.
+ 
+ @param aDecoder
+    The view @a NSCoder.
+ 
+ @return
+    An instance type of @a JVMenuPopoverView.
+ */
 - (instancetype)initWithCoder:(NSCoder *)aDecoder;
 
 

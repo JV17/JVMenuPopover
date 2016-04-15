@@ -111,13 +111,19 @@
 {
     if (!_containerView)
     {
-        _containerView = [[UIView alloc] initWithFrame:self.view.frame];
+        _containerView = [[UIView alloc] initWithFrame:self.containerViewFrame];
         UIColor *firstColor = [UIColor colorWithHexString:@"52EDC7"];
         UIColor *secondColor = [UIColor colorWithHexString:@"5AC8FB"];
         [_containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
     }
     
     return _containerView;
+}
+
+
+- (CGRect)containerViewFrame
+{
+    return CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 
@@ -275,10 +281,13 @@
 
 - (void)didDeviceOrientationChange:(NSNotification *)notification
 {
-    self.containerView.frame = self.view.frame;
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    self.view.frame = CGRectMake(0, 0, screenSize.width, screenSize.height);
+    
+    self.containerView.frame = self.containerViewFrame;
     UIColor *firstColor = [UIColor colorWithHexString:@"52EDC7"];
     UIColor *secondColor = [UIColor colorWithHexString:@"5AC8FB"];
-    [_containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
+    [self.containerView gradientEffectWithFirstColor:firstColor secondColor:secondColor];
 
     self.imageView.frame = self.imageViewFrame;
     self.label.frame = self.labelFrame;

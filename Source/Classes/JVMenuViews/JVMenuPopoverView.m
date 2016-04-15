@@ -17,7 +17,7 @@
 
 @interface JVMenuPopoverView()
 
-@property (nonatomic, strong) UIViewController *currentViewController;
+@property (nonatomic, weak) UIViewController *currentViewController;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -46,6 +46,9 @@
 - (void)setupView;
 
 @end
+
+
+static CGFloat const kTransformToValue = 0.6;
 
 
 #pragma mark - Implementation
@@ -512,7 +515,7 @@
                         options:0
                      animations:^{
 
-                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.6, 0.6);
+                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, kTransformToValue, kTransformToValue);
                          
                      }
                      completion:^(BOOL finished) {
@@ -542,7 +545,11 @@
                                               self.closeBtn.alpha = 1.0;
                                               self.alpha = 1.0;
                                               [self.tableView reloadData];
-                                          } completion:nil];
+                                          }
+                                          completion:^(BOOL finished) {
+                                              // this fixes issue when the device rotates while the menu is showing and then the menu is dismissed.
+                                              self.currentViewController.view.transform = CGAffineTransformIdentity;
+                                          }];
                      }];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
@@ -556,6 +563,9 @@
         return;
     }
     
+    // we need to reset the previous state of the controller in the background.
+    self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, kTransformToValue, kTransformToValue);
+    
     [self removeFromSuperview];
     
     [UIView animateWithDuration:0.3/1.5
@@ -564,11 +574,10 @@
           initialSpringVelocity:1.0
                         options:0
                      animations:^{
-                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                         self.currentViewController.view.transform = CGAffineTransformIdentity;//CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
                      }
                      completion:^(BOOL finished) {
                          self.doneAnimations = NO;
-                         self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
                          [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                      }];
 }

@@ -17,17 +17,18 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Jorge Valbuena" => "jorgevalbuena2@gmail.com" }
   s.source           = { :git => "https://github.com/JV17/JVMenuPopover.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/Justv17'
+  s.social_media_url = 'https://twitter.com/Justv17'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.source_files = 'Source/Classes/**/*'
   s.resource_bundles = {
     'JVMenuPopover' => ['Source/Assets/*.png']
   }
 
-  # s.public_header_files = 'Source/Classes/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.public_header_files = 'Source/Classes/**/*.h'
+  s.source_files = 'Source/Classes/**/*'
+  s.frameworks = 'UIKit', 'Accelerate', 'Foundation'
+
   # s.dependency 'AFNetworking', '~> 2.3'
 end

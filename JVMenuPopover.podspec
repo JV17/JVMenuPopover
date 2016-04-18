@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.resource_bundles = {
-    'JVMenuPopover' => ['Source/Assets/*.png']
+    'JVMenuPopover' => 'Source/Assets/*.png'
   }
 
   s.public_header_files = 'Source/Classes/**/*.h'

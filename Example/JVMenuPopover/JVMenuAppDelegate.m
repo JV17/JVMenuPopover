@@ -8,7 +8,6 @@
 
 #import "JVMenuAppDelegate.h"
 #import "JVMenuRootViewController.h"
-#import <JVMenuPopover/JVMenuPopover.h>
 
 
 @implementation JVMenuAppDelegate

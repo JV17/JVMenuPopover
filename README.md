@@ -167,3 +167,9 @@ Contact me if you find any bugs or potential room for improvements, which I am s
 
 JVMenuPopover is available under the MIT license. See the LICENSE file for more info.
 
+## Release Notes
+
+#### Version 1.3
+
+* Added landscape support. Please be advise that you might need to provide a bigger image allow the background to show properly.
+

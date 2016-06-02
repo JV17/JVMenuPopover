@@ -44,6 +44,8 @@
 
 @property (nonatomic, assign) BOOL doneAnimations;
 
+@property (nonatomic, assign, readwrite) BOOL isHidden;
+
 - (void)setupView;
 
 @end
@@ -507,6 +509,8 @@ static CGFloat const kTransformToValue = 0.6;
         return;
     }
     
+    self.isHidden = NO;
+    
     self.currentViewController = viewController;
     
     [UIView animateWithDuration:0.15
@@ -563,6 +567,8 @@ static CGFloat const kTransformToValue = 0.6;
     {
         return;
     }
+    
+    self.isHidden = YES;
     
     // we need to reset the previous state of the controller in the background.
     self.currentViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, kTransformToValue, kTransformToValue);

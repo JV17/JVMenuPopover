@@ -43,6 +43,10 @@
 @property (nonatomic, strong, readwrite) JVMenuItems *menuItems;
 
 
+/** Tells if the menu view is hidden or not. */
+@property (nonatomic, assign, readonly) BOOL isHidden;
+
+
 #pragma mark Initializers
 
 /**

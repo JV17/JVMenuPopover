@@ -62,7 +62,9 @@
     // creating menu
     self.menuPopover = [self menuPopover];
     
-    [self setupNavigationItem];
+    // setting up menu bar button
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_black-48"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
+    [self showNavigationItem];
     
     [self addObservers];
 }
@@ -70,19 +72,31 @@
 
 #pragma mark - Navigation Setup
 
-- (void)setupNavigationItem
+- (void)showNavigationItem
 {
-    // setting up menu bar button
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_black-48"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    // showing the menu bar button
+    [self animateNavigationItemToColor:[UIColor blackColor]];
 }
 
 
 - (void)hideNavigationItem
 {
     // clearing up menu bar button
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor clearColor];
+    [self animateNavigationItemToColor:[UIColor clearColor]];
+}
+
+
+- (void)animateNavigationItemToColor:(UIColor *)toColor
+{
+    [UIView animateWithDuration:0.15
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:0
+                     animations:^{
+                         self.navigationItem.leftBarButtonItem.tintColor = toColor;
+                     }
+                     completion:nil];
 }
 
 
@@ -294,7 +308,7 @@
 - (void)menuPopoverViewWillHide
 {
     // showing the navigation item
-    [self setupNavigationItem];
+    [self showNavigationItem];
 }
 
 

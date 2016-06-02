@@ -62,11 +62,27 @@
     // creating menu
     self.menuPopover = [self menuPopover];
     
+    [self setupNavigationItem];
+    
+    [self addObservers];
+}
+
+
+#pragma mark - Navigation Setup
+
+- (void)setupNavigationItem
+{
     // setting up menu bar button
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_black-48"] style:UIBarButtonItemStylePlain target:self action:@selector(showMenu)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-    
-    [self addObservers];
+}
+
+
+- (void)hideNavigationItem
+{
+    // clearing up menu bar button
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor clearColor];
 }
 
 
@@ -265,6 +281,20 @@
     {
         self.navigationController.viewControllers = @[self.fifthController];
     }
+}
+
+
+- (void)menuPopoverViewWillShow
+{
+    // hiding the navigation item
+    [self hideNavigationItem];
+}
+
+
+- (void)menuPopoverViewWillHide
+{
+    // showing the navigation item
+    [self setupNavigationItem];
 }
 
 

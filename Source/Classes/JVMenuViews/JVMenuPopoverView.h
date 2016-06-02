@@ -16,8 +16,6 @@
 
 @protocol JVMenuPopoverDelegate <NSObject>
 
-@optional
-
 /**
  Tells the selected view controller with @a indexPath.
  
@@ -25,6 +23,20 @@
     The index path of the menu.
  */
 - (void)menuPopoverDidSelectViewControllerAtIndexPath:(NSIndexPath *)indexPath;
+
+
+@optional
+
+/**
+ Tells when the menu popover view will show.
+ */
+- (void)menuPopoverViewWillShow;
+
+
+/**
+ Tells when the menu popover view will show.
+ */
+- (void)menuPopoverViewWillHide;
 
 @end
 

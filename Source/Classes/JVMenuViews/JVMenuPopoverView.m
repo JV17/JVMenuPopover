@@ -509,6 +509,11 @@ static CGFloat const kTransformToValue = 0.6;
         return;
     }
     
+    if ([self.delegate respondsToSelector:@selector(menuPopoverViewWillShow)])
+    {
+        [self.delegate menuPopoverViewWillShow];
+    }
+    
     self.isHidden = NO;
     
     self.currentViewController = viewController;
@@ -566,6 +571,11 @@ static CGFloat const kTransformToValue = 0.6;
     if(!self.doneAnimations)
     {
         return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(menuPopoverViewWillHide)])
+    {
+        [self.delegate menuPopoverViewWillHide];
     }
     
     self.isHidden = YES;

@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.version          = "1.4"
   s.summary          = "A Simple popover like menu."
   s.description      = "JVMenuPopover is a simple and cool menu popover like. It animates the view controllers and scales them to make  a similar iOS switch window like animation."
-  s.homepage         = "https://github.com/JV17/JVMenuPopover"
+  s.homepage         = "http://jv17.github.io/JVMenuPopover"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Jorge Valbuena" => "jorgevalbuena2@gmail.com" }

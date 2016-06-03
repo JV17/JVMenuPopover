@@ -21,7 +21,9 @@ Developed and tested using iOS8+
 JVMenuPopover is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+```
 pod "JVMenuPopover"
+```
 
 ## Usage
 

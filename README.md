@@ -135,7 +135,7 @@ Using JVMenuPopover with your own project.
 }
 ```
 
-* Finally, we set our menu bar button to target to call the `JVMenuPopoverView` helper function and our menu delegate to know which menu item was selected by the user and present a new view controller or whatever you would like to then. Note: after iOS 9, we can't no longer present self on our rootController so, you might need to either have a property for the rootController and use that instead.  
+* Finally, we set our menu bar button to target to call the `JVMenuPopoverView` helper function and our menu delegate to know which menu item was selected by the user and present a new view controller or whatever you would like to then. **Note:** after iOS 9, we can't no longer present self on our rootController so, you might need to either have a property for the rootController and use that instead.  
 
 ```objc
 #pragma mark - Menu Helper Functions

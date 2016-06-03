@@ -177,6 +177,7 @@ JVMenuPopover is available under the MIT license. See the LICENSE file for more 
 * Improved landscape support. Now the menu closes prior rotation to avoid image size issues.
 * Added new delegates to Menu view to know when the menu view will show or hide.
 * Added new property to the Menu view which indicates if the view hidden or not.
+* Added optional functions on the rootController which hides & shows the navigationItem button (menu button), please sample project for this.
 
 
 #### Version 1.3

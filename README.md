@@ -68,7 +68,7 @@ Using JVMenuPopover with your own project.
 }
 ```
 
-* Then, we need to set our data model for our menu using the class `JVMenuItems` which holds all the menu images, titles and the close button image to display. Also, we can set our preferred menu animation. And we need to create the `JVMenuPopoverView` which is the actual menu with the menu items. Note: The same approach here the use of lazy intialization.
+* Then, in your rootController we need to set our data model for our menu using the class `JVMenuItems` which holds all the menu images, titles and the close button image to display. Also, we can set our preferred menu animation. And we need to create the `JVMenuPopoverView` which is the actual menu with the menu items. Note: The same approach here the use of lazy intialization.
 
 ```objc
 - (JVMenuItems *)menuItems
@@ -122,7 +122,7 @@ Using JVMenuPopover with your own project.
 }
 ```
 
-* Finally, we set our menu bar button to target to call the `JVMenuPopoverView` helper function and our menu delegate to know which menu item was selected by the user and present a new view controller or whatever you would like to then.
+* Finally, we set our menu bar button to target to call the `JVMenuPopoverView` helper function and our menu delegate to know which menu item was selected by the user and present a new view controller or whatever you would like to then. Note: after iOS 9, we can't no longer present self on our rootController so, you might need to either have a property for the rootController and use that instead.  
 
 ```objc
 #pragma mark - Menu Helper Functions
@@ -139,7 +139,7 @@ Using JVMenuPopover with your own project.
 {
     if(indexPath.row == 0)
     {
-        [self.navigationController setViewControllers:@[self]];
+        [self.navigationController setViewControllers:@[self.rootController]; // this is a temporary fix for the issue on iOS 9 not able to set 'self' as the current view controller
     }
     else if(indexPath.row == 1)
     {
@@ -168,6 +168,13 @@ Contact me if you find any bugs or potential room for improvements, which I am s
 JVMenuPopover is available under the MIT license. See the LICENSE file for more info.
 
 ## Release Notes
+
+#### Version 1.4
+
+* Improved landscape support. Now the menu closes prior rotation to avoid image size issues.
+* Added new delegates to Menu view to know when the menu view will show or hide.
+* Added new property to the Menu view which indicates if the view hidden or not.
+
 
 #### Version 1.3
 

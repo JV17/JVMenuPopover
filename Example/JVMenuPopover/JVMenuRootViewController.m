@@ -96,7 +96,7 @@
                      animations:^{
                          self.navigationItem.leftBarButtonItem.tintColor = toColor;
                      }
-                     completion:nil];
+                     completion:nil]; 
 }
 
 

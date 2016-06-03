@@ -12,6 +12,17 @@ This is a simple menu controller where I tried to simulate the native iOS animat
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=2MG6kVMMuTo?autoplay=1" target="_blank">![screenshot-1](Previews/jvmenu.preview2.gif)</a>
 
+## Requirements
+
+Developed and tested using iOS8+
+
+## Installation
+
+JVMenuPopover is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+pod "JVMenuPopover"
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -148,16 +159,6 @@ Using JVMenuPopover with your own project.
 }
 ```
 
-## Requirements
-
-Developed and tested using iOS8+
-
-## Installation
-
-JVMenuPopover is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-    pod "JVMenuPopover"
 
 ## Author & Support
 

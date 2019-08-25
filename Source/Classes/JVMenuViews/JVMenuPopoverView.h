@@ -32,7 +32,6 @@
  */
 - (void)menuPopoverViewWillShow;
 
-
 /**
  Tells when the menu popover view will show.
  */

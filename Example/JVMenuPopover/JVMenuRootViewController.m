@@ -33,6 +33,7 @@
 
 @property (nonatomic, strong) JVMenuFifthController *fifthController;
 
+@property (nonatomic, assign) BOOL statusBarHidden;
 
 @end
 
@@ -69,6 +70,9 @@
     [self addObservers];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return self.statusBarHidden;
+}
 
 #pragma mark - Navigation Setup
 

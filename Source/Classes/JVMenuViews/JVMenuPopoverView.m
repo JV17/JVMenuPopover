@@ -164,7 +164,8 @@ static CGFloat const kTransformToValue = 0.6;
 
 - (CGRect)tableViewFrame
 {
-    return CGRectMake(0, 70, self.frame.size.width, self.frame.size.height);
+    CGFloat originY = self.closeBtnFrame.origin.y + 40;
+    return CGRectMake(0, originY, self.frame.size.width, self.frame.size.height-originY);
 }
 
 
@@ -185,7 +186,8 @@ static CGFloat const kTransformToValue = 0.6;
 
 - (CGRect)closeBtnFrame
 {
-    return CGRectMake(15, 28, self.menuItems.menuCloseButtonImage.size.width, self.menuItems.menuCloseButtonImage.size.height);
+    CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    return CGRectMake(15, statusBarHeight, self.menuItems.menuCloseButtonImage.size.width, self.menuItems.menuCloseButtonImage.size.height);
 }
 
 
@@ -561,8 +563,6 @@ static CGFloat const kTransformToValue = 0.6;
                                               self.currentViewController.view.transform = CGAffineTransformIdentity;
                                           }];
                      }];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
 }
 
 
@@ -595,7 +595,6 @@ static CGFloat const kTransformToValue = 0.6;
                      }
                      completion:^(BOOL finished) {
                          self.doneAnimations = NO;
-                         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
                      }];
 }
 

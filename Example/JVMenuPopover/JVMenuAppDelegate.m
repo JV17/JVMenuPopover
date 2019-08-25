@@ -16,7 +16,9 @@
 {
     // setting up app window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
+    self.window.backgroundColor = [UIColor colorWithHexString:@"799ba6"];
+    // I was using a cool bg on the app to make the whole transitions cooler looking, you can change this and use whatever image you want to..
+    //[UIColor colorWithPatternImage:[[UIImage imageNamed:@"app_bg1.jpg"] imageScaledToWidth:self.window.frame.size.width]];
     self.window.rootViewController = self.navigationController;
     
     [self.window makeKeyAndVisible];

@@ -337,16 +337,14 @@
     self.label.frame = self.labelFrame;
 }
 
-
-#warning If you are using an older target OS version use this function, else remove it and use below!
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration NS_DEPRECATED_IOS(2_0,8_0, "Implement viewWillTransitionToSize:withTransitionCoordinator: instead") __TVOS_PROHIBITED
-{
-    if (!self.menuPopover.isHidden)
-    {
-        [self.menuPopover closeMenu];
-    }
-}
-
+//#warning If you are using an older target OS version use this function, else remove it and use below!
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration NS_DEPRECATED_IOS(2_0,8_0, "Implement viewWillTransitionToSize:withTransitionCoordinator: instead") __TVOS_PROHIBITED
+//{
+//    if (!self.menuPopover.isHidden)
+//    {
+//        [self.menuPopover closeMenu];
+//    }
+//}
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {

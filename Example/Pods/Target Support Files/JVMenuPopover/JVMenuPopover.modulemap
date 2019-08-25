@@ -1,0 +1,6 @@
+framework module JVMenuPopover {
+  umbrella header "JVMenuPopover-umbrella.h"
+
+  export *
+  module * { export * }
+}

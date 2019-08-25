@@ -43,11 +43,11 @@
 /**
  Custom initializer for @a JVMenuItems with @a menuImages, @a menuTitles, @a menuCloseButtonImage and default @a menuSlideInWithBounceAnimation.
  
- @param menuImages
+ @param images
     An array of images for the menu.
- @param menuTitles
+ @param titles
     An array of titles for the menu.
- @param menuCloseButtonImage
+ @param closeImage
     The close button image for the menu.
  
  @return

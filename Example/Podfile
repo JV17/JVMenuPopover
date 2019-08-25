@@ -1,11 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'JVMenuPopover', :exclusive => true do
-  pod "JVMenuPopover", :path => "../"
-end
+platform :ios, '11.0'
+use_frameworks!
 
-target 'Tests', :exclusive => true do
+target 'JVMenuPopover' do
   pod "JVMenuPopover", :path => "../"
-
-  
+  target 'Tests' do
+    pod "JVMenuPopover", :path => "../"
+  end
 end

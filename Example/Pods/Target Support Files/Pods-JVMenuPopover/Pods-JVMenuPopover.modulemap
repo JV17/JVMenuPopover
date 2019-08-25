@@ -1,0 +1,6 @@
+framework module Pods_JVMenuPopover {
+  umbrella header "Pods-JVMenuPopover-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -14,7 +14,7 @@ This is a simple menu controller where I tried to simulate the native iOS animat
 
 ## Requirements
 
-Developed and tested using iOS8+
+Developed and tested using iOS11+
 
 ## Installation
 

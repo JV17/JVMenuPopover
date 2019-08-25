@@ -19,8 +19,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/JV17/JVMenuPopover.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/Justv17'
 
-  s.platform     = :ios, '8.0'
-  s.ios.deployment_target = '8.0'
+  s.platform     = :ios, '11.0'
+  s.ios.deployment_target = '11.0'
   s.requires_arc = true
 
   s.source_files = 'Source/Classes/**/*'
@@ -31,6 +31,4 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'Source/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Accelerate', 'Foundation'
-
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

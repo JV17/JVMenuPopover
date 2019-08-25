@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1463468FC1798202FB11350A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C010DDD49602B47F1A1646 /* libPods-Tests.a */; };
 		3C37FB011ACB80D100D389B0 /* about-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FAFA1ACB80D100D389B0 /* about-48@2x.png */; };
 		3C37FB021ACB80D100D389B0 /* ask_question-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FAFB1ACB80D100D389B0 /* ask_question-48@2x.png */; };
 		3C37FB031ACB80D100D389B0 /* business_contact-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C37FAFC1ACB80D100D389B0 /* business_contact-48@2x.png */; };
@@ -54,7 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09C010DDD49602B47F1A1646 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B1362D592C6EF81C674DEA6 /* Pods_JVMenuPopover_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JVMenuPopover_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C0C57331AD4F9079E9EDFCC /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1FCAAD443182BE2E422083B7 /* Pods-JVMenuPopover.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JVMenuPopover.release.xcconfig"; path = "Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				1463468FC1798202FB11350A /* libPods-Tests.a in Frameworks */,
 				B45B74576ADCA250780D935E /* Pods_JVMenuPopover_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,7 +208,6 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				09C010DDD49602B47F1A1646 /* libPods-Tests.a */,
 				2C55B0074E3F6F68BD79054A /* Pods_JVMenuPopover.framework */,
 				1B1362D592C6EF81C674DEA6 /* Pods_JVMenuPopover_Tests.framework */,
 			);
@@ -398,21 +394,17 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JVMenuPopover/JVMenuPopover.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVMenuPopover.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JVMenuPopover/Pods-JVMenuPopover-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		110D0DB0A212FFB57390382C /* [CP] Check Pods Manifest.lock */ = {
@@ -457,21 +449,17 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JVMenuPopover-Tests/Pods-JVMenuPopover-Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-JVMenuPopover-Tests/Pods-JVMenuPopover-Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JVMenuPopover/JVMenuPopover.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVMenuPopover.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JVMenuPopover-Tests/Pods-JVMenuPopover-Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JVMenuPopover-Tests/Pods-JVMenuPopover-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		802D62BF7522C8D025126A79 /* Embed Pods Frameworks */ = {

@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "JVMenuPopover"
-  s.version          = "1.4"
+  s.version          = "1.5"
   s.summary          = "A Simple popover like menu."
   s.description      = "JVMenuPopover is a simple and cool menu popover like. It animates the view controllers and scales them to make  a similar iOS switch window like animation."
   s.homepage         = "http://jv17.github.io/JVMenuPopover"
@@ -25,9 +25,9 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Source/Classes/**/*'
 
-  s.resource_bundles = {
-    'JVMenuPopover' => ['Source/Assets/*.png']
-  }
+  #s.resource_bundles = {
+  #  'JVMenuPopover' => ['Source/Assets/*.png']
+  #}
 
   s.public_header_files = 'Source/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Accelerate', 'Foundation'

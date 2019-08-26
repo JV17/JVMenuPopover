@@ -6,7 +6,6 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
-
 Pod::Spec.new do |s|
   s.name             = "JVMenuPopover"
   s.version          = "1.5"
@@ -18,17 +17,10 @@ Pod::Spec.new do |s|
   s.author           = { "Jorge Valbuena" => "jorgevalbuena2@gmail.com" }
   s.source           = { :git => "https://github.com/JV17/JVMenuPopover.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/Justv17'
-
   s.platform     = :ios, '11.0'
   s.ios.deployment_target = '11.0'
   s.requires_arc = true
-
   s.source_files = 'Source/Classes/**/*'
-
-  #s.resource_bundles = {
-  #  'JVMenuPopover' => ['Source/Assets/*.png']
-  #}
-
   s.public_header_files = 'Source/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Accelerate', 'Foundation'
 end
